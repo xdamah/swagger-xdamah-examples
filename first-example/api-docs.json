@@ -17,71 +17,15 @@
 		}
 	],
 	"paths": {
-		"/person/{id}": {
+		"/saveperson/": {
 			"post": {
 				"tags": [
 					"person-controller"
 				],
 				"operationId": "person",
 				"x-damah": true,
-				"x-damah-param-type": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
-				"parameters": [
-					{
-						"$ref": "#/components/parameters/def"
-					},
-					{
-						"$ref": "#/components/parameters/id"
-					},
-					{
-						"name": "header1",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "cookieValue1",
-						"in": "cookie",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "defArr",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "integer",
-								"format": "int32"
-							}
-						}
-					},
-					{
-						"name": "header2",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"name": "x",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"format": "date"
-						}
-					}
-				],
+				"x-damah-service": "com.example.SampleService.savePerson(Person)",
+
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -112,16 +56,6 @@
 									"summary": "person1 Example",
 									"externalValue": "classpath:examples/2.xml"
 								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						},
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
 							}
 						}
 					},
@@ -141,302 +75,32 @@
 				}
 			}
 		},
-		"/persona/{id}": {
-			"post": {
+		"/person/byid/{id}": {
+			"get": {
 				"tags": [
 					"person-controller"
 				],
-				"operationId": "persona",
+				"operationId": "personbyid",
 				"x-damah": true,
-				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"x-damah-service": "com.example.SampleService.byid(long)",
 				"parameters": [
-					{
-						"name": "def",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"maximum": 30,
-							"minimum": 18,
-							"type": "integer",
-							"format": "int32"
-						}
-					},
 					{
 						"name": "id",
 						"in": "path",
 						"required": true,
 						"schema": {
-							"maxLength": 2147483647,
-							"minLength": 2,
-							"type": "string"
-						}
-					},
-					{
-						"name": "header1",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "cookieValue1",
-						"in": "cookie",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "defArr",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "integer",
-								"format": "int32"
-							}
-						}
-					},
-					{
-						"name": "header2",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"name": "x",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"format": "date"
-						}
-					}
-				],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.xml"
-								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						},
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							},
-							"application/xml": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-
-		"/stringreqbody/{id}": {
-			"post": {
-				"tags": [
-					"person-controller"
-				],
-				"operationId": "stringreqbody",
-				"x-damah": true,
-				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.stringreqbody(String,PersonParam)",
-				"parameters": [
-					{
-						"name": "def",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"maximum": 30,
-							"minimum": 18,
 							"type": "integer",
-							"format": "int32"
-						}
-					},
-					{
-						"name": "id",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"maxLength": 2147483647,
-							"minLength": 2,
-							"type": "string"
-						}
-					},
-					{
-						"name": "header1",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "cookieValue1",
-						"in": "cookie",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "defArr",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "integer",
-								"format": "int32"
-							}
-						}
-					},
-					{
-						"name": "header2",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"name": "x",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"format": "date"
+							"format": "int64"
 						}
 					}
 				],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"type": "string"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"type": "string"
-							}
-						}
-					},
-					"required": true
-				},
 				"responses": {
 					"200": {
 						"description": "OK",
 						"content": {
-							"application/json": {
+							"*/*": {
 								"schema": {
 									"$ref": "#/components/schemas/Person"
-								}
-							},
-							"application/xml": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/binary": {
-			"post": {
-				"tags": [
-					"binary-controller"
-				],
-				"operationId": "binary-pic",
-				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.binary(byte[])",
-				"requestBody": {
-					"content": {
-						"application/octet-stream": {
-							"schema": {
-								"type": "string",
-								"format": "byte"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"image/jpeg": {
-								"schema": {
-									"type": "string",
-									"format": "binary"
 								}
 							}
 						}
@@ -483,16 +147,6 @@
 									"externalValue": "classpath:examples/2.xml"
 								}
 							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						},
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
 						}
 					},
 					"required": true
@@ -505,325 +159,6 @@
 								"schema": {
 									"type": "string",
 									"format": "binary"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/pic1": {
-			"post": {
-				"tags": [
-					"person-controller"
-				],
-				"operationId": "person-pic1",
-				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.pic(Person)",
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.xml"
-								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						},
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"image/jpeg": {
-								"schema": {
-									"type": "string",
-									"format": "binary"
-								}
-							},
-							"image/png": {
-								"schema": {
-									"type": "string",
-									"format": "binary"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/person/byid": {
-			"get": {
-				"tags": [
-					"person-controller"
-				],
-				"operationId": "personbyid",
-				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.byid(long)",
-				"parameters": [
-					{
-						"name": "id",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "integer",
-							"format": "int64"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/person/byids": {
-			"get": {
-				"tags": [
-					"person-controller"
-				],
-				"operationId": "personbyids",
-				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.byids(long[])",
-				"parameters": [
-					{
-						"name": "ids",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "integer",
-								"format": "int64"
-							}
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/abc/{abc}": {
-			"get": {
-				"tags": [
-					"another-controller"
-				],
-				"operationId": "another_1",
-				"x-damah": false,
-				"parameters": [
-					{
-						"name": "abc",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"type": "object",
-									"additionalProperties": {
-										"type": "string"
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"another-controller"
-				],
-				"operationId": "another_2",
-				"x-damah": false,
-				"parameters": [
-					{
-						"name": "abc",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.xml"
-								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"*/*": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/def": {
-			"post": {
-				"tags": [
-					"another-controller"
-				],
-				"operationId": "another_3",
-				"parameters": [
-					{
-						"name": "abc",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"maximum": 30,
-							"minimum": 18,
-							"type": "integer",
-							"format": "int32"
-						}
-					}
-				],
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.xml"
-								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Person"
 								}
 							}
 						}
@@ -831,6 +166,7 @@
 				}
 			}
 		}
+
 	},
 	"components": {
 

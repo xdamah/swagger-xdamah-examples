@@ -1,41 +1,35 @@
 package com.atlassian.oai.validator.interaction.request;
 
-import com.atlassian.oai.validator.model.Body;
-import com.atlassian.oai.validator.model.Request;
-import com.atlassian.oai.validator.report.MessageResolver;
-import com.atlassian.oai.validator.report.ValidationReport;
-import com.atlassian.oai.validator.schema.SchemaValidator;
-import com.atlassian.oai.validator.springmvc.ResettableInputStreamBody;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-
-import io.swagger.v3.oas.models.media.Content;
-import io.swagger.v3.oas.models.media.MediaType;
-import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.parameters.RequestBody;
-import com.github.xdamah.config.ModelPackageUtil;
-import com.github.xdamah.config.NonSpringHolder;
-
-import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static com.atlassian.oai.validator.report.ValidationReport.empty;
+import static com.atlassian.oai.validator.util.ContentTypeUtils.findMostSpecificMatch;
+import static com.atlassian.oai.validator.util.ContentTypeUtils.isFormDataContentType;
+import static com.atlassian.oai.validator.util.ContentTypeUtils.isJsonContentType;
+import static com.atlassian.oai.validator.util.HttpParsingUtils.parseUrlEncodedFormDataBodyAsJsonNode;
+import static java.lang.Boolean.TRUE;
+import static java.util.Objects.requireNonNull;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-import static com.atlassian.oai.validator.report.ValidationReport.empty;
-import static com.atlassian.oai.validator.util.ContentTypeUtils.findMostSpecificMatch;
-import static com.atlassian.oai.validator.util.ContentTypeUtils.isFormDataContentType;
-import static com.atlassian.oai.validator.util.ContentTypeUtils.isJsonContentType;
-import static com.atlassian.oai.validator.util.HttpParsingUtils.parseUrlEncodedFormDataBodyAsJsonNode;
-import static com.google.common.net.MediaType.JSON_UTF_8;
-import static java.lang.Boolean.TRUE;
-import static java.util.Objects.requireNonNull;
-import static org.slf4j.LoggerFactory.getLogger;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+
+import com.atlassian.oai.validator.model.Body;
+import com.atlassian.oai.validator.model.Request;
+import com.atlassian.oai.validator.report.MessageResolver;
+import com.atlassian.oai.validator.report.ValidationReport;
+import com.atlassian.oai.validator.schema.SchemaValidator;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.github.xdamah.config.NonSpringHolder;
+
+import io.swagger.v3.oas.models.media.MediaType;
+import io.swagger.v3.oas.models.parameters.RequestBody;
 
 /**
  * Validation for a request body.
