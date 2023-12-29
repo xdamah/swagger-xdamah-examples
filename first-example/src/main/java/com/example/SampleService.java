@@ -24,9 +24,6 @@ public class SampleService {
 
 	public Person savePerson(Person person)
 	{
-		System.out.println("got person="+person);
-
-		
 		return person;
 	}
 
