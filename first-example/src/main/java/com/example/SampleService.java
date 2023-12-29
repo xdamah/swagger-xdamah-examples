@@ -17,10 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class SampleService {
 
-	@Autowired
-	private HttpServletRequest request;
-	@Autowired
-    private MappingJackson2XmlHttpMessageConverter mappingJackson2XmlHttpMessageConverter;
+
 
 	public Person savePerson(Person person)
 	{
