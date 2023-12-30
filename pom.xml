@@ -186,5 +186,6 @@
 	</dependencies>
 	<modules>
 		<module>first-example</module>
+		<module>with-security</module>
 	</modules>
 </project>
