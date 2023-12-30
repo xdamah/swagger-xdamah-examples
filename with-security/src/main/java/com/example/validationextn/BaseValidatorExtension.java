@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 
@@ -58,6 +60,7 @@ Let it be smarter
 
 
 public abstract class BaseValidatorExtension implements CustomRequestValidator, IOpenApiValidationConfigOnInitWorkaround {
+	private static final Logger logger = LoggerFactory.getLogger(BaseValidatorExtension.class);
 	private Map<String, String> customSchemasImportMapping= new HashMap<>();
 	@Autowired
 	private OpenAPI openApi;
@@ -151,8 +154,7 @@ private  String[] watchedExtensions= watchedExtensions();
 		try {
 			xml = body.toString(Charset.defaultCharset());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Unable to extract xml", e);
 		}
 
 		JsonNode readValue  = NonSpringHolder.INSTANCE.xmlToJsonNode(operationReqBodyContent, actualContentType, xml);
@@ -248,7 +250,7 @@ private  String[] watchedExtensions= watchedExtensions();
 							String childTypeName=modelPackageUtil.simpleClassNameFromComponentSchemaRef(get$ref2);
 							Schema childSchema = this.openApi.getComponents().getSchemas().get(childTypeName);
 							JsonNode actualChildjsonBody = actualJsonNodeBody.get(propertyName);
-							System.out.println("childTypeName="+childTypeName+",childSchema="+childSchema+",actualChildjsonBody="+actualChildjsonBody);
+							logger.debug("childTypeName="+childTypeName+",childSchema="+childSchema+",actualChildjsonBody="+actualChildjsonBody);
 							if(actualChildjsonBody!=null)
 							{
 								processJsonSchema(request, messages, actualChildjsonBody, childTypeName, childSchema, base+"/"+propertyName);
@@ -270,7 +272,7 @@ private  String[] watchedExtensions= watchedExtensions();
 										JsonNode jsonNode = actualJsonNodeBody.get(propertyName);
 										if(jsonNode!=null && !(jsonNode instanceof NullNode))
 										{
-											System.out.println("found"+jsonNode.getClass().getName());
+											logger.debug("found"+jsonNode.getClass().getName());
 											ArrayNode arrayNode=(ArrayNode) jsonNode;
 											if(arrayNode!=null)
 											{
@@ -304,8 +306,7 @@ private  String[] watchedExtensions= watchedExtensions();
 		try {
 			return ret=Optional.of(body.toJsonNode());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warn("unable to extract jsonnode", e);
 			ret=Optional.empty();
 		}
 		return ret;

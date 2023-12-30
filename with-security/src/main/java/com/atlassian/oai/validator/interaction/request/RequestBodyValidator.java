@@ -133,8 +133,7 @@ class RequestBodyValidator {
         					try {
 								xml=body.toString(Charset.defaultCharset());
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								log.error("Unable to extract xml", e);
 							}
         					
         					JsonNode readValue  = NonSpringHolder.INSTANCE.xmlToJsonNode(apiRequestBodyDefinition, contentType, xml);

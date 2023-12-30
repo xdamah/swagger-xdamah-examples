@@ -1,15 +1,17 @@
 package com.example.validationextn;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.CardCompany;
 
 /**
  * Validator for credit card numbers
  * Checks validity and returns card type
- * 
- * @author ian.chen
+
  */
 public class RegexCardValidator implements IValidator{
-    
+	private static final Logger logger = LoggerFactory.getLogger(RegexCardValidator.class);
     /**
      * Checks if the field is a valid credit card number.
      * @param card The card number to validate.
@@ -93,6 +95,6 @@ public class RegexCardValidator implements IValidator{
      */
     private static void printTest(String cardIn) {
         CardValidationResult result = (CardValidationResult) new RegexCardValidator().isValid(cardIn);
-        System.out.println(result.isValid() + " : " + (result.isValid()? result.getCardType().getIssuerName(): "")  + " : " + result.getMessage() );
+        logger.debug(result.isValid() + " : " + (result.isValid()? result.getCardType().getIssuerName(): "")  + " : " + result.getMessage() );
     }
 }
