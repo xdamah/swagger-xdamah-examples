@@ -3,16 +3,12 @@ package com.example;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import com.example.custom.SampleCustomType;
 import com.example.model.Person;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class SampleService {

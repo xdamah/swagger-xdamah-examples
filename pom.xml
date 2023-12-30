@@ -187,5 +187,6 @@
 	<modules>
 		<module>first-example</module>
 		<module>with-security</module>
+		<module>polymorphism-example</module>
 	</modules>
 </project>
