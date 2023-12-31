@@ -30,6 +30,16 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Trip"
+							},
+							"examples": {
+								"newTrip": {
+									"summary": "new trip example",
+									"externalValue": "classpath:examples/new_trip1.json"
+								},
+								"newTripWithRequests": {
+									"summary": "new trip with requests example",
+									"externalValue": "classpath:examples/new_trip2.json"
+								}
 							}
 						}
 					}
@@ -61,7 +71,8 @@
 						"required": true,
 						"schema": {
 							"type": "integer",
-							"format": "int64"
+							"format": "int64",
+							"example": "1"
 						}
 					}
 				],
@@ -92,7 +103,8 @@
 						"required": true,
 						"schema": {
 							"type": "integer",
-							"format": "int64"
+							"format": "int64",
+							"example": "1"
 						}
 					}
 				],
@@ -113,6 +125,20 @@
 								],
 								"discriminator": {
 									"propertyName": "type"
+								}
+							},
+							"examples": {
+								"FlightRequest": {
+									"summary": "FlightRequest Example",
+									"externalValue": "classpath:examples/flightRequest.json"
+								},
+								"CarRequest": {
+									"summary": "CarRequest Example",
+									"externalValue": "classpath:examples/carRequest.json"
+								},
+								"HotelRequest": {
+									"summary": "HotelRequest Example",
+									"externalValue": "classpath:examples/hotelRequest.json"
 								}
 							}
 						}
