@@ -188,5 +188,6 @@
 		<module>first-example</module>
 		<module>with-security</module>
 		<module>polymorphism-example</module>
+		<module>kitchen-sink</module>
 	</modules>
 </project>
