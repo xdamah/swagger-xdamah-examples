@@ -3,6 +3,8 @@ package com.example;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -21,6 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class SampleService {
+	private static final Logger logger = LoggerFactory.getLogger(SampleService.class);
  
 	@Autowired
 	private HttpServletRequest request;
@@ -29,7 +32,7 @@ public class SampleService {
 
 	public Person doSomething(Person person, PersonParam personParam)
 	{
-		System.out.println("got person="+person+",param="+personParam+"from "+request.getRequestURI());
+		logger.debug("got person="+person+",param="+personParam+"from "+request.getRequestURI());
 
 		if(personParam.getX()!=null)
 		{
@@ -69,7 +72,7 @@ public class SampleService {
 			}
 			
 		}
-		System.out.println("returning "+p);
+		logger.debug("returning "+p);
 		return p;
 	}
 	
