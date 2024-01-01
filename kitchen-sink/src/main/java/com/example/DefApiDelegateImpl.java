@@ -9,12 +9,9 @@ import com.example.model.Person;
 public class DefApiDelegateImpl implements DefApiDelegate {
 
 	@Override
-	public ResponseEntity<Person> another3(Integer  abc,
-	         Person  body1) {
+	public ResponseEntity<Person> another3(Integer abc, Person body1) {
 		body1.setId(abc.longValue());
 		return new ResponseEntity<Person>(body1, HttpStatus.OK);
 	}
-
-	
 
 }

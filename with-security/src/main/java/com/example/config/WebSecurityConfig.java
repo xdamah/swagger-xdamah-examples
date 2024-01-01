@@ -25,56 +25,51 @@ import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
-
-
 //import static org.springframework.security.web.util.matcher.
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+	@Autowired
+	MvcRequestMatcher.Builder mvc;
 
-    @Autowired
-    MvcRequestMatcher.Builder mvc;
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http = http.headers(cfg -> cfg.frameOptions(cfx -> cfx.sameOrigin()));
 
-        http = http.headers(cfg -> cfg.frameOptions(cfx -> cfx.sameOrigin()));
+		RequestCache nullRequestCache = new NullRequestCache();
+		http = http
 
-        RequestCache nullRequestCache = new NullRequestCache();
-        http = http
+				.requestCache((cache) -> cache.requestCache(nullRequestCache));
+		http = http.sessionManagement(cfg -> cfg.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		http = http.csrf(cfg -> cfg.disable());
 
-                .requestCache((cache) -> cache.requestCache(nullRequestCache));
-        http = http.sessionManagement(cfg -> cfg.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http = http.csrf(cfg -> cfg.disable());
+		http = http.authorizeHttpRequests((requests) -> requests
+				.requestMatchers(mvc.pattern("/"), mvc.pattern("/swagger-ui.html"), mvc.pattern("/v3/api-docs"))
+				.permitAll()
 
-        http = http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers(mvc.pattern("/"), mvc.pattern("/swagger-ui.html"), mvc.pattern("/v3/api-docs"))
-                .permitAll()
+				.requestMatchers(mvc.pattern("/secured/*/")).hasRole("User")
 
-                .requestMatchers(mvc.pattern( "/secured/*/"))
-                .hasRole("User")
-                
+				// .anyRequest().authenticated()
+				.anyRequest().permitAll());
+		// .formLogin(cfg->cfg.disable())
+		http.httpBasic(withDefaults());
 
-                // .anyRequest().authenticated()
-                .anyRequest().permitAll());
-        // .formLogin(cfg->cfg.disable())
-        http.httpBasic(withDefaults());
+		// we dont need any logout
+		/*
+		 * http.logout((logout) -> { logout.logoutUrl("/logout"); logout.permitAll();
+		 * });
+		 */
+		// );
 
-        // we dont need any logout
-        /*
-         * http.logout((logout) -> { logout.logoutUrl("/logout"); logout.permitAll();
-         * });
-         */
-        // );
+		return http.build();
+	}
 
-        return http.build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("password")
-                .roles("User").build();
-              return new InMemoryUserDetailsManager(user);
-    }
+	@Bean
+	public UserDetailsService userDetailsService() {
+		UserDetails user = User.withDefaultPasswordEncoder().username("user").password("password").roles("User")
+				.build();
+		return new InMemoryUserDetailsManager(user);
+	}
 }

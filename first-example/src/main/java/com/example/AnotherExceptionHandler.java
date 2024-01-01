@@ -17,25 +17,22 @@ import com.github.xdamah.advice.SwaggerValidationExceptionHandler;
 
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class AnotherExceptionHandler extends SwaggerValidationExceptionHandler{
+public class AnotherExceptionHandler extends SwaggerValidationExceptionHandler {
 	private static final Logger logger = LoggerFactory.getLogger(AnotherExceptionHandler.class);
 
-	
-	 @ExceptionHandler(Exception.class)
-	  
-	  public ResponseEntity<Map<String, String>> handle(final Exception e) {
-		  Map<String, String> map= new HashMap<>();
-		 
-			UUID uuid = UUID.randomUUID();
-			String logRef=uuid.toString();
-			String msg="Unexpected Problem Happened. Note refID="+logRef;
-			
-			logger.error(msg, e);
-		
-		  map.put("problem", msg);
-	    return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
-	  }
-  
+	@ExceptionHandler(Exception.class)
 
-  
+	public ResponseEntity<Map<String, String>> handle(final Exception e) {
+		Map<String, String> map = new HashMap<>();
+
+		UUID uuid = UUID.randomUUID();
+		String logRef = uuid.toString();
+		String msg = "Unexpected Problem Happened. Note refID=" + logRef;
+
+		logger.error(msg, e);
+
+		map.put("problem", msg);
+		return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
 }

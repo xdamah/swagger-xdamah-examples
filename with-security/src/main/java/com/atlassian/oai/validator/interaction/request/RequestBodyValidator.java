@@ -34,139 +34,124 @@ import io.swagger.v3.oas.models.parameters.RequestBody;
 /**
  * Validation for a request body.
  * <p>
- * The schema to validate is selected based on the content-type header of the incoming request.
- * This class is a mopdifiction of original class of same name and package
+ * The schema to validate is selected based on the content-type header of the
+ * incoming request. This class is a mopdifiction of original class of same name
+ * and package
  */
 class RequestBodyValidator {
 
-    private static final Logger log = getLogger(RequestBodyValidator.class);
+	private static final Logger log = getLogger(RequestBodyValidator.class);
 
-    private final MessageResolver messages;
+	private final MessageResolver messages;
 
-    private final SchemaValidator schemaValidator;
+	private final SchemaValidator schemaValidator;
 
-    RequestBodyValidator(@Nullable final MessageResolver messages, final SchemaValidator schemaValidator) {
-    
-        this.schemaValidator = requireNonNull(schemaValidator, "A schema validator is required");
-        this.messages = messages == null ? new MessageResolver() : messages;
-    }
+	RequestBodyValidator(@Nullable final MessageResolver messages, final SchemaValidator schemaValidator) {
 
-    @Nonnull
-    ValidationReport validateRequestBody(final Request request,
-                                         @Nullable final RequestBody apiRequestBodyDefinition) {
+		this.schemaValidator = requireNonNull(schemaValidator, "A schema validator is required");
+		this.messages = messages == null ? new MessageResolver() : messages;
+	}
 
-        final Optional<Body> requestBody = request.getRequestBody();
-        final boolean hasBody = requestBody.map(Body::hasBody).orElse(false);
+	@Nonnull
+	ValidationReport validateRequestBody(final Request request, @Nullable final RequestBody apiRequestBodyDefinition) {
 
-        if (apiRequestBodyDefinition == null) {
-            // A request body exists, but no request body is defined in the spec
-            if (hasBody) {
-                return ValidationReport.singleton(
-                        messages.get("validation.request.body.unexpected")
-                );
-            }
+		final Optional<Body> requestBody = request.getRequestBody();
+		final boolean hasBody = requestBody.map(Body::hasBody).orElse(false);
 
-            // No request body exists, and no request body is defined in the spec. Nothing to do.
-            return empty();
-        }
+		if (apiRequestBodyDefinition == null) {
+			// A request body exists, but no request body is defined in the spec
+			if (hasBody) {
+				return ValidationReport.singleton(messages.get("validation.request.body.unexpected"));
+			}
 
-        ValidationReport.MessageContext context = ValidationReport.MessageContext.create()
-                .withApiRequestBodyDefinition(apiRequestBodyDefinition)
-                .build();
+			// No request body exists, and no request body is defined in the spec. Nothing
+			// to do.
+			return empty();
+		}
 
-        if (!hasBody) {
-            // No request body, but is required in the spec
-            if (TRUE.equals(apiRequestBodyDefinition.getRequired())) {
-                return ValidationReport.singleton(
-                        messages.get("validation.request.body.missing")
-                ).withAdditionalContext(context);
-            }
+		ValidationReport.MessageContext context = ValidationReport.MessageContext.create()
+				.withApiRequestBodyDefinition(apiRequestBodyDefinition).build();
 
-            // No request body, and isn't required. Nothing to do.
-            return empty();
-        }
+		if (!hasBody) {
+			// No request body, but is required in the spec
+			if (TRUE.equals(apiRequestBodyDefinition.getRequired())) {
+				return ValidationReport.singleton(messages.get("validation.request.body.missing"))
+						.withAdditionalContext(context);
+			}
 
-        final Optional<Pair<String, MediaType>> maybeApiMediaTypeForRequest =
-                findApiMediaTypeForRequest(request, apiRequestBodyDefinition);
+			// No request body, and isn't required. Nothing to do.
+			return empty();
+		}
 
-        // No matching media type found. Validation of mismatched content-type is handled elsewhere. Nothing to do.
-        if (!maybeApiMediaTypeForRequest.isPresent()) {
-            return empty();
-        }
+		final Optional<Pair<String, MediaType>> maybeApiMediaTypeForRequest = findApiMediaTypeForRequest(request,
+				apiRequestBodyDefinition);
 
-        context = ValidationReport.MessageContext.from(context)
-                .withMatchedApiContentType(maybeApiMediaTypeForRequest.get().getLeft())
-                .build();
+		// No matching media type found. Validation of mismatched content-type is
+		// handled elsewhere. Nothing to do.
+		if (!maybeApiMediaTypeForRequest.isPresent()) {
+			return empty();
+		}
 
-        if (isJsonContentType(request)) {
-            return schemaValidator
-                    .validate(() -> requestBody.get().toJsonNode(),
-                            maybeApiMediaTypeForRequest.get().getRight().getSchema(),
-                            "request.body")
-                    .withAdditionalContext(context);
-        }
+		context = ValidationReport.MessageContext.from(context)
+				.withMatchedApiContentType(maybeApiMediaTypeForRequest.get().getLeft()).build();
 
-        if (isFormDataContentType(request)) {
-            return schemaValidator
-                    .validate(() -> parseUrlEncodedFormDataBodyAsJsonNode(requestBody.get().toString(StandardCharsets.UTF_8)),
-                            maybeApiMediaTypeForRequest.get().getRight().getSchema(),
-                            "request.body")
-                    .withAdditionalContext(context);
-        }
-        
-        if(request.getContentType().isPresent())
-        {
-        	NonSpringHolder nonSpringHolder=NonSpringHolder.INSTANCE;
-        	String contentType = request.getContentType().get();
-        	//unnecessary nul check but 
-        	if(contentType!=null)
-        	{
-        		contentType=contentType.toLowerCase();
-        		if(contentType.equals(org.springframework.http.MediaType.APPLICATION_XML_VALUE))
-        		{
-        			if(requestBody.isPresent())
-        			{
-        				Body body=requestBody.get();
-        				if(body.hasBody())
-        				{
-        					String xml=null;
-        					try {
-								xml=body.toString(Charset.defaultCharset());
+		if (isJsonContentType(request)) {
+			return schemaValidator
+					.validate(() -> requestBody.get().toJsonNode(),
+							maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+					.withAdditionalContext(context);
+		}
+
+		if (isFormDataContentType(request)) {
+			return schemaValidator
+					.validate(
+							() -> parseUrlEncodedFormDataBodyAsJsonNode(
+									requestBody.get().toString(StandardCharsets.UTF_8)),
+							maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+					.withAdditionalContext(context);
+		}
+
+		if (request.getContentType().isPresent()) {
+			NonSpringHolder nonSpringHolder = NonSpringHolder.INSTANCE;
+			String contentType = request.getContentType().get();
+			// unnecessary nul check but
+			if (contentType != null) {
+				contentType = contentType.toLowerCase();
+				if (contentType.equals(org.springframework.http.MediaType.APPLICATION_XML_VALUE)) {
+					if (requestBody.isPresent()) {
+						Body body = requestBody.get();
+						if (body.hasBody()) {
+							String xml = null;
+							try {
+								xml = body.toString(Charset.defaultCharset());
 							} catch (IOException e) {
 								log.error("Unable to extract xml", e);
 							}
-        					
-        					JsonNode readValue  = NonSpringHolder.INSTANCE.xmlToJsonNode(apiRequestBodyDefinition, contentType, xml);
-        					return schemaValidator
-				                    .validate(() -> readValue,
-				                            maybeApiMediaTypeForRequest.get().getRight().getSchema(),
-				                            "request.body").withAdditionalContext(context);
-        				}
-        				
-        				
-        				
-        			}
-        		}
-        	}
-        }
 
-        // TODO: Validate multi-part form data
+							JsonNode readValue = NonSpringHolder.INSTANCE.xmlToJsonNode(apiRequestBodyDefinition,
+									contentType, xml);
+							return schemaValidator.validate(() -> readValue,
+									maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+									.withAdditionalContext(context);
+						}
 
-        log.info("Validation of '{}' not supported. Request body not validated.", maybeApiMediaTypeForRequest.get().getLeft());
-        return empty();
-    }
+					}
+				}
+			}
+		}
 
-	
-    private Optional<Pair<String, MediaType>> findApiMediaTypeForRequest(final Request request,
-                                                                         @Nullable final RequestBody apiRequestBodyDefinition) {
-        return Optional.ofNullable(apiRequestBodyDefinition)
-                .map(RequestBody::getContent)
-                .flatMap(content ->
-                        findMostSpecificMatch(request, content.keySet())
-                                .map(mostSpecificMatch -> Pair.of(mostSpecificMatch, content.get(mostSpecificMatch)))
-                );
-    }
-    
-    
-    
+		// TODO: Validate multi-part form data
+
+		log.info("Validation of '{}' not supported. Request body not validated.",
+				maybeApiMediaTypeForRequest.get().getLeft());
+		return empty();
+	}
+
+	private Optional<Pair<String, MediaType>> findApiMediaTypeForRequest(final Request request,
+			@Nullable final RequestBody apiRequestBodyDefinition) {
+		return Optional.ofNullable(apiRequestBodyDefinition).map(RequestBody::getContent)
+				.flatMap(content -> findMostSpecificMatch(request, content.keySet())
+						.map(mostSpecificMatch -> Pair.of(mostSpecificMatch, content.get(mostSpecificMatch))));
+	}
+
 }

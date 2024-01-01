@@ -3,8 +3,7 @@ package com.example.validationextn;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-public class SimpleEmailValidator implements IValidator{
+public class SimpleEmailValidator implements IValidator {
 	Pattern pattern = Pattern.compile("^(.+)@(\\S+)$");
 
 	@Override

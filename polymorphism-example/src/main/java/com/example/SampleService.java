@@ -13,14 +13,15 @@ import org.springframework.stereotype.Service;
 import com.example.model.OneOfTripRequestsItems;
 import com.example.model.StoredTrip;
 import com.example.model.Trip;
+
 @Service
 public class SampleService {
-	private Map<Long, StoredTrip> trips= new LinkedHashMap<>();
+	private Map<Long, StoredTrip> trips = new LinkedHashMap<>();
 	private final AtomicLong counter = new AtomicLong();
-	public StoredTrip createTrip(Trip trip) 
-	{
-		StoredTrip storedTrip= new StoredTrip();
-		
+
+	public StoredTrip createTrip(Trip trip) {
+		StoredTrip storedTrip = new StoredTrip();
+
 		try {
 			BeanUtils.copyProperties(storedTrip, trip);
 		} catch (IllegalAccessException | InvocationTargetException e) {
@@ -30,40 +31,33 @@ public class SampleService {
 		storedTrip.setTripId(newId);
 		trips.put(newId, storedTrip);
 		return storedTrip;
-		
+
 	}
-	public StoredTrip addRequest(long tripid, OneOfTripRequestsItems request)
-	{
-		
+
+	public StoredTrip addRequest(long tripid, OneOfTripRequestsItems request) {
+
 		StoredTrip trip = trips.get(tripid);
-		if(trip==null)
-		{
-			throw new IllegalArgumentException("invalid trip id of "+tripid);
-		}
-		else
-		{
+		if (trip == null) {
+			throw new IllegalArgumentException("invalid trip id of " + tripid);
+		} else {
 			List<OneOfTripRequestsItems> requests = trip.getRequests();
-			if(requests==null)
-			{
-				requests=new ArrayList<OneOfTripRequestsItems>();
+			if (requests == null) {
+				requests = new ArrayList<OneOfTripRequestsItems>();
 				trip.setRequests(requests);
 			}
 			requests.add(request);
 		}
-		
+
 		return trip;
 	}
-	
-	public StoredTrip getTrip(long tripId)
-	{
+
+	public StoredTrip getTrip(long tripId) {
 		StoredTrip trip = trips.get(tripId);
-		if(trip==null)
-		{
-			throw new IllegalArgumentException("invalid trip id of "+tripId);
+		if (trip == null) {
+			throw new IllegalArgumentException("invalid trip id of " + tripId);
 		}
-		
+
 		return trip;
 	}
-	
 
 }

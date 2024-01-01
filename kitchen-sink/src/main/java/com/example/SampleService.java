@@ -24,74 +24,62 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class SampleService {
 	private static final Logger logger = LoggerFactory.getLogger(SampleService.class);
- 
+
 	@Autowired
 	private HttpServletRequest request;
 	@Autowired
-    private MappingJackson2XmlHttpMessageConverter mappingJackson2XmlHttpMessageConverter;
+	private MappingJackson2XmlHttpMessageConverter mappingJackson2XmlHttpMessageConverter;
 
-	public Person doSomething(Person person, PersonParam personParam)
-	{
-		logger.debug("got person="+person+",param="+personParam+"from "+request.getRequestURI());
+	public Person doSomething(Person person, PersonParam personParam) {
+		logger.debug("got person=" + person + ",param=" + personParam + "from " + request.getRequestURI());
 
-		if(personParam.getX()!=null)
-		{
+		if (personParam.getX() != null) {
 			person.setRegistrationDate(personParam.getX());
 		}
-		
+
 		return person;
 	}
+
 	@Autowired
 	ObjectMapper objectMapper;
-	public Person stringreqbody(String body, PersonParam personParam) throws JsonMappingException, JsonProcessingException
-	{
+
+	public Person stringreqbody(String body, PersonParam personParam)
+			throws JsonMappingException, JsonProcessingException {
 		String contentType = request.getHeader("Content-Type");
-		Person p =null;
-		if(contentType!=null )
-		{
-			if(contentType.equals(MediaType.APPLICATION_JSON_VALUE))
-			{
-				p = objectMapper.readValue(body, Person.class);	
+		Person p = null;
+		if (contentType != null) {
+			if (contentType.equals(MediaType.APPLICATION_JSON_VALUE)) {
+				p = objectMapper.readValue(body, Person.class);
+			} else if (contentType.equals(MediaType.APPLICATION_XML_VALUE)) {
+				p = mappingJackson2XmlHttpMessageConverter.getObjectMapper().readValue(body, Person.class);
 			}
-			else if(contentType.equals(MediaType.APPLICATION_XML_VALUE))
-			{
-				p=mappingJackson2XmlHttpMessageConverter.getObjectMapper().readValue(body, Person.class);
-			}
+		} else {
+
 		}
-		else
-		{
-			
-		}
-		
-		
-		if(personParam.getX()!=null)
-		{
-			if(p!=null)
-			{
+
+		if (personParam.getX() != null) {
+			if (p != null) {
 				p.setRegistrationDate(personParam.getX());
 			}
-			
+
 		}
-		logger.debug("returning "+p);
+		logger.debug("returning " + p);
 		return p;
 	}
-	
-	public Resource pic(Person person)
-	{
-		ByteArrayResource resource= new ByteArrayResource(person.getPic());
-		
+
+	public Resource pic(Person person) {
+		ByteArrayResource resource = new ByteArrayResource(person.getPic());
+
 		return resource;
 	}
-	
-	public Resource binary(byte[] bytes)
-	{
-		ByteArrayResource resource= new ByteArrayResource(bytes);
-		
+
+	public Resource binary(byte[] bytes) {
+		ByteArrayResource resource = new ByteArrayResource(bytes);
+
 		return resource;
 	}
-	
-	public Person byid(long id)
-	{
+
+	public Person byid(long id) {
 		Person person = new Person();
 		person.setId(id);
 		person.setFirstName("F");
@@ -99,30 +87,24 @@ public class SampleService {
 		person.setRegistrationDate(LocalDate.now());
 		person.setSomeTimeData(OffsetDateTime.now());
 		person.setSampleCustomTypeData(new SampleCustomType("hello"));
-		
+
 		return person;
 	}
-	
-	public Person byids(long[] ids)
-	{
+
+	public Person byids(long[] ids) {
 		Person person = new Person();
-		if(ids!=null)
-		{
-			if(ids.length>0)
-			{
+		if (ids != null) {
+			if (ids.length > 0) {
 				person.setId(ids[0]);
 			}
-			if(ids.length>1)
-			{
-				person.setFirstName("F"+ids[1]);
+			if (ids.length > 1) {
+				person.setFirstName("F" + ids[1]);
 			}
-			if(ids.length>2)
-			{
-				person.setLastName("L"+ids[2]);
+			if (ids.length > 2) {
+				person.setLastName("L" + ids[2]);
 			}
 		}
-		
-		
+
 		person.setLastName("L");
 		return person;
 	}

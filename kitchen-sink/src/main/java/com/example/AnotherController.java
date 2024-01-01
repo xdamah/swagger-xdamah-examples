@@ -29,43 +29,37 @@ import jakarta.servlet.http.Part;
 @RestController
 public class AnotherController {
 	private static final Logger logger = LoggerFactory.getLogger(AnotherController.class);
+
 	@RequestMapping(value = "/abc/{abc}", method = RequestMethod.GET)
-	ResponseEntity<Map<String, String>> another(@PathVariable(name="abc", required = true) String abc)
-	{
-		Map<String, String> map= new HashMap<>();
-		if(abc!=null)
-		{
+	ResponseEntity<Map<String, String>> another(@PathVariable(name = "abc", required = true) String abc) {
+		Map<String, String> map = new HashMap<>();
+		if (abc != null) {
 			map.put("abc", abc);
 		}
-		return new ResponseEntity<Map<String,String>>(map, HttpStatus.OK);
-		
+		return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
+
 	}
-	
+
 	@RequestMapping(value = "/abc/{abc}", method = RequestMethod.POST)
-	ResponseEntity<Person> post(@PathVariable(name="abc", required = true) String abc,
-			@RequestBody Person person)
-	{
-		
-		if(abc!=null)
-		{
+	ResponseEntity<Person> post(@PathVariable(name = "abc", required = true) String abc, @RequestBody Person person) {
+
+		if (abc != null) {
 			person.setFirstName(abc);
 		}
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
-		
+
 	}
-	
-	@RequestMapping(value = "/temp", method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-	ResponseEntity<Person> post(
-			HttpServletRequest request) throws IOException, ServletException
-	{
+
+	@RequestMapping(value = "/temp", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	ResponseEntity<Person> post(HttpServletRequest request) throws IOException, ServletException {
 		Collection<Part> parts = request.getParts();
 		for (Part part : parts) {
-			String partName=part.getName();
-			logger.debug("partName="+partName);
+			String partName = part.getName();
+			logger.debug("partName=" + partName);
 		}
-		
+
 		return new ResponseEntity<Person>(new Person(), HttpStatus.OK);
-		
+
 	}
 
 }
