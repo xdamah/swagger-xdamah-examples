@@ -5,7 +5,7 @@
     <artifactId>swagger-xdamah-examples</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>mixed</artifactId>
+  <artifactId>1-first-example</artifactId>
   <build>
 		<plugins>
 			<plugin>

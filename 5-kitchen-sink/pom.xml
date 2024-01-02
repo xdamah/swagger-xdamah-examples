@@ -1,12 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-     <groupId>com.github.xdamah</groupId>
-    <artifactId>swagger-xdamah-examples</artifactId>
-    <version>${revision}</version>
-  </parent>
-  <artifactId>first-example</artifactId>
-  <build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+		<parent>
+		<groupId>com.github.xdamah</groupId>
+		<artifactId>swagger-xdamah-examples</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>5-kitchen-sink</artifactId>
+
+	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>com.github.xdamah</groupId>
@@ -20,7 +24,7 @@
 						<configuration>
 							<inputSpec>${project.basedir}/api-docs.json</inputSpec>
 							<!--language>spring</language-->
-							 <language>com.github.xdamah.codegen.XDamahCodeGen</language>
+							<language>com.github.xdamah.codegen.XDamahCodeGen</language>
 							<generateApis>true</generateApis>
 							<generateApiTests>false</generateApiTests>
 							<generateModelTests>false</generateModelTests>
@@ -58,7 +62,7 @@
 					</execution>
 				</executions>
 				 <dependencies>
-        <dependency>
+         <dependency>
              <groupId>com.github.xdamah</groupId>
              <artifactId>xdamah-codegen</artifactId>
             <version>${xdamah-version}</version>

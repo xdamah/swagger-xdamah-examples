@@ -185,10 +185,11 @@
 
 	</dependencies>
 	<modules>
-		<module>first-example</module>
-		<module>with-security</module>
-		<module>polymorphism-example</module>
-		<module>kitchen-sink</module>
-		<module>mixed</module>
+		<module>1-first-example</module>
+		<module>2-with-security</module>
+		<module>3-mixed</module>
+		<module>4-polymorphism-example</module>
+		<module>5-kitchen-sink</module>
+		
 	</modules>
 </project>
