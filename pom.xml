@@ -189,5 +189,6 @@
 		<module>with-security</module>
 		<module>polymorphism-example</module>
 		<module>kitchen-sink</module>
+		<module>mixed</module>
 	</modules>
 </project>
