@@ -28,9 +28,10 @@ import jakarta.servlet.http.Part;
  * However as of now must manually merge its swagger specs accurately.
  */
 @RestController
-public class AnotherController {
+@RequestMapping(value = "/codefirst/{abc}")
+public class CodeFirstController {
 	
-	@RequestMapping(value = "/abc/{abc}", method = RequestMethod.GET)
+	@RequestMapping( method = RequestMethod.GET)
 	ResponseEntity<Map<String, String>> another(@PathVariable(name="abc", required = true) String abc)
 	{
 		Map<String, String> map= new HashMap<>();
@@ -42,7 +43,7 @@ public class AnotherController {
 		
 	}
 	
-	@RequestMapping(value = "/abc/{abc}", method = RequestMethod.POST)
+	@RequestMapping( method = RequestMethod.POST)
 	ResponseEntity<Person> post(@PathVariable(name="abc", required = true) String abc,
 			@RequestBody Person person)
 	{
