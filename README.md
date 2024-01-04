@@ -47,12 +47,36 @@ So that's the objective.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
+* Temporary Dependency
+* Prerequisites
+* Steps
 * Database configuration
 * How to run tests
 * Deployment instructions
+
+*Temporary Dependency*   
+
+* clone https://github.com/xdamah/swagger-xdamah
+* In the project folder run "mvn clean install".
+* Once this is deployed into maven central this step wont be needed. 
+
+*Prerequisites*  
+* JDK 18
+* Latest Maven
+
+*Steps*  
+* clone https://github.com/xdamah/swagger-xdamah-examples
+* In the project folder run "mvn clean package".
+* That should build all the example projects.
+* Each project builds into a jar file - target/demo.jar   
+* In each project cd [example project name]
+* for example cd 1-first-example
+* then run from comamnd prompt "java -jar target/demo.jar"
+* When that finishes launching we should run http://localhost:8080/swagger-ui.html  
+* Will be able to follow along using swagger ui.   
+* Where needed will also refer to postman requests.  
+* More details in each project folder.
+
 
 ### Contribution guidelines ###
 
