@@ -196,10 +196,21 @@ Validation Response
 ### What about requests of other media types  ###
 
 What about requests of type-   
+* application/xml
 * application/x-www-form-urlencoded
 * multipart/form-data
 * application/octet-stream
 
+For application/xml we should be able to easily try out using the swagger ui.  
+
+However for the other ones listed below please try using postman
+* application/x-www-form-urlencoded
+* multipart/form-data
+
+
 We will be discussing the same also but using a postman collection.  
 Also providing a postman collection demonstrating this complete set of examples.
 Please use the provided postman collection and try it out.  
+
+Other request types eg application/octet-stream are also supported.
+Please see kitchen-sink for them.
