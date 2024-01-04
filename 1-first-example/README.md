@@ -193,3 +193,13 @@ Validation Response
   ]
 }
 ```
+### What about requests of other media types  ###
+
+What about requests of type-   
+* application/x-www-form-urlencoded
+* multipart/form-data
+* application/octet-stream
+
+We will be discussing the same also but using a postman collection.  
+Also providing a postman collection demonstrating this complete set of examples.
+Please use the provided postman collection and try it out.  
