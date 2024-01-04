@@ -35,11 +35,11 @@
 							"examples": {
 								"user": {
 									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
+									"externalValue": "classpath:examples/2.json"
 								},
 								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
+									"summary": "nested person Example",
+									"externalValue": "classpath:examples/1.json"
 								}
 							}
 						},
