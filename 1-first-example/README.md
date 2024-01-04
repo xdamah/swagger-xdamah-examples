@@ -87,7 +87,7 @@ So it looks like this
 Note: pic attribute was truncated just to fit the json.  
 Note: Use the actual example than above.
 
-Press The blue execute button.
+Press The blue execute button.  
 Response  
 <img src="imgs/screen12.png" alt="Response" width="400"/>   
 
