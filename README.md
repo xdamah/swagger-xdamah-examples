@@ -50,9 +50,7 @@ So that's the objective.
 * Temporary Dependency
 * Prerequisites
 * Steps
-* Database configuration
-* How to run tests
-* Deployment instructions
+
 
 *Temporary Dependency*   
 
@@ -74,17 +72,7 @@ So that's the objective.
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to postman requests.  
-* More details in each project folder.
+* Where needed will also refer to postman collection for same.  
+* More details in each project folder's Readme.MD.
 
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
