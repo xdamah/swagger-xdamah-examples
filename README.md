@@ -6,7 +6,7 @@ This README would normally document whatever steps are necessary to these exampl
 
 * This reository  demonstrates capabilities of  Swagger Xadamah - https://github.com/xdamah/swagger-xdamah
 
-### Main Concept? ###
+### Main Concept ###
 
 Swagger can be used with two approaches.
 * Code First
