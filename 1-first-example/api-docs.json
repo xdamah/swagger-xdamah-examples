@@ -35,11 +35,11 @@
 							"examples": {
 								"user": {
 									"summary": "person Example",
-									"externalValue": "classpath:examples/2.json"
+									"externalValue": "classpath:examples/1.json"
 								},
 								"user1": {
 									"summary": "nested person Example",
-									"externalValue": "classpath:examples/1.json"
+									"externalValue": "classpath:examples/2.json"
 								}
 							}
 						},
@@ -50,27 +50,17 @@
 							"examples": {
 								"user": {
 									"summary": "person Example",
-									"externalValue": "classpath:examples/2.xml"
+									"externalValue": "classpath:examples/1.xml"
 								},
 								"user1": {
 									"summary": "nested person Example",
-									"externalValue": "classpath:examples/1.xml"
+									"externalValue": "classpath:examples/2.xml"
 								}
 							}
 						},
 						"application/x-www-form-urlencoded": {
 							"schema": {
 								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/2.json"
-								},
-								"user1": {
-									"summary": "nested person Example",
-									"externalValue": "classpath:examples/1.json"
-								}
 							}
 						},
 						"multipart/form-data": {
@@ -166,6 +156,16 @@
 									"summary": "person1 Example",
 									"externalValue": "classpath:examples/2.xml"
 								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
 							}
 						}
 					},
