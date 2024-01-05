@@ -77,6 +77,7 @@ So that's the objective.
 * Where needed will also refer to postman collection for same.  
 * More details in each project folder's Readme.MD.
 
+### Whats in the examples? ###
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
@@ -134,7 +135,7 @@ Listing below some examples.
 
 
 What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
-* One can use below approach which is certainly neater than passing the request object to a service method in any case. One can also use x-damah=false and hand-write the controller if needed.
+* One can use below approach which is certainly neater than passing the request object to a service method in any case. Keep in mind while we are referring to this as a service class it could also be any Spring Bean. 
 
 ```java
 @Autowired
