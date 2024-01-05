@@ -42,7 +42,7 @@ If we see the code each controller code will look very similar to another contro
 
 Instead of generating the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
 
-The only code that is geneerated is that of the model POJO classes.  
+The only code that is generated is that of the model POJO classes.  
 
 So that's the objective.   
 
@@ -97,8 +97,35 @@ Please see 3-mixed example for more information.
 
 *What happens if we just specify x-damah=false ?*  
 It will prevent code generation  for that operation.
-Needless the developer must write the code in code first style.
+Needless the developer must write the code in code first style and match the specs.
 Please see 3-mixed example for more information.
+
+*What about parameters?*  
+
+Before discussing that lets be on same page with https://swagger.io/docs/specification/describing-request-body/   
+
+"Unlike OpenAPI 2.0, where the request body was defined using body and formData parameters, OpenAPI 3.0 uses the requestBody keyword to distinguish the payload from parameters (such as query string). The requestBody is more flexible in that it lets you consume different media types, such as JSON, XML, form data, plain text, and others."
+
+Naturaly it makes sense to map the request body irerspective of media types to POJOS or java beans generally speaking.
+
+https://swagger.io/docs/specification/describing-parameters/
+
+It is intended that all the parameter types as described in above url are supported when xdamah is enabled.  
+
+However when using xdamah there are some additional concepts for these parameters.  
+
+* Whenever there are more than one parameters mentioned for an operation the parameters are wrapped into a POJO. 
+* If there is only one parameter for an operation its used as it is.  
+* "x-damah-param-type": "PersonParam" - use this syntax to specify the name of the POJO to generate which wraps the parameters.
+* If the same parameters are being used in different operations rather than generate another POJO can also leverage then use this syntax- "x-damah-param-ref": "PersonParam"  
+
+
+
+
+
+
+
+
 
 
 
