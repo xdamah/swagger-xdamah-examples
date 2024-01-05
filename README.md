@@ -120,6 +120,30 @@ However when using xdamah there are some additional concepts for these parameter
 * If the same parameters are being used in different operations rather than generate another POJO can also leverage then use this syntax- "x-damah-param-ref": "PersonParam"  
 
 
+*What about Service methods?*  
+* Service methods are written in same way as we would usually.  
+* However a xdamah combatible service method will have at most 2 arguments.  
+Listing below some examples.
+
+| Service method examples                                   | Description                                                    |    
+| :-------------------------------------------------------- | :------------------------------------------------------------- |   
+| com.example.SampleService.savePerson(Person)              | Person is from RequestBody                                     |  
+| com.example.SampleService.byid(long)                      | No request body just a single long type parameter              |   
+| com.example.SampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
+| com.example.SampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
+
+
+What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
+* Not very clean but one can use 
+
+```java
+@Autowired
+private HttpServletRequest request;
+
+```
+
+
+
 
 
 
