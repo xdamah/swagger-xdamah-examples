@@ -4,7 +4,7 @@ This README would normally document whatever steps are necessary to these exampl
 
 ### What is this repository for? ###
 
-* This reository  demonstrates capabilities of  Swagger Xadamah - https://github.com/xdamah/swagger-xdamah
+* This repository  demonstrates capabilities of  Swagger Xadamah - https://github.com/xdamah/swagger-xdamah
 
 ### Main Concept ###
 
@@ -42,6 +42,8 @@ If we see the code each controller code will look very similar to another contro
 
 Instead of generating the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
 
+The only code that is geneerated is that of the model POJO classes.  
+
 So that's the objective.   
 
 
@@ -74,5 +76,30 @@ So that's the objective.
 * Will be able to follow along using swagger ui.   
 * Where needed will also refer to postman collection for same.  
 * More details in each project folder's Readme.MD.
+
+
+### More Details ###
+We have these swagger extensions examples of which are shown below.
+
+"x-damah": true,   
+"x-damah-service": "com.example.SampleService.doSomething(Person)".   
+
+These swagger extensions can be applied to any of the operations in the swagger json adjacent to the operationId.  
+
+Here by "x-damah": true we are saying we want to use this concept that we have been discussing.  
+Using "x-damah": true or specifying "x-damah-service" class and method is enough to enable this.  
+
+"x-damah-service" specifies post validation which is the service class method that must be invoked.
+
+*What happens if we dont specify x-damah related attributes?*  
+It will trigger regular design first code generation and use for that operation
+Please see 3-mixed example for more information.
+
+*What happens if we just specify x-damah=false ?*  
+It will prevent code generation  for that operation.
+Needless the developer must write the code in code first style.
+Please see 3-mixed example for more information.
+
+
 
 
