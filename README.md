@@ -1,6 +1,6 @@
 # Swagger Xadamah Examples #
 
-This README would normally document whatever steps are necessary to these example applications up and running.
+This README documents whatever steps are necessary to get these example applications up and running.
 
 ### What is this repository for? ###
 
@@ -134,7 +134,7 @@ Listing below some examples.
 
 
 What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
-* Not very clean but one can use below approach which is certainly neater than passing the request object to a service method in any case. One can also use x-damah=false and hand-write the controller in such cases.
+* One can use below approach which is certainly neater than passing the request object to a service method in any case. One can also use x-damah=false and hand-write the controller if needed.
 
 ```java
 @Autowired
