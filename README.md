@@ -117,7 +117,7 @@ However when using xdamah there are some additional concepts for these parameter
 * Whenever there are more than one parameters mentioned for an operation the parameters are wrapped into a POJO. 
 * If there is only one parameter for an operation its used as it is.  
 * "x-damah-param-type": "PersonParam" - use this syntax to specify the name of the POJO to generate which wraps the parameters.
-* If the same parameters are being used in different operations rather than generate another POJO can also leverage then use this syntax- "x-damah-param-ref": "PersonParam"  
+* If the same parameters are being used in different operations rather than generate another POJO can also leverage  this syntax- "x-damah-param-ref": "PersonParam"  
 
 
 *What about Service methods?*  
