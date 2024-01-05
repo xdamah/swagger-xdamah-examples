@@ -9,9 +9,9 @@
 
        
 
-        <RollingFile name="RollingFile"
-            fileName="./logs/spring-boot-logger-log4j2.log"
-            filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+        <RollingRandomAccessFile name="File"
+            fileName="./logs/app.log"
+            filePattern="./logs/app-%i.log">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
@@ -21,9 +21,10 @@
                 <OnStartupTriggeringPolicy />
                 <SizeBasedTriggeringPolicy
                     size="10 MB" />
-                <TimeBasedTriggeringPolicy />
+               
             </Policies>
-        </RollingFile>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
 
        
 
@@ -33,7 +34,7 @@
         <!-- LOG everything at INFO level -->
         <Root level="info">
             <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="File" />
            
         </Root>
         
