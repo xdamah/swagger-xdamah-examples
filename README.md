@@ -79,6 +79,14 @@ So that's the objective.
 
 ### Whats in the examples? ###
 
+| The Examples                                   | Description                                                    |    
+| :-------------------------------------------------------- | :------------------------------------------------------------- |   
+| 1-first-example              | A quick introductory demo                                     |  
+| 2-with-security                      | A demo with spring security              |   
+| 3-mixed | Mixed use of xdamah, code first, vanilla design first  |   
+| 4-polymorphism-example    | A demo of Polymorphism in request and response POJO        | 
+| 5-kitchen-sink    | A bit cluttered but more detailed test of the concept        | 
+
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
 
