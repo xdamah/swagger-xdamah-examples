@@ -30,7 +30,8 @@
 						"in": "path",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "abc"
 						}
 					}
 				],
@@ -135,7 +136,8 @@
 							"maximum": 30,
 							"minimum": 18,
 							"type": "integer",
-							"format": "int32"
+							"format": "int32",
+							"example": "18"
 						}
 					}
 				],
