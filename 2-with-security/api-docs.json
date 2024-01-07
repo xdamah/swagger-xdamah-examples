@@ -42,7 +42,7 @@
 									"externalValue": "classpath:examples/1.json"
 								},
 								"user1": {
-									"summary": "person1 Example",
+									"summary": "nested person Example",
 									"externalValue": "classpath:examples/2.json"
 								}
 							}
@@ -57,7 +57,7 @@
 									"externalValue": "classpath:examples/1.xml"
 								},
 								"user1": {
-									"summary": "person1 Example",
+									"summary": "nested person Example",
 									"externalValue": "classpath:examples/2.xml"
 								}
 							}
