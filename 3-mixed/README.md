@@ -1,0 +1,18 @@
+# 3-mixed Demo #
+
+
+
+http://localhost:8080/swagger-ui.html   
+
+<img src="imgs/screen01.png" alt="Step1" width="400"/>
+
+Demonstrates 3 approaches co-existing in same project   
+* code first
+* design first
+* xdamah  
+
+In api-docs.json look for presence of x-damah=true/false or its absense.
+
+
+
+
