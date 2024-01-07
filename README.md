@@ -141,6 +141,9 @@ Listing below some examples.
 | com.example.SampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
 | com.example.SampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
 
+*One improvement TODO for next version*  
+Rather than specifying the name of the service class and looking looking up a bean according to that as being done now. Change the logic to specifying name of the bean and determining the service class.   
+
 
 What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
 * One can use below approach which is certainly neater than passing the request object to a service method in any case. Keep in mind while we are referring to this as a service class it could also be any Spring Bean. 
