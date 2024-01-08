@@ -63,7 +63,8 @@
 						"in": "path",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "abc"
 						}
 					}
 				],
@@ -301,10 +302,6 @@
 								"$ref": "#/components/schemas/Person"
 							},
 							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
 								"user1": {
 									"summary": "person1 Example",
 									"externalValue": "classpath:examples/2.json"
@@ -316,14 +313,20 @@
 								"$ref": "#/components/schemas/Person"
 							},
 							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
 								"user1": {
 									"summary": "person1 Example",
 									"externalValue": "classpath:examples/2.xml"
 								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
 							}
 						}
 					},
