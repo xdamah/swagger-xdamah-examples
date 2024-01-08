@@ -173,11 +173,6 @@
 									"externalValue": "classpath:examples/2.xml"
 								}
 							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
 						}
 					},
 					"required": true
