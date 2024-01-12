@@ -36,6 +36,10 @@ public class SampleService {
 		if (personParam.getX() != null) {
 			person.setRegistrationDate(personParam.getX());
 		}
+		else
+		{
+			person.setRegistrationDate(LocalDate.now());
+		}
 
 		return person;
 	}

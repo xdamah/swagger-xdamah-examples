@@ -189,7 +189,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 1. Upgrade the spring version.   
 2. Upgrade the generator versions.   
 3. Upgrade from swagger 3.0 to 3.1. 
-3. Add integration JUNITs using the new rest client.  
+3. Add Unit Tests for the examples.  
 4. Work on the WIPs mentioned earlier.  
 
 

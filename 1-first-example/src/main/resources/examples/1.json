@@ -7,6 +7,7 @@
 	"age": 18,
 	"creditCardNumber": "4444444444444448",
 	"sampleCustomTypeData": "hello",
-	"someTimeData": "2023-09-08T23:48:29.7075175+05:30"
+	"someTimeData": "2023-09-08T23:48:29.7075175+05:30",
+	"registrationDate": "2024-01-12"
 	
 }

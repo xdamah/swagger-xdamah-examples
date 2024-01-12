@@ -38,7 +38,8 @@
 						"in": "header",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"header1val1"
 						}
 					},
 					{
@@ -46,7 +47,8 @@
 						"in": "cookie",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"cookieeg1"
 						}
 					},
 					{
@@ -78,7 +80,8 @@
 						"required": false,
 						"schema": {
 							"type": "string",
-							"format": "date"
+							"format": "date",
+							"example": "2024-01-12"
 						}
 					}
 				],
@@ -159,7 +162,9 @@
 							"maximum": 30,
 							"minimum": 18,
 							"type": "integer",
-							"format": "int32"
+							"format": "int32",
+							"example": "18"
+							
 						}
 					},
 					{
@@ -169,7 +174,8 @@
 						"schema": {
 							"maxLength": 2147483647,
 							"minLength": 2,
-							"type": "string"
+							"type": "string",
+							"example": "id1"
 						}
 					},
 					{
@@ -177,7 +183,8 @@
 						"in": "header",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"header1val1"
 						}
 					},
 					{
@@ -185,7 +192,8 @@
 						"in": "cookie",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"cookieeg1"
 						}
 					},
 					{
@@ -217,7 +225,8 @@
 						"required": false,
 						"schema": {
 							"type": "string",
-							"format": "date"
+							"format": "date",
+							"example": "2024-01-12"
 						}
 					}
 				],
@@ -313,7 +322,8 @@
 							"maximum": 30,
 							"minimum": 18,
 							"type": "integer",
-							"format": "int32"
+							"format": "int32",
+							"example": "18"
 						}
 					},
 					{
@@ -323,7 +333,8 @@
 						"schema": {
 							"maxLength": 2147483647,
 							"minLength": 2,
-							"type": "string"
+							"type": "string",
+							"example": "id1"
 						}
 					},
 					{
@@ -331,7 +342,8 @@
 						"in": "header",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"header1val1"
 						}
 					},
 					{
@@ -339,7 +351,8 @@
 						"in": "cookie",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example":"cookieeg1"
 						}
 					},
 					{
@@ -371,7 +384,8 @@
 						"required": false,
 						"schema": {
 							"type": "string",
-							"format": "date"
+							"format": "date",
+							"example": "2024-01-12"
 						}
 					}
 				],
@@ -610,7 +624,8 @@
 						"required": true,
 						"schema": {
 							"type": "integer",
-							"format": "int64"
+							"format": "int64",
+							"example": "1"
 						}
 					}
 				],
@@ -677,7 +692,8 @@
 						"in": "path",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "abc"
 						}
 					}
 				],
@@ -709,7 +725,8 @@
 						"in": "path",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"type": "string",
+							"example": "abc"
 						}
 					}
 				],
@@ -782,7 +799,8 @@
 							"maximum": 30,
 							"minimum": 18,
 							"type": "integer",
-							"format": "int32"
+							"format": "int32",
+							"example": "18"
 						}
 					}
 				],
@@ -852,7 +870,8 @@
 					"maximum": 30,
 					"minimum": 18,
 					"type": "integer",
-					"format": "int32"
+					"format": "int32",
+					"example": "18"
 				}
 			},
 			"id": {
@@ -862,7 +881,8 @@
 				"schema": {
 					"maxLength": 2147483647,
 					"minLength": 2,
-					"type": "string"
+					"type": "string",
+					"example": "id1"
 				}
 			}
 		},
