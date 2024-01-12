@@ -7,7 +7,7 @@ Unlike the previous example p[rojects, wont go into each example as of now. For 
 
 Will demonstrate a few concepts.   
 
-##Various Parameter types##
+## Various Parameter types ##
 
 <img src="imgs/screen01.png" alt="paramter types" width="400"/>  
 
@@ -16,7 +16,7 @@ Give it a try.
 
 
 
-##XDamah Parameter Wrappers##
+## XDamah Parameter Wrappers ##
 
 In the post operation under "/person/{id}" we have this (Its only a very small section):
 
@@ -96,7 +96,7 @@ Look at the actual json to see how the other parameter types are declared.
 See target/generated-sources/swagger/gen/java/com/example/model/PersonParam.java to have a look at the generated wrapper.  
 
 
-##XDamah Parameter Reuse##
+## XDamah Parameter Reuse ##
 
 If same parameters recur in multiple oprations we can reuse the generated wrappers.
 
@@ -114,11 +114,11 @@ Have a look at "/personb/{id}" post operation to see how we can simply avoid rep
 
 
 
-## Unusual Request Types##
+## Unusual Request Types ##
 
 This is small proof of concept to demonstrate that if needed any request type can be handled.  of course the library needs to be tweaked a bit for such things.  
 
-### String as request body###
+### String as request body ###
 
 Showing a snippet the requests.   
 
