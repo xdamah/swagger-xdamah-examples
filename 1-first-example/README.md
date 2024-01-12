@@ -230,5 +230,31 @@ We will be discussing the same also but using a postman collection.
 Also providing a postman collection demonstrating this complete set of examples.
 Please use the provided postman collection and try it out.  
 
+Already shared screen shots of how requests worked for media types of application/json, application/xml using swagger ui.   
+
+When using xdamah its a lot easier to support additional media types of application/x-www-form-urlencoded and  multipart/form-data.  
+
+However these are easier tried using postman.   
+sharing here postman screenshots for the same.
+
+<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+ 
+application/x-www-form-urlencoded   
+
+
+<img src="imgs/postman-form.png" alt="postman form" width="400"/>      
+
+application/x-www-form-urlencoded with nested   
+
+<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+
+multipart/form-data   
+
+<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+
+multipart/form-data with nested   
+
+ 
+
 Other request types eg application/octet-stream are also supported.
 Please see kitchen-sink for them.
