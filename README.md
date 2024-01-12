@@ -180,8 +180,10 @@ But there is more.
 A. **For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is also demonstrated and discussed more**.   
 
 
+### TODOs ###
 
-
-
+1. Upgrade the spring version.   
+2. Upgrade the generator versions.   
+3. Add integration JUNITs using the new rest client.  
 
 
