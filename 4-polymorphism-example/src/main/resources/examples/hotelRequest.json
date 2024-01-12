@@ -1,0 +1,9 @@
+{
+      "type": "HotelRequest",
+     
+      "startDateTime": "2023-12-26T19:05:32.521Z",
+      "endDateTime": "2023-12-26T19:05:32.521Z",
+      "hotelName": "string",
+      "roomType": "string",
+      "location": "string"
+    }

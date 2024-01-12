@@ -1,0 +1,955 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "sample application API",
+		"description": "some description",
+		"termsOfService": "http://swagger.io/terms/",
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://springdoc.org"
+		},
+		"version": "0.0.2-SNAPSHOT"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/person/{id}": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "person",
+				"x-damah": true,
+				"x-damah-param-type": "PersonParam",
+				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"parameters": [
+					{
+						"$ref": "#/components/parameters/def"
+					},
+					{
+						"$ref": "#/components/parameters/id"
+					},
+					{
+						"name": "header1",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example":"header1val1"
+						}
+					},
+					{
+						"name": "cookieValue1",
+						"in": "cookie",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"example":"cookieeg1"
+						}
+					},
+					{
+						"name": "defArr",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "integer",
+								"format": "int32"
+							},
+        					"example": [1, 2, 3]
+						}
+					},
+					{
+						"name": "header2",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							},
+        					"example": ["h1", "h2", "h3"]
+						}
+					},
+					{
+						"name": "x",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date",
+							"example": "2024-01-12"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/persona/{id}": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "persona",
+				"x-damah": true,
+				"x-damah-param-ref": "PersonParam",
+				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"parameters": [
+					{
+						"name": "def",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"maximum": 30,
+							"minimum": 18,
+							"type": "integer",
+							"format": "int32",
+							"example": "18"
+							
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"maxLength": 2147483647,
+							"minLength": 2,
+							"type": "string",
+							"example": "id1"
+						}
+					},
+					{
+						"name": "header1",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example":"header1val1"
+						}
+					},
+					{
+						"name": "cookieValue1",
+						"in": "cookie",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"example":"cookieeg1"
+						}
+					},
+					{
+						"name": "defArr",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "integer",
+								"format": "int32"
+							},
+        					"example": [1, 2, 3]
+						}
+					},
+					{
+						"name": "header2",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							},
+        					"example": ["h1", "h2", "h3"]
+						}
+					},
+					{
+						"name": "x",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date",
+							"example": "2024-01-12"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/personb/{id}": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "personb",
+				"x-damah": true,
+				"x-damah-param-ref": "PersonParam",
+				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"/stringreqbody/{id}": {
+			"post": {
+				"tags": [
+					"string-as-json-or-xml-controller"
+				],
+				"operationId": "stringreqbody",
+				"x-damah": true,
+				"x-damah-param-ref": "PersonParam",
+				"x-damah-service": "com.example.SampleService.stringreqbody(String,PersonParam)",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "string"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"type": "string"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/binary": {
+			"post": {
+				"tags": [
+					"binary-controller"
+				],
+				"operationId": "binary-pic",
+				"x-damah": true,
+				"x-damah-service": "com.example.SampleService.binary(byte[])",
+				"requestBody": {
+					"content": {
+						"application/octet-stream": {
+							"schema": {
+								"type": "string",
+								"format": "byte"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"image/jpeg": {
+								"schema": {
+									"type": "string",
+									"format": "binary"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/pic": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "person-pic",
+				"x-damah": true,
+				"x-damah-service": "com.example.SampleService.pic(Person)",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"image/jpeg": {
+								"schema": {
+									"type": "string",
+									"format": "binary"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/pic1": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "person-pic1",
+				"x-damah": true,
+				"x-damah-service": "com.example.SampleService.pic(Person)",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"image/jpeg": {
+								"schema": {
+									"type": "string",
+									"format": "binary"
+								}
+							},
+							"image/png": {
+								"schema": {
+									"type": "string",
+									"format": "binary"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/person/byid": {
+			"get": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "personbyid",
+				"x-damah": true,
+				"x-damah-service": "com.example.SampleService.byid(long)",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/person/byids": {
+			"get": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "personbyids",
+				"x-damah": true,
+				"x-damah-service": "com.example.SampleService.byids(long[])",
+				"parameters": [
+					{
+						"name": "ids",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "integer",
+								"format": "int64"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/abc/{abc}": {
+			"get": {
+				"tags": [
+					"another-controller"
+				],
+				"operationId": "another_1",
+				"x-damah": false,
+				"parameters": [
+					{
+						"name": "abc",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "abc"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"another-controller"
+				],
+				"operationId": "another_2",
+				"x-damah": false,
+				"parameters": [
+					{
+						"name": "abc",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"example": "abc"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/def": {
+			"post": {
+				"tags": [
+					"another-controller"
+				],
+				"operationId": "another_3",
+				"parameters": [
+					{
+						"name": "abc",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"maximum": 30,
+							"minimum": 18,
+							"type": "integer",
+							"format": "int32",
+							"example": "18"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+
+		"parameters": {
+			"def": {
+				"name": "def",
+				"in": "query",
+				"required": true,
+				"schema": {
+					"maximum": 30,
+					"minimum": 18,
+					"type": "integer",
+					"format": "int32",
+					"example": "18"
+				}
+			},
+			"id": {
+				"name": "id",
+				"in": "path",
+				"required": true,
+				"schema": {
+					"maxLength": 2147483647,
+					"minLength": 2,
+					"type": "string",
+					"example": "id1"
+				}
+			}
+		},
+		"schemas": {
+			"Person": {
+				"required": [
+					"lastName"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"firstName": {
+						"maxLength": 2147483647,
+						"minLength": 2,
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"pattern": ".+@.+\\..+",
+						"type": "string"
+					},
+					"email1": {
+						"type": "string",
+						"x-Email": true
+					},
+					"age": {
+						"maximum": 30,
+						"minimum": 18,
+						"type": "integer",
+						"format": "int32"
+					},
+					"creditCardNumber": {
+						"type": "string",
+						"x-CreditCardNumber": true
+					},
+					"registrationDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"pic": {
+						"type": "string",
+						"format": "byte"
+					},
+					"pics": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "byte"
+						}
+					},
+					"sampleCustomTypeData": {
+						"$ref": "#/components/schemas/SampleCustomType"
+					},
+					"someTimeData": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"anotherPerson": {
+						"$ref": "#/components/schemas/Person"
+					},
+					"children": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/Person"
+						}
+					}
+				},
+				"xml": {
+					"name": "person"
+				}
+			},
+			"SampleCustomType": {
+				"type": "object"
+			}
+		}
+	}
+}

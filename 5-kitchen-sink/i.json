@@ -1,0 +1,27 @@
+{
+	"parameters": {
+		"def": {
+			"name": "def",
+			"in": "query",
+			"required": true,
+			"schema": {
+				"maximum": 30,
+				"minimum": 18,
+				"type": "integer",
+				"format": "int32",
+				"example": "18"
+			}
+		},
+		"id": {
+			"name": "id",
+			"in": "path",
+			"required": true,
+			"schema": {
+				"maxLength": 2147483647,
+				"minLength": 2,
+				"type": "string",
+				"example": "id1"
+			}
+		}
+	}
+}
