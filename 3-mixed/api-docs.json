@@ -99,11 +99,6 @@
 									"externalValue": "classpath:examples/2.xml"
 								}
 							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
 						}
 					},
 					"required": true
@@ -230,6 +225,16 @@
 									"summary": "person1 Example",
 									"externalValue": "classpath:examples/2.xml"
 								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
 							}
 						}
 					},
