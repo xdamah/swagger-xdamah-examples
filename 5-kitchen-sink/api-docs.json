@@ -371,90 +371,12 @@
 		"/stringreqbody/{id}": {
 			"post": {
 				"tags": [
-					"person-controller"
+					"string-as-json-or-xml-controller"
 				],
 				"operationId": "stringreqbody",
 				"x-damah": true,
 				"x-damah-param-ref": "PersonParam",
 				"x-damah-service": "com.example.SampleService.stringreqbody(String,PersonParam)",
-				"parameters": [
-					{
-						"name": "def",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"maximum": 30,
-							"minimum": 18,
-							"type": "integer",
-							"format": "int32",
-							"example": "18"
-						}
-					},
-					{
-						"name": "id",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"maxLength": 2147483647,
-							"minLength": 2,
-							"type": "string",
-							"example": "id1"
-						}
-					},
-					{
-						"name": "header1",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"example":"header1val1"
-						}
-					},
-					{
-						"name": "cookieValue1",
-						"in": "cookie",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"example":"cookieeg1"
-						}
-					},
-					{
-						"name": "defArr",
-						"in": "query",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "integer",
-								"format": "int32"
-							},
-        					"example": [1, 2, 3]
-						}
-					},
-					{
-						"name": "header2",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							},
-        					"example": ["h1", "h2", "h3"]
-						}
-					},
-					{
-						"name": "x",
-						"in": "query",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"format": "date",
-							"example": "2024-01-12"
-						}
-					}
-				],
 				"requestBody": {
 					"content": {
 						"application/json": {

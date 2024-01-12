@@ -113,6 +113,67 @@ If that is still too tedious if using xdamah we can simply leave out the paramet
 Have a look at "/personb/{id}" post operation to see how we can simply avoid repeating the parameters as long as XDamah is being used.   
 
 
- 
+
+## Unusual Request Types##
+
+This is small proof of concept to demonstrate that if needed any request type can be handled.  of course the library needs to be tweaked a bit for such things.  
+
+### String as request body###
+
+Showing a snippet the requests.   
+
+<img src="imgs/screen02.png" alt="string request body" width="400"/>  
+
+Although the content type is json we have not mapped a bean for it and mapped just a string.  This example demostrates how to handle that.  
+
+Press "Try out" and the blue "Execute" button to see below response.  
+
+<img src="imgs/screen03.png" alt="string request body response" width="500"/>   
+
+So that works for json requests mapped to Strings.
+
+If we try for xml lets see what happens.   
+
+<img src="imgs/screen04.png" alt="string request body" width="400"/>  
+
+For now lets ignore the problem .
+
+```xml 
+
+<Person>
+    <id>1</id>
+    <firstName>tx1</firstName>
+    <lastName>no1</lastName>
+    <email>abc@abc.com</email>
+    <email1>abc@abc.com</email1>
+    <age>18</age>
+    <creditCardNumber>4444444444444448</creditCardNumber>
+    <sampleCustomTypeData>hello</sampleCustomTypeData>
+    <someTimeData>2023-09-08T23:48:29.7075175+05:30 </someTimeData>
+    <registrationDate>2023-09-08</registrationDate>
+</Person>
 
 
+```
+
+Lets copy above xml and paste it.  
+
+<img src="imgs/screen05.png" alt="string xml request body" width="400"/> 
+
+Press the blue button.  
+
+<img src="imgs/screen06.png" alt="string xml request body response" width="400"/> 
+
+
+### application/octet-stream request ###
+
+<img src="imgs/screen07.png" alt="binary request" width="400"/> 
+
+Press Choose file button.  
+Navigate to a suitable compatible image file in jpeg. Even png may work.  
+
+<img src="imgs/screen08.png" alt="binary request select" width="400"/>   
+
+And below is the response.  
+
+<img src="imgs/screen09.png" alt="binary request response" width="400"/> 
