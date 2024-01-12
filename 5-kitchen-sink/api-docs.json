@@ -367,16 +367,7 @@
 				}
 			}
 		},
-		"/secured/person/{id}": {
-			"post": {
-				"$ref": "#/paths/~1person~1{id}/post",
-				"operationId": "secured-person",
-				"x-damah": true,
-				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)"
-				
-			}
-		},
+
 		"/stringreqbody/{id}": {
 			"post": {
 				"tags": [

@@ -164,7 +164,7 @@ Have more thoughts on how it can be taken further.
 For the other mediatypes this is WIP on my part.   
 
 
-Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be neededbecause 3.1 is supposed to take care of that.  
+Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
 
 
 Am sure there are more limitations/WIPs. Hope to improve as they are seen.
@@ -179,6 +179,7 @@ There are a few different concepts here.
 2. Generating only the model code.  
 3. If Parameters are more than one in number wrapping them into a java bean.  
 4. Mixing code-first, design first and xdamah.  
+5. Reuse of parameter definitions. (Pretty minor but can be handy) 
 
 But there is more.   
 A. **For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is also demonstrated and discussed more**.   
@@ -189,7 +190,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 1. Upgrade the spring version.   
 2. Upgrade the generator versions.   
 3. Upgrade from swagger 3.0 to 3.1. 
-3. Add Unit Tests for the examples.  
+3. Add Unit Tests for the examples projects.  
 4. Work on the WIPs mentioned earlier.  
 
 
