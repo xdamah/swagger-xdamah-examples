@@ -156,14 +156,15 @@ private HttpServletRequest request;
 
 ### Any limitations ###
 
+Its not really a limitation. More of a incomplete work in propgress WIP.  
 Initially was coding the validations using custom code entirely. Later thought it better to reuse https://bitbucket.org/atlassian/swagger-request-validator/  Have been working around some of its current limitations.  
 For example- For json meadiatype there is good validation support.  
-Have added support for xml media type requests to be validated using just swagger specifications by extending its behaviour.  
+Have added support for xml media type requests to be validated using just swagger specifications by extending its behaviour.  This can be done in multiple ways. Used a valid quick approach for now.  
 Have more thoughts on how it can be taken further.  
 For the other mediatypes this is WIP on my part.   
 
 
-Am sure there are more limitations. Hope to improve as they are seen.
+Am sure there are more limitations/WIPs. Hope to improve as they are seen.
 
 
 
@@ -175,7 +176,7 @@ There are a few different concepts here.
 2. Generating only the model code.  
 
 But there is more.   
-A. For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is demonstrated and discussed more.   
+A. **For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is also demonstrated and discussed more**.   
 
 
 
