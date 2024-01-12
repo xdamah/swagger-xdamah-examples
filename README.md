@@ -91,14 +91,14 @@ So that's the objective.
 We have these swagger extensions examples of which are shown below.
 
 "x-damah": true,   
-"x-damah-service": "com.example.SampleService.doSomething(Person)".   
+"x-damah-service": "sampleService.doSomething(Person)".   
 
 These swagger extensions can be applied to any of the operations in the swagger json adjacent to the operationId.  
 
 Here by "x-damah": true we are saying we want to use this concept that we have been discussing.  
-Using "x-damah": true or specifying "x-damah-service" class and method is enough to enable this.  
+Using "x-damah": true or specifying "x-damah-service" bean name and method is enough to enable this.  
 
-"x-damah-service" specifies post validation which is the service class method that must be invoked.
+"x-damah-service" specifies post validation which is the service bean method that must be invoked.
 
 *What happens if we dont specify x-damah related attributes?*  
 It will trigger regular design first code generation and use for that operation
@@ -134,15 +134,14 @@ However when using xdamah there are some additional concepts for these parameter
 * However a xdamah combatible service method will have at most 2 arguments.  
 Listing below some examples.
 
-| Service method examples                                   | Description                                                    |    
+| Service bean method examples                                   | Description                                                    |    
 | :-------------------------------------------------------- | :------------------------------------------------------------- |   
-| com.example.SampleService.savePerson(Person)              | Person is from RequestBody                                     |  
-| com.example.SampleService.byid(long)                      | No request body just a single long type parameter              |   
-| com.example.SampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
-| com.example.SampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
+| sampleService.savePerson(Person)              | Person is from RequestBody                                     |  
+| sampleService.byid(long)                      | No request body just a single long type parameter              |   
+| sampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
+| sampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
 
-*One improvement TODO for next version*  
-Rather than specifying the name of the service class and looking looking up a bean according to that as being done now. Change the logic to specifying name of the bean and determining the service class.   
+ 
 
 
 What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
