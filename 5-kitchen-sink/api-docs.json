@@ -298,6 +298,75 @@
 				}
 			}
 		},
+		"/personb/{id}": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "personb",
+				"x-damah": true,
+				"x-damah-param-ref": "PersonParam",
+				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.json"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.json"
+								}
+							}
+						},
+						"application/xml": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							},
+							"examples": {
+								"user": {
+									"summary": "person Example",
+									"externalValue": "classpath:examples/1.xml"
+								},
+								"user1": {
+									"summary": "person1 Example",
+									"externalValue": "classpath:examples/2.xml"
+								}
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/Person"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/secured/person/{id}": {
 			"post": {
 				"$ref": "#/paths/~1person~1{id}/post",
