@@ -11,7 +11,10 @@ Demonstrates 3 approaches co-existing in same project
 * design first
 * xdamah  
 
-In api-docs.json look for presence of x-damah=true/false or its absense.
+In api-docs.json look for presence of x-damah=true/false or its absence.   
+
+Do try the examples using swagger-ui and postman.   
+Use postman in case of requests of type application/x-www-form-urlencoded and multipart/form-data.   Read more about all this [here](../README.md) 
 
 
 

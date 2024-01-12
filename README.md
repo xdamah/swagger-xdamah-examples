@@ -174,8 +174,8 @@ There are a few different concepts here.
 1. Not generating the controller code.  
 2. Generating only the model code.  
 
-But there is more.
-A. For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  
+But there is more.   
+A. For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is demonstrated and discussed more.   
 
 
 
