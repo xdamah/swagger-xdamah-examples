@@ -185,5 +185,6 @@ A. **For the same model its much easier to support requests in multiple media ty
 1. Upgrade the spring version.   
 2. Upgrade the generator versions.   
 3. Add integration JUNITs using the new rest client.  
+4. Work on the WIPs mentioned earlier.  
 
 
