@@ -91,14 +91,14 @@ So that's the objective.
 We have these swagger extensions examples of which are shown below.
 
 "x-damah": true,   
-"x-damah-service": "com.example.SampleService.doSomething(Person)".   
+"x-damah-service": "sampleService.doSomething(Person)".   
 
 These swagger extensions can be applied to any of the operations in the swagger json adjacent to the operationId.  
 
 Here by "x-damah": true we are saying we want to use this concept that we have been discussing.  
-Using "x-damah": true or specifying "x-damah-service" class and method is enough to enable this.  
+Using "x-damah": true or specifying "x-damah-service" bean name and method is enough to enable this.  
 
-"x-damah-service" specifies post validation which is the service class method that must be invoked.
+"x-damah-service" specifies post validation which is the service bean method that must be invoked.
 
 *What happens if we dont specify x-damah related attributes?*  
 It will trigger regular design first code generation and use for that operation
@@ -134,15 +134,14 @@ However when using xdamah there are some additional concepts for these parameter
 * However a xdamah combatible service method will have at most 2 arguments.  
 Listing below some examples.
 
-| Service method examples                                   | Description                                                    |    
+| Service bean method examples                                   | Description                                                    |    
 | :-------------------------------------------------------- | :------------------------------------------------------------- |   
-| com.example.SampleService.savePerson(Person)              | Person is from RequestBody                                     |  
-| com.example.SampleService.byid(long)                      | No request body just a single long type parameter              |   
-| com.example.SampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
-| com.example.SampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
+| sampleService.savePerson(Person)              | Person is from RequestBody                                     |  
+| sampleService.byid(long)                      | No request body just a single long type parameter              |   
+| sampleService.doSomething(Person,PersonParam) | Person is from RequestBody, PersonParam is the parameter POJO  |   
+| sampleService.doSomethingElse(Person,long)    | Person is from RequestBody, single long type parameter         | 
 
-*One improvement TODO for next version*  
-Rather than specifying the name of the service class and looking looking up a bean according to that as being done now. Change the logic to specifying name of the bean and determining the service class.   
+ 
 
 
 What if I need to access something not specified in the parameters or request body as defined in the swagger specifications?
@@ -154,18 +153,19 @@ private HttpServletRequest request;
 
 ```
 
-### Any limitations ###
+### What is known  WIP ###
 
-Its not really a limitation. More of a incomplete work in propgress WIP.  
-Initially was coding the validations using custom code entirely. Later thought it better to reuse https://bitbucket.org/atlassian/swagger-request-validator/  Have been working around some of its current limitations.  
+a) Initially was coding the validations using custom code entirely. Later thought it better to reuse https://bitbucket.org/atlassian/swagger-request-validator/  Have been working around some of its current limitations.  
 For example- For json meadiatype there is good validation support.  
 Have added support for xml media type requests to be validated using just swagger specifications by extending its behaviour.  This can be done in multiple ways. Used a valid quick approach for now.  
 Have more thoughts on how it can be taken further.  
-For the other mediatypes this is WIP on my part.   
+For the other mediatypes this is WIP on my part. If this goes well overall can put effort in that direction.    
 
 
-Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
+b) Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
 
+
+c) In the example projects also demonstrate form and multi-part form submission. This gets interesting especially when the forms have nested models and nested array type models. This is working. There is however room for making this a bit more flexible. Eg - should "." be used to traverse to a nested bean. What about for eg "/", Similarly more variations on how to identify indexing. Can be done. 
 
 Am sure there are more limitations/WIPs. Hope to improve as they are seen.
 
@@ -181,8 +181,14 @@ There are a few different concepts here.
 4. Mixing code-first, design first and xdamah.  
 5. Reuse of parameter definitions. (Pretty minor but can be handy) 
 
-But there is more.   
+
+But there is one more interesting feature.   
 A. **For the same model its much easier to support requests in multiple media types - json, xml, form, multipart as swagger request body compared to regular spring approaches.  In 1-first-example this is also demonstrated and discussed more**.   
+
+
+### Also ###
+- Demonstrates custom types.  
+- Demonstrates custom validation.  
 
 
 ### TODOs ###

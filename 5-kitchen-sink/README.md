@@ -28,7 +28,7 @@ In the post operation under "/person/{id}" we have this (Its only a very small s
 	"operationId": "person",
 	"x-damah": true,
 	"x-damah-param-type": "PersonParam",
-	"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+	"x-damah-service": "sampleService.doSomething(Person,PersonParam)",
 	"parameters": [
 		{
 			"$ref": "#/components/parameters/def"

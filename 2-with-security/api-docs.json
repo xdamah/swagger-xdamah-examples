@@ -24,7 +24,7 @@
 				],
 				"operationId": "person",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.savePerson(Person)",
+				"x-damah-service": "sampleService.savePerson(Person)",
 				"security": [
 					{
 						"BasicAuth": []
@@ -87,7 +87,7 @@
 				],
 				"operationId": "personbyid",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.byid(long)",
+				"x-damah-service": "sampleService.byid(long)",
 				"parameters": [
 					{
 						"name": "id",
@@ -121,7 +121,7 @@
 				],
 				"operationId": "person-pic",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.pic(Person)",
+				"x-damah-service": "sampleService.pic(Person)",
 				"requestBody": {
 					"content": {
 						"application/json": {

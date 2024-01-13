@@ -25,7 +25,7 @@
 				"operationId": "person",
 				"x-damah": true,
 				"x-damah-param-type": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"x-damah-service": "sampleService.doSomething(Person,PersonParam)",
 				"parameters": [
 					{
 						"$ref": "#/components/parameters/def"
@@ -154,7 +154,7 @@
 				"operationId": "persona",
 				"x-damah": true,
 				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"x-damah-service": "sampleService.doSomething(Person,PersonParam)",
 				"parameters": [
 					{
 						"name": "def",
@@ -306,7 +306,7 @@
 				"operationId": "personb",
 				"x-damah": true,
 				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.doSomething(Person,PersonParam)",
+				"x-damah-service": "sampleService.doSomething(Person,PersonParam)",
 
 				"requestBody": {
 					"content": {
@@ -376,7 +376,7 @@
 				"operationId": "stringreqbody",
 				"x-damah": true,
 				"x-damah-param-ref": "PersonParam",
-				"x-damah-service": "com.example.SampleService.stringreqbody(String,PersonParam)",
+				"x-damah-service": "sampleService.stringreqbody(String,PersonParam)",
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -428,7 +428,7 @@
 				],
 				"operationId": "binary-pic",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.binary(byte[])",
+				"x-damah-service": "sampleService.binary(byte[])",
 				"requestBody": {
 					"content": {
 						"application/octet-stream": {
@@ -462,7 +462,7 @@
 				],
 				"operationId": "person-pic",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.pic(Person)",
+				"x-damah-service": "sampleService.pic(Person)",
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -530,7 +530,7 @@
 				],
 				"operationId": "person-pic1",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.pic(Person)",
+				"x-damah-service": "sampleService.pic(Person)",
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -604,7 +604,7 @@
 				],
 				"operationId": "personbyid",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.byid(long)",
+				"x-damah-service": "sampleService.byid(long)",
 				"parameters": [
 					{
 						"name": "id",
@@ -638,7 +638,7 @@
 				],
 				"operationId": "personbyids",
 				"x-damah": true,
-				"x-damah-service": "com.example.SampleService.byids(long[])",
+				"x-damah-service": "sampleService.byids(long[])",
 				"parameters": [
 					{
 						"name": "ids",

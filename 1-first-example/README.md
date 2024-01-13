@@ -242,19 +242,19 @@ sharing here postman screenshots for the same.
 application/x-www-form-urlencoded   
 
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>      
+<img src="imgs/postman-Nestedform.png" alt="postman form" width="400"/>      
 
 application/x-www-form-urlencoded with nested   
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+<img src="imgs/postman-multi.png" alt="postman form" width="400"/>    
 
 multipart/form-data   
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+<img src="imgs/postman-Nestedmulti.png" alt="postman form" width="400"/>    
 
 multipart/form-data with nested   
 
 Do see how easier its in XDamah to support a request in all the media types of application/json, application/xml, application/x-www-form-urlencoded and multipart/form-data.   
 
 Other request types eg application/octet-stream are also supported.
-Please see kitchen-sink for them.
+Please see [5-kitchen-sink](../5-kitchen-sink/README.md) for them.
