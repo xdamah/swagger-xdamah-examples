@@ -242,15 +242,15 @@ sharing here postman screenshots for the same.
 application/x-www-form-urlencoded   
 
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>      
+<img src="imgs/postman-Nestedform.png" alt="postman form" width="400"/>      
 
 application/x-www-form-urlencoded with nested   
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+<img src="imgs/postman-multi.png" alt="postman form" width="400"/>    
 
 multipart/form-data   
 
-<img src="imgs/postman-form.png" alt="postman form" width="400"/>    
+<img src="imgs/postman-Nestedmulti.png" alt="postman form" width="400"/>    
 
 multipart/form-data with nested   
 
