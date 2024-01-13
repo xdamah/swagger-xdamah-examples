@@ -198,5 +198,6 @@ A. **For the same model its much easier to support requests in multiple media ty
 3. Upgrade from swagger 3.0 to 3.1. 
 3. Add Unit Tests for the examples projects.  
 4. Work on the WIPs mentioned earlier.  
+5. Caching for performance.  
 
 
