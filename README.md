@@ -193,11 +193,12 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Upgrade the spring version.   
-2. Upgrade the generator versions.   
-3. Upgrade from swagger 3.0 to 3.1. 
-3. Add Unit Tests for the examples projects.  
-4. Work on the WIPs mentioned earlier.  
-5. Caching for performance.  
+1. Immediate TODO for next few days- share postman collection
+2. Upgrade the spring version.   
+3. Upgrade the generator versions.   
+4. Upgrade from swagger 3.0 to 3.1. 
+5. Add Unit Tests for the examples projects.  
+6. Work on the WIPs mentioned earlier.  
+7. Caching for performance.  
 
 
