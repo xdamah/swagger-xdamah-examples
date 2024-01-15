@@ -74,7 +74,7 @@ So that's the objective.
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to postman collection for same.  
+* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.   
 * More details in each project folder's Readme.MD.
 
 ### Whats in the examples? ###
@@ -193,12 +193,11 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Immediate TODO for next few days- share postman collection
-2. Upgrade the spring version.   
-3. Upgrade the generator versions.   
-4. Upgrade from swagger 3.0 to 3.1. 
-5. Add Unit Tests for the examples projects.  
-6. Work on the WIPs mentioned earlier.  
-7. Caching for performance.  
+1. Upgrade the spring version.   
+2. Upgrade the generator versions.   
+3. Upgrade from swagger 3.0 to 3.1. 
+4. Add Unit Tests for the examples projects.  
+5. Work on the WIPs mentioned earlier.  
+6. Caching for performance.  
 
 
