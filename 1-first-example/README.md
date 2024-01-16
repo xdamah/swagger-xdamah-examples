@@ -31,7 +31,7 @@ To:
 
 Press The blue execute button.   
 Validation Response   
-<img src="imgs/screen15.png" alt="Response" width="400"/>
+<img src="imgs/screen05.png" alt="Response" width="400"/>
 
 
 
