@@ -51,16 +51,8 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 
 ### How do I get set up? ###
 
-* Temporary Dependency
 * Prerequisites
 * Steps
-
-
-*Temporary Dependency*   
-
-* clone https://github.com/xdamah/swagger-xdamah
-* In the project folder run "mvn clean install".
-* Once this is deployed into maven central this step wont be needed. 
 
 *Prerequisites*  
 * JDK 18
