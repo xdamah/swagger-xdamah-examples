@@ -6,3 +6,4 @@ target/
 logs/
 api-docs-check.json
 /build.bat
+run.bat
