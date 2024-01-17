@@ -35,16 +35,18 @@ It will not be incorrect to say that they both are request/response rules for re
 
 The main goal is to express, enforce those rules and invoke the business logic.
 
-What we have here is a variation of design first approach.
-Obviously design first implies code generation. 
+If we see the code each controller code will look very similar to another controller code. The only difference will be in the service method invoked.  
 
-If we see the code each controller code will look very similar to another controller code. The only difference will be in the service method invoked.  What we are trying to avoid here is generating the controller and related code. The rules for that purpose including that of validations are already there in the swagger specs in json/yaml. 
+What we are trying to avoid here is generating the controller and related code. The rules for that purpose including that of validations are already there in the swagger specs in json/yaml. 
 
 Instead of generating the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
 
 The only code that is generated is that of the model POJO classes.  
 
 So that's the objective.   
+
+What we have here is a variation of design first approach.
+Obviously design first implies code generation. Lets call it xdamah. X stands for Swagger extensions. Damah means self control. Its a word play implying that The swagger specs itslf does the control without a need for coding or code-generating a controller.
 
 
 ### How do I get set up? ###
