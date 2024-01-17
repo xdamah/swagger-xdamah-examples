@@ -26,7 +26,7 @@ import com.atlassian.oai.validator.report.MessageResolver;
 import com.atlassian.oai.validator.report.ValidationReport;
 import com.atlassian.oai.validator.schema.SchemaValidator;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.xdamah.config.NonSpringHolder;
+import io.github.xdamah.config.NonSpringHolder;
 
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.parameters.RequestBody;

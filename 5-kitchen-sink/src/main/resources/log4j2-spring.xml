@@ -38,7 +38,7 @@
            
         </Root>
         
-        <Logger name="com.github.xdamah" level="info"></Logger>
+        <Logger name="io.github.xdamah" level="info"></Logger>
          <Logger name="com.example" level="info"></Logger>
 
        

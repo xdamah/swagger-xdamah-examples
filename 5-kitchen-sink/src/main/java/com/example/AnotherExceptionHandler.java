@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.github.xdamah.advice.SwaggerValidationExceptionHandler;
+import io.github.xdamah.advice.SwaggerValidationExceptionHandler;
 
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)

@@ -27,10 +27,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.TextNode;
-import com.github.xdamah.config.IOpenApiValidationConfigOnInitWorkaround;
-import com.github.xdamah.config.ModelPackageUtil;
-import com.github.xdamah.config.NonSpringHolder;
-import com.github.xdamah.constants.Constants;
+import io.github.xdamah.config.IOpenApiValidationConfigOnInitWorkaround;
+import io.github.xdamah.config.ModelPackageUtil;
+import io.github.xdamah.config.NonSpringHolder;
+import io.github.xdamah.constants.Constants;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;

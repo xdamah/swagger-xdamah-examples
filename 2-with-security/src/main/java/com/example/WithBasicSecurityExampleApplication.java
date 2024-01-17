@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
-@SpringBootApplication(scanBasePackages = { "com.github.xdamah", "com.example" })
+@SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
 public class WithBasicSecurityExampleApplication {
 	private static final Logger logger = LoggerFactory.getLogger(WithBasicSecurityExampleApplication.class);
 
