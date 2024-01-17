@@ -5,3 +5,4 @@ target/
 .factorypath
 logs/
 api-docs-check.json
+/build.bat
