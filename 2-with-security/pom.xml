@@ -13,7 +13,7 @@
 			<plugin>
 				<groupId>io.github.xdamah</groupId>
 				<artifactId>xdamah-maven-codegen-plugin</artifactId>
-				<version>${xdamah-codegen-maven-plugin-version}</version>
+				<version>${xdamah-version}</version>
 				<executions>
 					<execution>
 						<goals>
