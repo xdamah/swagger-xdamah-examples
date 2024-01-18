@@ -55,7 +55,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 * Steps
 
 *Prerequisites*  
-* JDK 18
+* JDK 17
 * Latest Maven
 
 *Steps*  
