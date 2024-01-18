@@ -116,7 +116,7 @@ Have a look at "/personb/{id}" post operation to see how we can simply avoid rep
 
 ## Unusual Request Types ##
 
-This is small proof of concept to demonstrate that if needed any request type can be handled.  of course the library needs to be tweaked a bit for such things.  
+This is small proof of concept to demonstrate that if needed any request type can be handled.  Lets say we are able to handle requests that are of json,xml,form,multi-part when mapped to pojos. Also lets say we handle json, xml requests mapped to strings (as shown below).  Again lets say we also handle binary requests (as shown below). Tomorrow if there is a requirement to handle another previously unhandled type of request. If the requirement is clear and generic the library can be tweaked to handle any new requirement. 
 
 ### String as request body ###
 
