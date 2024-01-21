@@ -187,11 +187,15 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Upgrade the spring version.   
-2. Upgrade the generator versions.   
-3. Upgrade from swagger 3.0 to 3.1. 
+1. Allow the request validator to be turned off on some paths.   
+2. Add a better first example that shows how to start without code generation.  
+3. Upgrade the spring version.   
 4. Add Unit Tests for the examples projects.  
-5. Work on the WIPs mentioned earlier.  
-6. Caching for performance.  
+5. If possible work with the request validator for better integration.  
+6. Generate the json when writing code first
+7. Upgrade the generator versions.   
+8. Upgrade from swagger 3.0 to 3.1. 
+9. Work on the WIPs mentioned earlier.  
+10. Caching for performance.  
 
 
