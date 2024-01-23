@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.0</revision>
+		<revision>1.0.1-SNAPSHOT</revision>
 		<spring-boot-version>3.1.3</spring-boot-version>
-		<xdamah-version>1.0.0</xdamah-version>
+		<xdamah-version>1.0.1-SNAPSHOT</xdamah-version>
 		
 	</properties>
 	<build>
@@ -193,11 +193,13 @@
 	</dependencies>
 	<modules>
 		<module>1-first-example</module>
+	
 		<module>2-with-security</module>
 		<module>3-mixed</module>
 		<module>4-polymorphism-example</module>
 		<module>5-kitchen-sink</module>
 
+		<module>6-first-fqn-example</module>
 	</modules>
 	<!--
 	<repositories>
