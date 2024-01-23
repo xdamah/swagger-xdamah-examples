@@ -1,0 +1,323 @@
+*********key=com.abc.Person1
+key=appVersion,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=generatorClass,valType=java.lang.String,valtoString=io.github.xdamah.codegen.XDamahCodeGen
+key=supportJava6,valType=java.lang.Boolean,valtoString=false
+key=sortParamsByRequiredFlag,valType=java.lang.Boolean,valtoString=true
+key=groupId,valType=java.lang.String,valtoString=io.swagger
+key=invokerPackage,valType=java.lang.String,valtoString=com.example.invoker
+key=developerEmail,valType=java.lang.String,valtoString=apiteam@swagger.io
+key=generateModelDocs,valType=java.lang.Boolean,valtoString=true
+key=generateModelTests,valType=java.lang.Boolean,valtoString=false
+key=dateLibrary,valType=java.lang.String,valtoString=custom
+key=springBootV2,valType=java.lang.Boolean,valtoString=true
+key=generateApiTests,valType=java.lang.Boolean,valtoString=false
+key=serializableModel,valType=java.lang.Boolean,valtoString=false
+key=inputSpec,valType=java.lang.String,valtoString={
+	"openapi": "3.0.1",
+	"info": {
+		"title": "s
+key=artifactUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=developerOrganization,valType=java.lang.String,valtoString=Swagger
+key=jakarta,valType=java.lang.Boolean,valtoString=true
+key=delegatePattern,valType=java.lang.Boolean,valtoString=true
+key=defaultInterfaces,valType=java.lang.Boolean,valtoString=false
+key=models,valType=java.util.ArrayList,valtoString=[{schema=class ObjectSchema {
+    class Schema {
+ 
+key=package,valType=java.lang.String,valtoString=
+key=imports,valType=java.util.ArrayList,valtoString=[{import=Person}, {import=com.example.custom.Sampl
+key=fullJavaUtil,valType=java.lang.Boolean,valtoString=false
+key=lambdaRemoveLineBreak,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$2,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=configPackage,valType=java.lang.String,valtoString=io.swagger.configuration
+key=basePackage,valType=java.lang.String,valtoString=com.example.invoker
+key=appDescription,valType=java.lang.String,valtoString=some description
+key=javaUtilPrefix,valType=java.lang.String,valtoString=
+key=licenseName,valType=java.lang.String,valtoString=Unlicense
+key=releaseNote,valType=java.lang.String,valtoString=Minor update
+key=java11,valType=java.lang.Boolean,valtoString=false
+key=version,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=modelDocPath,valType=java.lang.String,valtoString=docs/
+key=useOas2,valType=java.lang.Boolean,valtoString=false
+key=withXml,valType=java.lang.Boolean,valtoString=false
+key=lambdaEscapeDoubleQuote,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$1,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=scmDeveloperConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=isOpenFeign,valType=java.lang.Boolean,valtoString=true
+key=licenseUrl,valType=java.lang.String,valtoString=http://springdoc.org
+key=isDelegate,valType=java.lang.String,valtoString=true
+key=generatedYear,valType=java.lang.String,valtoString=2024
+key=modelPackage,valType=java.lang.String,valtoString=io.swagger.model
+key=sourceFolder,valType=java.lang.String,valtoString=gen/java
+key=apiDocPath,valType=java.lang.String,valtoString=docs/
+key=licenseInfo,valType=java.lang.String,valtoString=Apache 2.0
+key=title,valType=java.lang.String,valtoString=sampleApplication_
+key=serverPort,valType=java.lang.String,valtoString=8080
+key=developerOrganizationUrl,valType=java.lang.String,valtoString=http://swagger.io
+key=jackson,valType=java.lang.String,valtoString=true
+key=java8,valType=java.lang.Boolean,valtoString=false
+key=useBeanValidation,valType=java.lang.Boolean,valtoString=false
+key=artifactId,valType=java.lang.String,valtoString=swagger-spring
+key=artifactDescription,valType=java.lang.String,valtoString=Swagger Java
+key=isJava8or11,valType=java.lang.Boolean,valtoString=false
+key=hideGenerationTimestamp,valType=java.lang.Boolean,valtoString=false
+key=developerName,valType=java.lang.String,valtoString=Swagger
+key=scmConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=unescapedAppDescription,valType=java.lang.String,valtoString=some description
+key=artifactVersion,valType=java.lang.String,valtoString=1.0.0
+key=appName,valType=java.lang.String,valtoString=sample application API
+key=generateApiDocs,valType=java.lang.Boolean,valtoString=false
+key=termsOfService,valType=java.lang.String,valtoString=http://swagger.io/terms/
+key=generatorVersion,valType=java.lang.String,valtoString=3.0.48
+key=apiPackage,valType=java.lang.String,valtoString=com.example.api
+key=gitRepoBaseURL,valType=java.lang.String,valtoString=https://github.com
+key=scmUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=classname,valType=java.lang.String,valtoString=com.abc.Person1
+key=excludeTests,valType=java.lang.Boolean,valtoString=true
+key=fullController,valType=java.lang.Boolean,valtoString=true
+key=gitRepoId,valType=java.lang.String,valtoString=GIT_REPO_ID
+key=generatedDate,valType=java.lang.String,valtoString=2024-01-23T16:01:07.567457100+05:30[Asia/Calcutta]
+key=springBootVersion,valType=java.lang.String,valtoString=2.1.16.RELEASE
+key=gitUserId,valType=java.lang.String,valtoString=GIT_USER_ID
+*********key=com.def.Person
+key=appVersion,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=generatorClass,valType=java.lang.String,valtoString=io.github.xdamah.codegen.XDamahCodeGen
+key=supportJava6,valType=java.lang.Boolean,valtoString=false
+key=sortParamsByRequiredFlag,valType=java.lang.Boolean,valtoString=true
+key=groupId,valType=java.lang.String,valtoString=io.swagger
+key=invokerPackage,valType=java.lang.String,valtoString=com.example.invoker
+key=developerEmail,valType=java.lang.String,valtoString=apiteam@swagger.io
+key=generateModelDocs,valType=java.lang.Boolean,valtoString=true
+key=generateModelTests,valType=java.lang.Boolean,valtoString=false
+key=dateLibrary,valType=java.lang.String,valtoString=custom
+key=springBootV2,valType=java.lang.Boolean,valtoString=true
+key=generateApiTests,valType=java.lang.Boolean,valtoString=false
+key=serializableModel,valType=java.lang.Boolean,valtoString=false
+key=inputSpec,valType=java.lang.String,valtoString={
+	"openapi": "3.0.1",
+	"info": {
+		"title": "s
+key=artifactUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=developerOrganization,valType=java.lang.String,valtoString=Swagger
+key=jakarta,valType=java.lang.Boolean,valtoString=true
+key=delegatePattern,valType=java.lang.Boolean,valtoString=true
+key=defaultInterfaces,valType=java.lang.Boolean,valtoString=false
+key=models,valType=java.util.ArrayList,valtoString=[{schema=class ObjectSchema {
+    class Schema {
+ 
+key=package,valType=java.lang.String,valtoString=
+key=imports,valType=java.util.ArrayList,valtoString=[{import=com.example.custom.SampleCustomType}, {im
+key=fullJavaUtil,valType=java.lang.Boolean,valtoString=false
+key=lambdaRemoveLineBreak,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$2,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=configPackage,valType=java.lang.String,valtoString=io.swagger.configuration
+key=basePackage,valType=java.lang.String,valtoString=com.example.invoker
+key=appDescription,valType=java.lang.String,valtoString=some description
+key=javaUtilPrefix,valType=java.lang.String,valtoString=
+key=licenseName,valType=java.lang.String,valtoString=Unlicense
+key=releaseNote,valType=java.lang.String,valtoString=Minor update
+key=java11,valType=java.lang.Boolean,valtoString=false
+key=version,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=modelDocPath,valType=java.lang.String,valtoString=docs/
+key=useOas2,valType=java.lang.Boolean,valtoString=false
+key=withXml,valType=java.lang.Boolean,valtoString=false
+key=lambdaEscapeDoubleQuote,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$1,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=scmDeveloperConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=isOpenFeign,valType=java.lang.Boolean,valtoString=true
+key=licenseUrl,valType=java.lang.String,valtoString=http://springdoc.org
+key=isDelegate,valType=java.lang.String,valtoString=true
+key=generatedYear,valType=java.lang.String,valtoString=2024
+key=modelPackage,valType=java.lang.String,valtoString=io.swagger.model
+key=sourceFolder,valType=java.lang.String,valtoString=gen/java
+key=apiDocPath,valType=java.lang.String,valtoString=docs/
+key=licenseInfo,valType=java.lang.String,valtoString=Apache 2.0
+key=title,valType=java.lang.String,valtoString=sampleApplication_
+key=serverPort,valType=java.lang.String,valtoString=8080
+key=developerOrganizationUrl,valType=java.lang.String,valtoString=http://swagger.io
+key=jackson,valType=java.lang.String,valtoString=true
+key=java8,valType=java.lang.Boolean,valtoString=false
+key=useBeanValidation,valType=java.lang.Boolean,valtoString=false
+key=artifactId,valType=java.lang.String,valtoString=swagger-spring
+key=artifactDescription,valType=java.lang.String,valtoString=Swagger Java
+key=isJava8or11,valType=java.lang.Boolean,valtoString=false
+key=hideGenerationTimestamp,valType=java.lang.Boolean,valtoString=false
+key=developerName,valType=java.lang.String,valtoString=Swagger
+key=scmConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=unescapedAppDescription,valType=java.lang.String,valtoString=some description
+key=artifactVersion,valType=java.lang.String,valtoString=1.0.0
+key=appName,valType=java.lang.String,valtoString=sample application API
+key=generateApiDocs,valType=java.lang.Boolean,valtoString=false
+key=termsOfService,valType=java.lang.String,valtoString=http://swagger.io/terms/
+key=generatorVersion,valType=java.lang.String,valtoString=3.0.48
+key=apiPackage,valType=java.lang.String,valtoString=com.example.api
+key=gitRepoBaseURL,valType=java.lang.String,valtoString=https://github.com
+key=scmUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=classname,valType=java.lang.String,valtoString=com.def.Person
+key=excludeTests,valType=java.lang.Boolean,valtoString=true
+key=fullController,valType=java.lang.Boolean,valtoString=true
+key=gitRepoId,valType=java.lang.String,valtoString=GIT_REPO_ID
+key=generatedDate,valType=java.lang.String,valtoString=2024-01-23T16:01:07.567457100+05:30[Asia/Calcutta]
+key=springBootVersion,valType=java.lang.String,valtoString=2.1.16.RELEASE
+key=gitUserId,valType=java.lang.String,valtoString=GIT_USER_ID
+*********key=com.example.Person
+key=appVersion,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=generatorClass,valType=java.lang.String,valtoString=io.github.xdamah.codegen.XDamahCodeGen
+key=supportJava6,valType=java.lang.Boolean,valtoString=false
+key=sortParamsByRequiredFlag,valType=java.lang.Boolean,valtoString=true
+key=groupId,valType=java.lang.String,valtoString=io.swagger
+key=invokerPackage,valType=java.lang.String,valtoString=com.example.invoker
+key=developerEmail,valType=java.lang.String,valtoString=apiteam@swagger.io
+key=generateModelDocs,valType=java.lang.Boolean,valtoString=true
+key=generateModelTests,valType=java.lang.Boolean,valtoString=false
+key=dateLibrary,valType=java.lang.String,valtoString=custom
+key=springBootV2,valType=java.lang.Boolean,valtoString=true
+key=generateApiTests,valType=java.lang.Boolean,valtoString=false
+key=serializableModel,valType=java.lang.Boolean,valtoString=false
+key=inputSpec,valType=java.lang.String,valtoString={
+	"openapi": "3.0.1",
+	"info": {
+		"title": "s
+key=artifactUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=developerOrganization,valType=java.lang.String,valtoString=Swagger
+key=jakarta,valType=java.lang.Boolean,valtoString=true
+key=delegatePattern,valType=java.lang.Boolean,valtoString=true
+key=defaultInterfaces,valType=java.lang.Boolean,valtoString=false
+key=models,valType=java.util.ArrayList,valtoString=[{schema=class ObjectSchema {
+    class Schema {
+ 
+key=package,valType=java.lang.String,valtoString=
+key=imports,valType=java.util.ArrayList,valtoString=[{import=Person}, {import=com.example.custom.Sampl
+key=fullJavaUtil,valType=java.lang.Boolean,valtoString=false
+key=lambdaRemoveLineBreak,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$2,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=configPackage,valType=java.lang.String,valtoString=io.swagger.configuration
+key=basePackage,valType=java.lang.String,valtoString=com.example.invoker
+key=appDescription,valType=java.lang.String,valtoString=some description
+key=javaUtilPrefix,valType=java.lang.String,valtoString=
+key=licenseName,valType=java.lang.String,valtoString=Unlicense
+key=releaseNote,valType=java.lang.String,valtoString=Minor update
+key=java11,valType=java.lang.Boolean,valtoString=false
+key=version,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=modelDocPath,valType=java.lang.String,valtoString=docs/
+key=useOas2,valType=java.lang.Boolean,valtoString=false
+key=withXml,valType=java.lang.Boolean,valtoString=false
+key=lambdaEscapeDoubleQuote,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$1,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=scmDeveloperConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=isOpenFeign,valType=java.lang.Boolean,valtoString=true
+key=licenseUrl,valType=java.lang.String,valtoString=http://springdoc.org
+key=isDelegate,valType=java.lang.String,valtoString=true
+key=generatedYear,valType=java.lang.String,valtoString=2024
+key=modelPackage,valType=java.lang.String,valtoString=io.swagger.model
+key=sourceFolder,valType=java.lang.String,valtoString=gen/java
+key=apiDocPath,valType=java.lang.String,valtoString=docs/
+key=licenseInfo,valType=java.lang.String,valtoString=Apache 2.0
+key=title,valType=java.lang.String,valtoString=sampleApplication_
+key=serverPort,valType=java.lang.String,valtoString=8080
+key=developerOrganizationUrl,valType=java.lang.String,valtoString=http://swagger.io
+key=jackson,valType=java.lang.String,valtoString=true
+key=java8,valType=java.lang.Boolean,valtoString=false
+key=useBeanValidation,valType=java.lang.Boolean,valtoString=false
+key=artifactId,valType=java.lang.String,valtoString=swagger-spring
+key=artifactDescription,valType=java.lang.String,valtoString=Swagger Java
+key=isJava8or11,valType=java.lang.Boolean,valtoString=false
+key=hideGenerationTimestamp,valType=java.lang.Boolean,valtoString=false
+key=developerName,valType=java.lang.String,valtoString=Swagger
+key=scmConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=unescapedAppDescription,valType=java.lang.String,valtoString=some description
+key=artifactVersion,valType=java.lang.String,valtoString=1.0.0
+key=appName,valType=java.lang.String,valtoString=sample application API
+key=generateApiDocs,valType=java.lang.Boolean,valtoString=false
+key=termsOfService,valType=java.lang.String,valtoString=http://swagger.io/terms/
+key=generatorVersion,valType=java.lang.String,valtoString=3.0.48
+key=apiPackage,valType=java.lang.String,valtoString=com.example.api
+key=gitRepoBaseURL,valType=java.lang.String,valtoString=https://github.com
+key=scmUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=classname,valType=java.lang.String,valtoString=com.example.Person
+key=excludeTests,valType=java.lang.Boolean,valtoString=true
+key=fullController,valType=java.lang.Boolean,valtoString=true
+key=gitRepoId,valType=java.lang.String,valtoString=GIT_REPO_ID
+key=generatedDate,valType=java.lang.String,valtoString=2024-01-23T16:01:07.567457100+05:30[Asia/Calcutta]
+key=springBootVersion,valType=java.lang.String,valtoString=2.1.16.RELEASE
+key=gitUserId,valType=java.lang.String,valtoString=GIT_USER_ID
+*********key=com.example.SampleCustomType
+key=appVersion,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=generatorClass,valType=java.lang.String,valtoString=io.github.xdamah.codegen.XDamahCodeGen
+key=supportJava6,valType=java.lang.Boolean,valtoString=false
+key=sortParamsByRequiredFlag,valType=java.lang.Boolean,valtoString=true
+key=groupId,valType=java.lang.String,valtoString=io.swagger
+key=invokerPackage,valType=java.lang.String,valtoString=com.example.invoker
+key=developerEmail,valType=java.lang.String,valtoString=apiteam@swagger.io
+key=generateModelDocs,valType=java.lang.Boolean,valtoString=true
+key=generateModelTests,valType=java.lang.Boolean,valtoString=false
+key=dateLibrary,valType=java.lang.String,valtoString=custom
+key=springBootV2,valType=java.lang.Boolean,valtoString=true
+key=generateApiTests,valType=java.lang.Boolean,valtoString=false
+key=serializableModel,valType=java.lang.Boolean,valtoString=false
+key=inputSpec,valType=java.lang.String,valtoString={
+	"openapi": "3.0.1",
+	"info": {
+		"title": "s
+key=artifactUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=developerOrganization,valType=java.lang.String,valtoString=Swagger
+key=jakarta,valType=java.lang.Boolean,valtoString=true
+key=delegatePattern,valType=java.lang.Boolean,valtoString=true
+key=defaultInterfaces,valType=java.lang.Boolean,valtoString=false
+key=models,valType=java.util.ArrayList,valtoString=[{schema=class ObjectSchema {
+    class Schema {
+ 
+key=package,valType=java.lang.String,valtoString=
+key=imports,valType=java.util.ArrayList,valtoString=[]
+key=fullJavaUtil,valType=java.lang.Boolean,valtoString=false
+key=lambdaRemoveLineBreak,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$2,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=configPackage,valType=java.lang.String,valtoString=io.swagger.configuration
+key=basePackage,valType=java.lang.String,valtoString=com.example.invoker
+key=appDescription,valType=java.lang.String,valtoString=some description
+key=javaUtilPrefix,valType=java.lang.String,valtoString=
+key=licenseName,valType=java.lang.String,valtoString=Unlicense
+key=releaseNote,valType=java.lang.String,valtoString=Minor update
+key=java11,valType=java.lang.Boolean,valtoString=false
+key=version,valType=java.lang.String,valtoString=0.0.2-SNAPSHOT
+key=modelDocPath,valType=java.lang.String,valtoString=docs/
+key=useOas2,valType=java.lang.Boolean,valtoString=false
+key=withXml,valType=java.lang.Boolean,valtoString=false
+key=lambdaEscapeDoubleQuote,valType=io.swagger.codegen.v3.generators.java.SpringCodegen$1,valtoString=io.swagger.codegen.v3.generators.java.SpringCodege
+key=scmDeveloperConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=isOpenFeign,valType=java.lang.Boolean,valtoString=true
+key=licenseUrl,valType=java.lang.String,valtoString=http://springdoc.org
+key=isDelegate,valType=java.lang.String,valtoString=true
+key=generatedYear,valType=java.lang.String,valtoString=2024
+key=modelPackage,valType=java.lang.String,valtoString=io.swagger.model
+key=sourceFolder,valType=java.lang.String,valtoString=gen/java
+key=apiDocPath,valType=java.lang.String,valtoString=docs/
+key=licenseInfo,valType=java.lang.String,valtoString=Apache 2.0
+key=title,valType=java.lang.String,valtoString=sampleApplication_
+key=serverPort,valType=java.lang.String,valtoString=8080
+key=developerOrganizationUrl,valType=java.lang.String,valtoString=http://swagger.io
+key=jackson,valType=java.lang.String,valtoString=true
+key=java8,valType=java.lang.Boolean,valtoString=false
+key=useBeanValidation,valType=java.lang.Boolean,valtoString=false
+key=artifactId,valType=java.lang.String,valtoString=swagger-spring
+key=artifactDescription,valType=java.lang.String,valtoString=Swagger Java
+key=isJava8or11,valType=java.lang.Boolean,valtoString=false
+key=hideGenerationTimestamp,valType=java.lang.Boolean,valtoString=false
+key=developerName,valType=java.lang.String,valtoString=Swagger
+key=scmConnection,valType=java.lang.String,valtoString=scm:git:git@github.com:swagger-api/swagger-codegen
+key=unescapedAppDescription,valType=java.lang.String,valtoString=some description
+key=artifactVersion,valType=java.lang.String,valtoString=1.0.0
+key=appName,valType=java.lang.String,valtoString=sample application API
+key=generateApiDocs,valType=java.lang.Boolean,valtoString=false
+key=termsOfService,valType=java.lang.String,valtoString=http://swagger.io/terms/
+key=generatorVersion,valType=java.lang.String,valtoString=3.0.48
+key=apiPackage,valType=java.lang.String,valtoString=com.example.api
+key=gitRepoBaseURL,valType=java.lang.String,valtoString=https://github.com
+key=scmUrl,valType=java.lang.String,valtoString=https://github.com/swagger-api/swagger-codegen
+key=classname,valType=java.lang.String,valtoString=com.example.SampleCustomType
+key=excludeTests,valType=java.lang.Boolean,valtoString=true
+key=fullController,valType=java.lang.Boolean,valtoString=true
+key=gitRepoId,valType=java.lang.String,valtoString=GIT_REPO_ID
+key=generatedDate,valType=java.lang.String,valtoString=2024-01-23T16:01:07.567457100+05:30[Asia/Calcutta]
+key=springBootVersion,valType=java.lang.String,valtoString=2.1.16.RELEASE
+key=gitUserId,valType=java.lang.String,valtoString=GIT_USER_ID
+[INFO] writing file D:\dev\priv\wss\basics\xdamah\swagger-parsing-ws2-java17\swagger-xdamah-examples\1-first-example\target\generated-sources\swagger\gen\java\\com\abc\Person1.java
+[INFO] writing file D:\dev\priv\wss\basics\xdamah\swagger-parsing-ws2-java17\swagger-xdamah-examples\1-first-example\target\generated-sources\swagger\gen\java\\com\def\Person.java
+[INFO] writing file D:\dev\priv\wss\basics\xdamah\swagger-parsing-ws2-java17\swagger-xdamah-examples\1-first-example\target\generated-sources\swagger\gen\java\\com\example\Person.java
+[INFO] writing file D:\dev\priv\wss\basics\xdamah\swagger-parsing-ws2-java17\swagger-xdamah-examples\1-first-example\target\generated-sources\swagger\gen\java\\com\example\SampleCustomType.java
+[INFO] 
+[INFO] [1m--- [0;32mresources:3.3.1:resources[m [1m(default-resources)[m @ [36m1-first-example[0;1m ---[m
+[INFO] Copying 8 resources from src\main\resources to target\classes
