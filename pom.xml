@@ -192,12 +192,12 @@
 
 	</dependencies>
 	<modules>
-		<module>1-first-example</module>
+		<!--<module>1-first-example</module>
 	
 		<module>2-with-security</module>
 		<module>3-mixed</module>
 		<module>4-polymorphism-example</module>
-		<module>5-kitchen-sink</module>
+		<module>5-kitchen-sink</module> -->
 
 		<module>6-first-fqn-example</module>
 	</modules>
