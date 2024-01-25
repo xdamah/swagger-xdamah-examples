@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.3</version>
+		<version>3.2.2</version>
 		<relativePath />
 	</parent>
 	<groupId>io.github.xdamah</groupId>
@@ -14,9 +14,9 @@
 	<packaging>pom</packaging>
 	<properties>
 		<revision>1.0.1-SNAPSHOT</revision>
-		<spring-boot-version>3.1.3</spring-boot-version>
+		<spring-boot-version>3.2.2</spring-boot-version>
 		<xdamah-version>1.0.1-SNAPSHOT</xdamah-version>
-		
+
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -80,12 +80,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -188,16 +190,26 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jcl</artifactId>
+
+		</dependency>
 
 	</dependencies>
 	<modules>
-		<!--<module>1-first-example</module>
-	
+		<module>1-first-example</module>
+
 		<module>2-with-security</module>
 		<module>3-mixed</module>
 		<module>4-polymorphism-example</module>
-		<module>5-kitchen-sink</module> -->
+		<module>5-kitchen-sink</module>
 
 		<module>6-first-fqn-example</module>
 	</modules>
