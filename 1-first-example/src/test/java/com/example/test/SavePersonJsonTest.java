@@ -46,7 +46,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class FisrstTest {
+public class SavePersonJsonTest {
 	
 	@LocalServerPort
 	private int port;
@@ -106,40 +106,100 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		badRequest("saveperson/", "examples/1.json", this::invalidCard, "errors/badcc.json");
 	}
 	
-	@Test
-	void savePersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidAge, "errors/invalidAge.json");
-	}
-	
-	@Test
-	void savePersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
-	}
-	
 	private ObjectNode invalidCard(ObjectNode x){
 		x=x.put("creditCardNumber", "44444444444444");
 		return x;
 	};
 	
+	private ObjectNode invalidCardsInNested(ObjectNode x){
+		 invalidNested(x, this::invalidCard);
+		return x;
+		
+	}
+
+	private void invalidNested(ObjectNode x, UnaryOperator<ObjectNode> s) {
+		s.apply(x);
+		s.apply((ObjectNode) x.get("anotherPerson"));
+		s.apply((ObjectNode) ((ArrayNode) x.get("children")).get(0));
+	};
+	
 	@Test
-	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidCardAgeEmail, "errors/inalidCCAgeEmail1.json");
+	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
+		badRequest("saveperson/", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNested.json");
 	}
 	
-	private ObjectNode invalidCardAgeEmail(ObjectNode x){
-		
-		return invalidAge(invalidEmail1(invalidCard(x)));
+	private ObjectNode invalidAge(ObjectNode x){
+		x=x.put("age", 17);
+		return x;
 	};
+	
+	private ObjectNode invalidAgeInNested(ObjectNode x){
+		 invalidNested(x, this::invalidAge);
+		return x;
+		
+	}
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
+		badRequest("saveperson/", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNested.json");
+	}
+	
+	@Test
+	void savePersonJsonWithInvalidAgeTest() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidAge, "errors/invalidAge.json");
+	}
 	
 	private ObjectNode invalidEmail1(ObjectNode x){
 		x=x.put("email1", "abcxabc.com");
 		return x;
 	};
 	
-	private ObjectNode invalidAge(ObjectNode x){
-		x=x.put("age", 17);
+	private ObjectNode invalidEmail1InNested(ObjectNode x){
+		 invalidNested(x, this::invalidEmail1);
 		return x;
+		
+	}
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/2.json", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
+	}
+	
+	
+	
+	@Test
+	void savePersonJsonWithInvalidEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
+	}
+	
+	
+	
+	
+	
+	@Test
+	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidCardAgeEmail1, "errors/inalidCCAgeEmail1.json");
+	}
+	
+	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
+		 invalidNested(x, this::invalidCardAgeEmail1);
+		return x;
+		
+	}
+	
+	private ObjectNode invalidCardAgeEmail1(ObjectNode x){
+		
+		return invalidAge(invalidEmail1(invalidCard(x)));
 	};
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
+	}
+	
+	
+	
+	
 
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<ObjectNode> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
 		ObjectNode inputAsNode = (ObjectNode) getJsonNode(inputPathInCp);
