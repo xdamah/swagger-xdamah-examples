@@ -258,3 +258,14 @@ Do see how easier its in XDamah to support a request in all the media types of a
 
 Other request types eg application/octet-stream are also supported.
 Please see [5-kitchen-sink](../5-kitchen-sink/README.md) for them.
+
+### What about responses of other media types  ###
+
+Have a look at this    
+
+<img src="imgs/screen14.png" alt="input" width="400"/>   
+
+
+The response is like this in this operation    
+
+<img src="imgs/screen15.png" alt="pic response" width="400"/> 
