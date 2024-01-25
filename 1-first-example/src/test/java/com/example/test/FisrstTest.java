@@ -73,6 +73,16 @@ public class FisrstTest {
 		return x;
 	};
 	
+	@Test
+	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidCardAgeEmail, "errors/inalidCCAgeEmail1.json");
+	}
+	
+	private ObjectNode invalidCardAgeEmail(ObjectNode x){
+		
+		return invalidAge(invalidEmail1(invalidCard(x)));
+	};
+	
 	private ObjectNode invalidEmail1(ObjectNode x){
 		x=x.put("email1", "abcxabc.com");
 		return x;
