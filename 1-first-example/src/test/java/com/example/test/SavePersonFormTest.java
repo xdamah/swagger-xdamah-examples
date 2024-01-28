@@ -27,7 +27,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
@@ -43,6 +46,8 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -96,8 +101,10 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list= f1(inputAsNode, outputAsNode);
 		
 		addToListTuple(inputAsNode, (ObjectNode) outputAsNode.get("anotherPerson"), list, "anotherPerson.someTimeData");
+		ArrayNode children = (ArrayNode) outputAsNode.get("children");
 
-		addToListTuple(inputAsNode, (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0), list, "children[0].someTimeData");
+		ObjectNode childPerson = (ObjectNode) children.get(0);
+		addToListTuple(inputAsNode, (ObjectNode) children.get(0), list, "children[0].someTimeData");
 
 		return list;
 	}
@@ -142,13 +149,53 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(props,  outputAsNode);
 		
+		//TODO
+		//somehow compare each key in the props with the objectnode
+		Field[] declaredFields = Person.class.getDeclaredFields();
 		
+		Set<String> fieldNames=new LinkedHashSet<>();
+		for (Field field : declaredFields) {
+			fieldNames.add(field.getName());
+		}
+
+		fieldNames.remove("another");
+		fieldNames.remove("children");
+		//even someTimeData can be removed but no need to do that
+		iterateOneLevel("", props, outputAsNode, fieldNames);
+		iterateOneLevel("anotherPerson.", props, (ObjectNode) outputAsNode.get("anotherPerson"), fieldNames);
 		//assertEquals(inputAsNode, outputAsNode);
 		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
 			assertEquals(tuple.getX(),tuple.getY());
 		}
 		return list;
 		
+	}
+
+	private void iterateOneLevel(String propKeyPrefix, Properties props, ObjectNode outputAsNode, Set<String> fieldNames) {
+		for (String key : fieldNames) {
+			String inputVal = props.getProperty(propKeyPrefix+key);
+			JsonNode jsonNode = outputAsNode.get(key);
+			if(jsonNode!=null)
+			{
+				if(jsonNode instanceof TextNode)
+				{
+					TextNode txtNode=(TextNode) jsonNode;
+					String outputVal=txtNode.asText();
+					assertEquals(inputVal,outputVal, "for key="+propKeyPrefix+key);
+				}
+				else if(jsonNode instanceof IntNode)
+				{
+					IntNode intNode=(IntNode) jsonNode;
+					int asInt = intNode.asInt();
+					assertEquals(inputVal,String.valueOf(asInt), "for key="+propKeyPrefix+key);
+				}
+				else
+				{
+					System.err.println("also got "+jsonNode.getClass().getName());
+				}
+			}
+			
+		}
 	}
 	
 	private Properties getFormJsonAsProperties(String pathInCp) throws IOException 
