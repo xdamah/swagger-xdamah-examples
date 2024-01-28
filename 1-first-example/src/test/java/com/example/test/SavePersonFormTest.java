@@ -101,10 +101,8 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list= f1(inputAsNode, outputAsNode);
 		
 		addToListTuple(inputAsNode, (ObjectNode) outputAsNode.get("anotherPerson"), list, "anotherPerson.someTimeData");
-		ArrayNode children = (ArrayNode) outputAsNode.get("children");
 
-		ObjectNode childPerson = (ObjectNode) children.get(0);
-		addToListTuple(inputAsNode, (ObjectNode) children.get(0), list, "children[0].someTimeData");
+		addToListTuple(inputAsNode, (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0), list, "children[0].someTimeData");
 
 		return list;
 	}
@@ -149,8 +147,7 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(props,  outputAsNode);
 		
-		//TODO
-		//somehow compare each key in the props with the objectnode
+		
 		Field[] declaredFields = Person.class.getDeclaredFields();
 		
 		Set<String> fieldNames=new LinkedHashSet<>();
@@ -163,6 +160,7 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		//even someTimeData can be removed but no need to do that
 		iterateOneLevel("", props, outputAsNode, fieldNames);
 		iterateOneLevel("anotherPerson.", props, (ObjectNode) outputAsNode.get("anotherPerson"), fieldNames);
+		iterateOneLevel("children[0].", props, (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0), fieldNames);
 		//assertEquals(inputAsNode, outputAsNode);
 		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
 			assertEquals(tuple.getX(),tuple.getY());
