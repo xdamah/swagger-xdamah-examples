@@ -38,6 +38,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -56,6 +57,25 @@ public class SavePersonJsonTest {
 	
 	@Autowired
 	ResourceLoader resourceLoader;
+	
+	@Test
+	void savePersonAndGetPicJsonTest() throws Exception {
+	
+		String input = getJsonAsString("examples/2.json");
+		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
+		String inputPic = inputAsNode.get("pic").asText();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> request = 
+			      new HttpEntity<String>(input, headers);
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+"pic", request, byte[].class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		byte[] body = response.getBody();
+		String encodedPic = Base64.getEncoder().encodeToString(body);
+		System.out.println(inputPic.equals(encodedPic));
+		assertEquals(inputPic,encodedPic);
+	}
 
 	@Test
 	void savePersonJsonTest() throws Exception {
@@ -64,7 +84,7 @@ public class SavePersonJsonTest {
 		assertEquals(1, list.size());
 	}
 	
-	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(ObjectNode inputAsNode, ObjectNode outputAsNode) 
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(ObjectNode inputAsNode,  ObjectNode outputAsNode) 
 	{
 List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		
@@ -198,6 +218,52 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 	}
 	
 	
+	@Test
+	void getPersonUsingPath() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/1", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("ok/onpath.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+	
+	@Test
+	void getPersonUsingMissingPath() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.NOT_FOUND.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingPath.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+	
+	@Test
+	void getPersonUsingNonNumericPathPath() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/ab", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/onNonNumericPath.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+	
+	
 	
 	
 
@@ -212,7 +278,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		System.out.println("statusCode="+statusCode);
-		assertNotEquals(statusCode.value(),HttpStatus.OK.value());
+		assertNotEquals(HttpStatus.OK.value(), statusCode.value());
 		assertEquals(statusCode.value(),HttpStatus.BAD_REQUEST.value());
 		String output=response.getBody();
 		System.out.println("output="+output);
@@ -237,7 +303,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 			      new HttpEntity<String>(input, headers);
 		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
-		assertEquals(statusCode.value(),HttpStatus.OK.value());
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		String output=response.getBody();
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
 		
