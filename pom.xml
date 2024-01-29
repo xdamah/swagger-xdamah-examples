@@ -199,7 +199,7 @@
 		<module>5-kitchen-sink</module>
 
 	</modules>
-
+<!--
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -230,5 +230,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+--> 
 </project>
