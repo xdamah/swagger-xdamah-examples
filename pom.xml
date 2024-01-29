@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.0</revision>
+		<revision>1.0.1</revision>
 		<spring-boot-version>3.1.3</spring-boot-version>
-		<xdamah-version>1.0.0</xdamah-version>
+		<xdamah-version>1.0.1</xdamah-version>
 		
 	</properties>
 	<build>
@@ -199,7 +199,7 @@
 		<module>5-kitchen-sink</module>
 
 	</modules>
-	<!--
+<!--
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -230,5 +230,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	-->
+--> 
 </project>
