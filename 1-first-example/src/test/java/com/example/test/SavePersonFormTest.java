@@ -83,7 +83,53 @@ public class SavePersonFormTest {
 		assertEquals(3, list.size());
 	}
 	
+	@Test
+	void savePersonAndGetPicJsonTest() throws Exception {
 	
+		Properties  props = getFormJsonAsProperties("examples/2.form.properties");
+		
+		String inputPic = props.getProperty("pic");
+		Set<Object> keySet = props.keySet();
+		
+		HttpHeaders headers=new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+	    for (Object keyObject : keySet) {
+			String key=(String) keyObject;
+			String val=props.getProperty(key);
+			map.add(key, val);
+		}
+	    
+
+	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+"pic", request, byte[].class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		byte[] body = response.getBody();
+		String encodedPic = Base64.getEncoder().encodeToString(body);
+
+		assertEquals(inputPic,encodedPic);
+	}
+	
+	//TODO support for custom like cc must be added
+		//@Test
+		void savePersonJsonWithInvalidCCTest() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidCard, "errors/badcc.json");
+		}
+		
+		@Test
+		void savePersonJsonWithInvalidAgeTest() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeForm.json");
+		}
+		
+
+		//TODO support for nested must be added
+		//@Test
+		void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNested.json");
+		}
+
 	
 
 	
@@ -223,6 +269,71 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	{
 		return om.readTree(json);
 	}
+		
+	private Properties invalidAgeInNested(Properties x){
+		x.setProperty("age", "17");
+		x.setProperty("anotherPerson.age", "17");
+		x.setProperty("children[0].age", "17");
+		return x;
+		
+	}
+	
+	private Properties invalidAge(Properties x){
+		x.setProperty("age", "17");
+		return x;
+	};
+	
+	private Properties invalidCard(Properties x){
+		x.setProperty("creditCardNumber", "44444444444444");
+		return x;
+	};
+	
+	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<Properties> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
+		Properties  props = getFormJsonAsProperties(inputPathInCp);
+		props=s.apply(props);
+		HttpHeaders headers=new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+	    Set<Object> keySet = props.keySet();
+	    for (Object keyObject : keySet) {
+			String key=(String) keyObject;
+			String val=props.getProperty(key);
+			map.add(key, val);
+		}
+	    
+
+	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertNotEquals(HttpStatus.OK.value(), statusCode.value());
+		assertEquals(statusCode.value(),HttpStatus.BAD_REQUEST.value());
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+	
+	private JsonNode getJsonNode(String pathInClassPath) throws IOException, JsonMappingException, JsonProcessingException {
+		String input = getJsonAsString(pathInClassPath);
+		JsonNode jsonStringToJsonNode = jsonStringToJsonNode(input);
+		return jsonStringToJsonNode;
+	}
+	
+	private String getJsonAsString(String pathInCp) throws IOException 
+	{
+		Resource resource = resourceLoader.getResource(
+			      "classpath:"+pathInCp);
+		return resource.getContentAsString(StandardCharsets.UTF_8);
+		
+		
+	}
+	
+
+
+
 
 	
 	/*@Test
@@ -244,15 +355,9 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		assertEquals(inputPic,encodedPic);
 	}
 
-	@Test
-	void savePersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidCard, "errors/badcc.json");
-	}
 	
-	private ObjectNode invalidCard(ObjectNode x){
-		x=x.put("creditCardNumber", "44444444444444");
-		return x;
-	};
+	
+	
 	
 	private ObjectNode invalidCardsInNested(ObjectNode x){
 		 invalidNested(x, this::invalidCard);
@@ -271,26 +376,11 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		badRequest("saveperson/", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNested.json");
 	}
 	
-	private ObjectNode invalidAge(ObjectNode x){
-		x=x.put("age", 17);
-		return x;
-	};
 	
-	private ObjectNode invalidAgeInNested(ObjectNode x){
-		 invalidNested(x, this::invalidAge);
-		return x;
-		
-	}
 	
-	@Test
-	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNested.json");
-	}
 	
-	@Test
-	void savePersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidAge, "errors/invalidAge.json");
-	}
+	
+	
 	
 	private ObjectNode invalidEmail1(ObjectNode x){
 		x=x.put("email1", "abcxabc.com");
@@ -340,98 +430,9 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
 	}
 	
-	
-	@Test
-	void getPersonUsingPath() throws Exception {
-	
-		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/1", String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("ok/onpath.json");
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
-	
-	@Test
-	void getPersonUsingMissingPath() throws Exception {
-	
-		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/", String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertEquals(HttpStatus.NOT_FOUND.value(), statusCode.value());
-		
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingPath.json");
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
-	
-	@Test
-	void getPersonUsingNonNumericPathPath() throws Exception {
-	
-		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid/ab", String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
-		
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/onNonNumericPath.json");
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
 	
 	
-	
-	
-
-	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<ObjectNode> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
-		ObjectNode inputAsNode = (ObjectNode) getJsonNode(inputPathInCp);
-		inputAsNode=s.apply(inputAsNode);
-		String input=inputAsNode.toString();
-		HttpHeaders headers=new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> request = 
-			      new HttpEntity<String>(input, headers);
-		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertNotEquals(HttpStatus.OK.value(), statusCode.value());
-		assertEquals(statusCode.value(),HttpStatus.BAD_REQUEST.value());
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
-
-	private JsonNode getJsonNode(String pathInClassPath) throws IOException, JsonMappingException, JsonProcessingException {
-		String input = getJsonAsString(pathInClassPath);
-		JsonNode jsonStringToJsonNode = jsonStringToJsonNode(input);
-		return jsonStringToJsonNode;
-	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	private String getJsonAsString(String pathInCp) throws IOException 
-	{
-		Resource resource = resourceLoader.getResource(
-			      "classpath:"+pathInCp);
-		return resource.getContentAsString(StandardCharsets.UTF_8);
-		
-		
-	}*/
+	*/
 
 }
