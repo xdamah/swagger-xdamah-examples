@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.1-SNAPSHOT</revision>
+		<revision>1.0.2-SNAPSHOT</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
-		<xdamah-version>1.0.1-SNAPSHOT</xdamah-version>
+		<xdamah-version>1.0.2-SNAPSHOT</xdamah-version>
 
 	</properties>
 	<build>

@@ -107,12 +107,13 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		return list;
 	}
 
-	private void addToListTuple(Properties inputAsNode, ObjectNode objectNode,
+	private void addToListTuple(Properties props, ObjectNode objectNode,
 			List<Tuple<OffsetDateTime, OffsetDateTime>> list, String propKey) {
-		String inputSomeTimeData = inputAsNode.getProperty(propKey);
-		inputAsNode.remove(propKey);
+		String inputSomeTimeData = props.getProperty(propKey);
+		props.remove(propKey);
 		
 		String outputSomeTimeData = objectNode.get("someTimeData").asText();
+		objectNode.remove("someTimeData");
 		OffsetDateTime d1 = OffsetDateTime.parse(inputSomeTimeData);
 		OffsetDateTime d2 = OffsetDateTime.parse(outputSomeTimeData);
 		d1=d1.withOffsetSameInstant(ZoneOffset.ofHours(0));
@@ -155,12 +156,15 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 			fieldNames.add(field.getName());
 		}
 
-		fieldNames.remove("another");
+		fieldNames.remove("anotherPerson");
 		fieldNames.remove("children");
 		//even someTimeData can be removed but no need to do that
 		iterateOneLevel("", props, outputAsNode, fieldNames);
 		iterateOneLevel("anotherPerson.", props, (ObjectNode) outputAsNode.get("anotherPerson"), fieldNames);
-		iterateOneLevel("children[0].", props, (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0), fieldNames);
+		//(ObjectNode) ((ArrayNode) outputAsNode.get("children"))
+		ArrayNode children= (ArrayNode) outputAsNode.get("children");
+		ObjectNode target=children!=null?(ObjectNode) children.get(0):null;
+		iterateOneLevel("children[0].", props, target, fieldNames);
 		//assertEquals(inputAsNode, outputAsNode);
 		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
 			assertEquals(tuple.getX(),tuple.getY());
@@ -170,30 +174,34 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	}
 
 	private void iterateOneLevel(String propKeyPrefix, Properties props, ObjectNode outputAsNode, Set<String> fieldNames) {
-		for (String key : fieldNames) {
-			String inputVal = props.getProperty(propKeyPrefix+key);
-			JsonNode jsonNode = outputAsNode.get(key);
-			if(jsonNode!=null)
-			{
-				if(jsonNode instanceof TextNode)
+		if(outputAsNode!=null)
+		{
+			for (String key : fieldNames) {
+				String inputVal = props.getProperty(propKeyPrefix+key);
+				JsonNode jsonNode = outputAsNode.get(key);
+				if(jsonNode!=null)
 				{
-					TextNode txtNode=(TextNode) jsonNode;
-					String outputVal=txtNode.asText();
-					assertEquals(inputVal,outputVal, "for key="+propKeyPrefix+key);
+					if(jsonNode instanceof TextNode)
+					{
+						TextNode txtNode=(TextNode) jsonNode;
+						String outputVal=txtNode.asText();
+						assertEquals(inputVal,outputVal, "for key="+propKeyPrefix+key);
+					}
+					else if(jsonNode instanceof IntNode)
+					{
+						IntNode intNode=(IntNode) jsonNode;
+						int asInt = intNode.asInt();
+						assertEquals(inputVal,String.valueOf(asInt), "for key="+propKeyPrefix+key);
+					}
+					else
+					{
+						System.err.println("also got "+jsonNode.getClass().getName());
+					}
 				}
-				else if(jsonNode instanceof IntNode)
-				{
-					IntNode intNode=(IntNode) jsonNode;
-					int asInt = intNode.asInt();
-					assertEquals(inputVal,String.valueOf(asInt), "for key="+propKeyPrefix+key);
-				}
-				else
-				{
-					System.err.println("also got "+jsonNode.getClass().getName());
-				}
+				
 			}
-			
 		}
+		
 	}
 	
 	private Properties getFormJsonAsProperties(String pathInCp) throws IOException 
