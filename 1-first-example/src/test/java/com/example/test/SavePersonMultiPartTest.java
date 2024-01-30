@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpEntity;
@@ -59,7 +60,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class SavePersonFormTest {
+public class SavePersonMultiPartTest {
 	
 	@LocalServerPort
 	private int port;
@@ -73,14 +74,14 @@ public class SavePersonFormTest {
 	@Test
 	void savePersonFormTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("saveperson/", "examples/1.form.properties", this::f1);
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("saveperson/", "examples/1.form.properties", this::f1);
 		assertEquals(1, list.size());
 	}
 	
 	@Test
 	void saveNestedPersonJsonTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("saveperson/", "examples/2.form.properties", this::f2);
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("saveperson/", "examples/2.form.properties", this::f2);
 		assertEquals(3, list.size());
 	}
 	
@@ -121,14 +122,15 @@ public class SavePersonFormTest {
 		}
 		
 		@Test
+		@Disabled("support for even simple validation needs to be added")
 		void savePersonJsonWithInvalidAgeTest() throws Exception {
 			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeForm.json");
 		}
 		
 
-
+		
 		@Test
-		@Disabled("support for nested must be added")
+		@Disabled("TODO support for nested must be added")
 		void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
 			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNested.json");
 		}
@@ -170,25 +172,45 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		list.add(new Tuple<OffsetDateTime, OffsetDateTime>(d1, d2));
 	}
 	
-	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveForm(String urlSubPath, String inputPathInCp, 
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveMultipart(String urlSubPath, String inputPathInCp, 
 			BiFunction<Properties,  ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f) throws IOException, JsonMappingException, JsonProcessingException {
 		Properties  props = getFormJsonAsProperties(inputPathInCp);
 		Set<Object> keySet = props.keySet();
 		
-		HttpHeaders headers=new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+
+		MultiValueMap<String, Object> map
+		  = new LinkedMultiValueMap<>();
 	    for (Object keyObject : keySet) {
 			String key=(String) keyObject;
-			String val=props.getProperty(key);
-			map.add(key, val);
+			if(key.endsWith("pic")||key.endsWith("pics"))
+			{
+				String base64FileContent=props.getProperty(key);
+				byte[] bytes = Base64.getDecoder().decode(base64FileContent);
+				ByteArrayResource fileAsResource = new ByteArrayResource(bytes){
+				    @Override
+				    public String getFilename(){
+				        return key+".jpg";
+				    }
+				};
+				map.add(key,fileAsResource);
+			}
+			else
+			{
+				String val=props.getProperty(key);
+				map.add(key, val);	
+			}
+			
 		}
 	    
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+	    HttpEntity<MultiValueMap<String, Object>> requestEntity
+	    = new HttpEntity<>(map, headers);
 
-	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+	    
 
 		
-		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, requestEntity, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		String output=response.getBody();
@@ -294,20 +316,38 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<Properties> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
 		Properties  props = getFormJsonAsProperties(inputPathInCp);
 		props=s.apply(props);
-		HttpHeaders headers=new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-	    Set<Object> keySet = props.keySet();
+		Set<Object> keySet = props.keySet();
+		MultiValueMap<String, Object> map
+		  = new LinkedMultiValueMap<>();
 	    for (Object keyObject : keySet) {
 			String key=(String) keyObject;
-			String val=props.getProperty(key);
-			map.add(key, val);
+			if(key.endsWith("pic")||key.endsWith("pics"))
+			{
+				String base64FileContent=props.getProperty(key);
+				byte[] bytes = Base64.getDecoder().decode(base64FileContent);
+				ByteArrayResource fileAsResource = new ByteArrayResource(bytes){
+				    @Override
+				    public String getFilename(){
+				        return key+".jpg";
+				    }
+				};
+				map.add(key,fileAsResource);
+			}
+			else
+			{
+				String val=props.getProperty(key);
+				map.add(key, val);	
+			}
+			
 		}
 	    
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+	    HttpEntity<MultiValueMap<String, Object>> requestEntity
+	    = new HttpEntity<>(map, headers);
 
-	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, requestEntity, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		System.out.println("statusCode="+statusCode);
 		assertNotEquals(HttpStatus.OK.value(), statusCode.value());
