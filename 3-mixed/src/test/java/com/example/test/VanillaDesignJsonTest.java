@@ -267,12 +267,7 @@ public class VanillaDesignJsonTest {
 	
 	
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveJson(String urlSubPath, String inputPathInCp, BiFunction<ObjectNode, ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f) throws IOException, JsonMappingException, JsonProcessingException {
-		Integer abc=null;
-		if(urlSubPath.startsWith("vanillaDesignFirst?abc="))
-		{
-			String restOfItIs=urlSubPath.substring("vanillaDesignFirst?abc=".length());
-			abc=Integer.valueOf(restOfItIs);
-		}
+		
 		String input = getJsonAsString(inputPathInCp);
 		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
 		HttpHeaders headers=new HttpHeaders();
@@ -286,6 +281,12 @@ public class VanillaDesignJsonTest {
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
 		
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(inputAsNode, outputAsNode);
+		Integer abc=null;
+		if(urlSubPath.startsWith("vanillaDesignFirst?abc="))
+		{
+			String restOfItIs=urlSubPath.substring("vanillaDesignFirst?abc=".length());
+			abc=Integer.valueOf(restOfItIs);
+		}
 		if(abc!=null)
 		{
 			inputAsNode.put("id", abc);
