@@ -210,6 +210,11 @@ public class VanillaDesignXmlTest {
 	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
 		badRequest("vanillaDesignFirst?abc=18", "examples/2.xml", this::invalidCardsInNested, "errors/vanBadCCsInNested.json");
 	}
+	
+	@Test
+	void savePersonJsonWithInvalidAgeAndInvalidAbcTest() throws Exception {
+		badRequest("vanillaDesignFirst?abc=5", "examples/1.xml", this::invalidAge, "errors/vanInvalidAgeWithInvalidAbcXml.json");
+	}
 
 	
 	private Element invalidCard(Element x) {
