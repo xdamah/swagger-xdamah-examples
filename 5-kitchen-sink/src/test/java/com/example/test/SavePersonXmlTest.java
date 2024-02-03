@@ -1,5 +1,6 @@
 package com.example.test;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -186,6 +187,29 @@ public class SavePersonXmlTest {
 	@Test
 	void savePersonAndGetPicJsonTest() throws Exception {
 
+		savePersonAndGetPicInternal("pic", null);
+	}
+	@Test
+	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
+	}
+	@Test
+	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
+	}
+	
+	@Test
+	@Disabled
+	//TODO do better test to recotrd failure on gif
+	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
+	}
+
+
+	private void savePersonAndGetPicInternal(String urlSubPath,  MediaType acceptedType) throws IOException, ParserConfigurationException, SAXException {
 		String input = getContentAsString("examples/2.xml");
 		Document doc = docFromStringContent(input);
 		Element root = doc.getDocumentElement();
@@ -194,8 +218,14 @@ public class SavePersonXmlTest {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_XML);
+		if(acceptedType!=null)
+		{
+			List<MediaType> accepts= new ArrayList<>();
+			accepts.add(acceptedType);
+			headers.setAccept(accepts);
+		}
 		HttpEntity<String> request = new HttpEntity<String>(input, headers);
-		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/" + "pic",
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/" + urlSubPath,
 				request, byte[].class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		assertEquals(statusCode.value(), HttpStatus.OK.value());

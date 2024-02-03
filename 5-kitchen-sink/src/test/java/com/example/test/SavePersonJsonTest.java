@@ -1,5 +1,6 @@
 package com.example.test;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,14 +109,44 @@ public class SavePersonJsonTest {
 	@Test
 	void savePersonAndGetPicJsonTest() throws Exception {
 	
+		savePersonAndGetPicInternal("pic", null);
+	}
+	
+	@Test
+	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
+	}
+	@Test
+	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
+	}
+	
+	@Test
+	@Disabled
+	//TODO do better test to recotrd failure on gif
+	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
+	
+		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
+	}
+
+	private void savePersonAndGetPicInternal(String urlPath, MediaType acceptedType) throws IOException, JsonMappingException, JsonProcessingException {
 		String input = getJsonAsString("examples/2.json");
 		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
 		String inputPic = inputAsNode.get("pic").asText();
 		HttpHeaders headers=new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
+		if(acceptedType!=null)
+		{
+			List<MediaType> accepts= new ArrayList<>();
+			accepts.add(acceptedType);
+			headers.setAccept(accepts);
+		}
+		
 		HttpEntity<String> request = 
 			      new HttpEntity<String>(input, headers);
-		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+"pic", request, byte[].class);
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlPath, request, byte[].class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		byte[] body = response.getBody();
