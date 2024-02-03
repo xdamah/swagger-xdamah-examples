@@ -58,24 +58,7 @@ public class SavePersonJsonTest {
 	@Autowired
 	ResourceLoader resourceLoader;
 	
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
 	
-		String input = getJsonAsString("examples/2.json");
-		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
-		String inputPic = inputAsNode.get("pic").asText();
-		HttpHeaders headers=new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> request = 
-			      new HttpEntity<String>(input, headers);
-		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+"pic", request, byte[].class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		assertEquals(HttpStatus.OK.value(), statusCode.value());
-		byte[] body = response.getBody();
-		String encodedPic = Base64.getEncoder().encodeToString(body);
-		System.out.println(inputPic.equals(encodedPic));
-		assertEquals(inputPic,encodedPic);
-	}
 
 	@Test
 	void savePersonJsonTest() throws Exception {
@@ -117,6 +100,28 @@ public class SavePersonJsonTest {
 	
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
 		assertEquals(3, list.size());
+	}
+	
+	//for above work on bad parameters also
+	//for below work on 1.json also
+	
+	@Test
+	void savePersonAndGetPicJsonTest() throws Exception {
+	
+		String input = getJsonAsString("examples/2.json");
+		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
+		String inputPic = inputAsNode.get("pic").asText();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> request = 
+			      new HttpEntity<String>(input, headers);
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+"pic", request, byte[].class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		byte[] body = response.getBody();
+		String encodedPic = Base64.getEncoder().encodeToString(body);
+		System.out.println(inputPic.equals(encodedPic));
+		assertEquals(inputPic,encodedPic);
 	}
 
 

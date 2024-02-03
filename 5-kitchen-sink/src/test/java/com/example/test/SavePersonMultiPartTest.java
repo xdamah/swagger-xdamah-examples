@@ -112,7 +112,8 @@ public class SavePersonMultiPartTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
 		assertEquals(3, list.size());
 	}
-	
+	//for above work on bad parameters also
+		//for below work on 1.json also
 	@Test
 	void savePersonAndGetPicJsonTest() throws Exception {
 	

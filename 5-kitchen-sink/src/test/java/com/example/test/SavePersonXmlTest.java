@@ -180,6 +180,30 @@ public class SavePersonXmlTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
 		assertEquals(3, list.size());
 	}
+	//for above work on bad parameters also
+	//for below work on 1.json also
+	
+	@Test
+	void savePersonAndGetPicJsonTest() throws Exception {
+
+		String input = getContentAsString("examples/2.xml");
+		Document doc = docFromStringContent(input);
+		Element root = doc.getDocumentElement();
+		Element pic=getChild(root, "pic");
+		String picContent=getContent(pic);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_XML);
+		HttpEntity<String> request = new HttpEntity<String>(input, headers);
+		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/" + "pic",
+				request, byte[].class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(statusCode.value(), HttpStatus.OK.value());
+		byte[] body = response.getBody();
+		String encodedPic = Base64.getEncoder().encodeToString(body);
+		System.out.println(picContent.equals(encodedPic));
+		assertEquals(picContent, encodedPic);
+	}
 	
 	@Test
 	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
@@ -215,27 +239,7 @@ public class SavePersonXmlTest {
 	
 
 
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
-
-		String input = getContentAsString("examples/2.xml");
-		Document doc = docFromStringContent(input);
-		Element root = doc.getDocumentElement();
-		Element pic=getChild(root, "pic");
-		String picContent=getContent(pic);
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_XML);
-		HttpEntity<String> request = new HttpEntity<String>(input, headers);
-		ResponseEntity<byte[]> response = this.restTemplate.postForEntity("http://localhost:" + port + "/" + "pic",
-				request, byte[].class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		assertEquals(statusCode.value(), HttpStatus.OK.value());
-		byte[] body = response.getBody();
-		String encodedPic = Base64.getEncoder().encodeToString(body);
-		System.out.println(picContent.equals(encodedPic));
-		assertEquals(picContent, encodedPic);
-	}
+	
 
 	
 
