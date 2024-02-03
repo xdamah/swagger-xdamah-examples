@@ -38,7 +38,7 @@ public class SampleService {
 		}
 		else
 		{
-			person.setRegistrationDate(LocalDate.now());
+			person.setRegistrationDate(LocalDate.of(2024, 1, 1));
 		}
 
 		return person;
