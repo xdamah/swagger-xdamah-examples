@@ -130,6 +130,21 @@ public class SavePersonJsonTest {
 	
 		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
 	}
+	
+	@Test
+	void getPersonUsingQuery() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid?id=1", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("ok/onpath.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
 
 	private void savePersonAndGetPicInternal(String urlPath, MediaType acceptedType) throws IOException, JsonMappingException, JsonProcessingException {
 		String input = getJsonAsString("examples/2.json");
