@@ -174,26 +174,7 @@ public class SavePersonMultiPartTest {
 	}
 	
 	
-		@Test
-		@Disabled("support for custom like cc must be added")
-		void savePersonJsonWithInvalidCCTest() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidCard, "errors/badcc.json");
-		}
 		
-		@Test
-		@Disabled("support for even simple validation needs to be added")
-		void savePersonJsonWithInvalidAgeTest() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeForm.json");
-		}
-		
-
-		
-		@Test
-		@Disabled("TODO support for nested must be added")
-		void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNested.json");
-		}
-
 	
 
 	
@@ -443,7 +424,43 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 
 
 	
-	/*@Test
+	/*
+	 * 
+	 * 
+
+@Test
+		@Disabled("support for custom like cc must be added")
+		void savePersonJsonWithInvalidCCTest() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidCard, "errors/badcc.json");
+		}
+		
+		@Test
+		@Disabled("support for even simple validation needs to be added")
+		void savePersonJsonWithInvalidAgeTest() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeForm.json");
+		}
+		
+
+		
+		@Test
+		@Disabled("TODO support for nested must be added")
+		void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNested.json");
+		}
+
+
+
+
+
+
+
+
+
+
+	 * 
+	 * @Test
+	 * 
+	 * 
 	void savePersonAndGetPicJsonTest() throws Exception {
 	
 		String input = getJsonAsString("examples/2.json");

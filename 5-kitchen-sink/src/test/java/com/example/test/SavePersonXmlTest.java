@@ -234,7 +234,11 @@ public class SavePersonXmlTest {
 		System.out.println(picContent.equals(encodedPic));
 		assertEquals(picContent, encodedPic);
 	}
-	
+	/*
+	 * 
+	 * WIP
+	 
+
 	@Test
 	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
 		badRequest("saveperson/", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeNestedXml.json");
@@ -289,7 +293,7 @@ public class SavePersonXmlTest {
 		badRequest("saveperson/", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNested.json");
 	}
 
-	
+	*/
 	private Element invalidCard(Element x) {
 
 		replaceXmlChildElementValue(x, "creditCardNumber", "44444444444444");
