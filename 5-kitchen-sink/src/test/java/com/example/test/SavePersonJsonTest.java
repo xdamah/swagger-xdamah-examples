@@ -151,9 +151,6 @@ public class SavePersonJsonTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
 		assertEquals(1, list.size());
 	}
-	/*
-	 * WIP
-	
 	
 	@Test
 	void saveNestedPersonStringBodyJsonTest() throws Exception {
@@ -161,6 +158,11 @@ public class SavePersonJsonTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
 		assertEquals(3, list.size());
 	}
+	/*
+	 * WIP
+	
+	
+	
 	
 	@Test
 	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
@@ -415,7 +417,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 			      new HttpEntity<String>(input, headers);
 		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
-		//assertEquals(HttpStatus.OK.value(), statusCode.value());
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		String output=response.getBody();
 		System.out.println(output);
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);

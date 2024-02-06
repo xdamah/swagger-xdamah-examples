@@ -140,6 +140,7 @@ public class SavePersonXmlTest {
 		
 	}
 	
+	
 
 	@Test
 	void savePersonXmlTest() throws Exception {
@@ -208,7 +209,19 @@ public class SavePersonXmlTest {
 		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
 	}
 
-
+	@Test
+	void savePersonStringBodyXmlTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::f1);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void saveNestedPersonStringBodyXmlTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
+		assertEquals(3, list.size());
+	}
 	private void savePersonAndGetPicInternal(String urlSubPath,  MediaType acceptedType) throws IOException, ParserConfigurationException, SAXException {
 		String input = getContentAsString("examples/2.xml");
 		Document doc = docFromStringContent(input);
