@@ -145,14 +145,15 @@ public class SavePersonJsonTest {
 	void getPersonUsingQueryByIds() throws Exception {
 		getPersonUsingQueryInternal("person/byids?ids=1&ids=2&ids=3", "ok/onquerybyids.json");
 	}
-	/*
-	 * WIP
 	@Test
 	void savePersonStringBodyJsonTest() throws Exception {
 	
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
 		assertEquals(1, list.size());
 	}
+	/*
+	 * WIP
+	
 	
 	@Test
 	void saveNestedPersonStringBodyJsonTest() throws Exception {
