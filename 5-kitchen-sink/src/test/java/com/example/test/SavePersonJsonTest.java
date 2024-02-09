@@ -26,6 +26,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.LongNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
@@ -232,14 +234,16 @@ public class SavePersonJsonTest {
 	
 	@Test
 	void defControllerPostUsingPathTest() throws Exception {
-	
+		//for now lets not worry about why not 19l
+		//thats because when loading from json its becoming that an int and to ensure it compares well passing it an int
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/1.json", this::f1, "id", 19);
 		assertEquals(1, list.size());
 	}
 	
 	@Test
 	void defControllerNestedPostUsingPathTest() throws Exception {
-	
+		//for now lets not worry about why not 19l
+		//thats because when loading from json its becoming that an int and to ensure it compares well passing it an int		
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/2.json", this::f2, "id", 19);
 		assertEquals(3, list.size());
 	}
@@ -521,6 +525,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerJson(String urlSubPath, String inputPathInCp, BiFunction<ObjectNode, ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f, String fieldName, Object fieldValue) throws IOException, JsonMappingException, JsonProcessingException {
 		String input = getJsonAsString(inputPathInCp);
 		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
+		//idToLong(inputAsNode);
 		HttpHeaders headers=new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_JSON);
 	   
@@ -533,6 +538,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		String output=response.getBody();
 		System.out.println(output);
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
+		//idToLong(inputAsNode);
 		System.out.println("outputAsNode="+outputAsNode);
 		
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(inputAsNode, outputAsNode);
@@ -572,6 +578,29 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 			assertEquals(tuple.getX(),tuple.getY());
 		}
 		return list;
+		
+	}
+
+	private void idToLong(ObjectNode inputAsNode) {
+		JsonNode jsonNode = inputAsNode.get("id");
+		if(jsonNode!=null)
+		{
+			if(jsonNode instanceof LongNode)
+			{
+				//do nothing
+			}
+			else if(jsonNode instanceof IntNode)
+			{
+				IntNode idNode = (IntNode) inputAsNode.get("id");
+				if(idNode!=null)
+				{
+					int idasInt = idNode.asInt();
+					inputAsNode.put("id", Long.valueOf(idasInt));
+				}
+			}
+		}
+		
+		
 		
 	}
 	

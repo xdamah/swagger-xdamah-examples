@@ -222,6 +222,85 @@ public class SavePersonXmlTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
 		assertEquals(3, list.size());
 	}
+	
+	
+	
+	@Test
+	void anotherControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("abc/abc", "examples/1.xml", this::f1,
+				(BridgePerson p)->p.setFirstName("abc"));
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void anotherControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("abc/abc", "examples/2.xml", this::f2,
+				(BridgePerson p)->p.setFirstName("abc"));
+		assertEquals(3, list.size());
+	}
+	
+	@Test
+	void defControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("def?abc=19", "examples/1.xml", this::f1,
+				(BridgePerson p)->p.setId(19l));
+				//"id", 19);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void defControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("def?abc=19", "examples/2.xml", this::f2, 
+				(BridgePerson p)->p.setId(19l));
+				//"id", 19);
+		assertEquals(3, list.size());
+	}
+	
+	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
+	
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerXml(String urlSubPath, String inputPathInCp,
+			BiFunction<Element, ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f, Consumer<BridgePerson> c) throws IOException,
+			JsonMappingException, JsonProcessingException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+		String input = getContentAsString(inputPathInCp);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_XML);
+		
+		HttpEntity<String> request = new HttpEntity<String>(input, headers);
+		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/" + urlSubPath,
+				request, String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals( HttpStatus.OK.value(), statusCode.value());
+		String output = response.getBody();
+		Document doc = docFromStringContent(input);
+		System.out.println("doc="+doc);
+		Element inputRootElement = doc.getDocumentElement();
+		inputRootElement.normalize();
+
+		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
+
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = f.apply(inputRootElement, outputAsNode);
+		//cant do the next
+		//assertEquals(inputRootElement, outputAsNode);
+		System.out.println("inputRootElement="+inputRootElement);
+		BridgePerson inputPerson = xmlDocToBridgePojo(doc);
+		System.out.println("inputPerson="+inputPerson);
+		BridgePerson outputPerson = objectNodeToBridgePojo(outputAsNode);
+		System.out.println("outputPerson="+outputPerson);
+		
+		//inputPerson.setFirstName("abc");//from path can avoid hardcode later if needed
+		c.accept(inputPerson);
+		
+		assertEquals(inputPerson, outputPerson);
+		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
+			assertEquals(tuple.getX(), tuple.getY());
+		}
+		return list;
+
+	}
 	private void savePersonAndGetPicInternal(String urlSubPath,  MediaType acceptedType) throws IOException, ParserConfigurationException, SAXException {
 		String input = getContentAsString("examples/2.xml");
 		Document doc = docFromStringContent(input);
