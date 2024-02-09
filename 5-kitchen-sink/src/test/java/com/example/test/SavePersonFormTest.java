@@ -22,7 +22,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.example.model.Person;
-
+import com.example.test.model.BridgePerson;
 import com.example.test.model.Tuple;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -157,6 +157,27 @@ public class SavePersonFormTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm("abc/abc", "examples/2.form.properties", this::f2);
 		assertEquals(3, list.size());
 	}
+	
+	@Test
+	@Disabled
+	//saveSimplerForm1 has a problem
+	void defControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm1("def?abc=19", "examples/1.form.properties", this::f1);
+
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	@Disabled
+	//saveSimplerForm1 has a problem
+	void defControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm1("def?abc=19", "examples/2.form.properties", this::f2);
+
+		assertEquals(3, list.size());
+	}
+	
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
 		Properties  props = getFormJsonAsProperties("examples/2.form.properties");
@@ -290,7 +311,10 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	
 	
 	
-	//problem in this code the header is going with "Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' 
+	
+	
+	//problem in this code the header is going with "Content-Type 'application/x-www-form-urlencoded;charset=UTF-8'
+
 	//how to remove that UTF-8 or s
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerForm(String urlSubPath, String inputPathInCp, 
 			BiFunction<Properties,  ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f) throws IOException, JsonMappingException, JsonProcessingException {
@@ -315,6 +339,60 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	
 		HttpStatusCode statusCode = response.getStatusCode();
 		//assertEquals(HttpStatus.OK.value(), statusCode.value());
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
+		
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(props,  outputAsNode);
+		
+		
+		Field[] declaredFields = Person.class.getDeclaredFields();
+		
+		Set<String> fieldNames=new LinkedHashSet<>();
+		for (Field field : declaredFields) {
+			fieldNames.add(field.getName());
+		}
+
+		fieldNames.remove("anotherPerson");
+		fieldNames.remove("children");
+		//even someTimeData can be removed but no need to do that
+		iterateOneLevel("", props, outputAsNode, fieldNames);
+		iterateOneLevel("anotherPerson.", props, (ObjectNode) outputAsNode.get("anotherPerson"), fieldNames);
+		//(ObjectNode) ((ArrayNode) outputAsNode.get("children"))
+		ArrayNode children= (ArrayNode) outputAsNode.get("children");
+		ObjectNode target=children!=null?(ObjectNode) children.get(0):null;
+		iterateOneLevel("children[0].", props, target, fieldNames);
+		//assertEquals(inputAsNode, outputAsNode);//instead we are using the iterate methods above
+		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
+			assertEquals(tuple.getX(),tuple.getY());
+		}
+		return list;
+		
+	}
+	
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerForm1(String urlSubPath, String inputPathInCp, 
+			BiFunction<Properties,  ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f) throws IOException, JsonMappingException, JsonProcessingException {
+		Properties  props = getFormJsonAsProperties(inputPathInCp);
+		props.setProperty("id", "19");//from path avoid hardcoding later if needed.
+		Set<Object> keySet = props.keySet();
+		
+		HttpHeaders headers=new HttpHeaders();
+	    //headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		headers.set("Content-Type", "application/x-www-form-urlencoded");
+	   
+	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+	    for (Object keyObject : keySet) {
+			String key=(String) keyObject;
+			String val=props.getProperty(key);
+			map.add(key, val);
+		}
+	    
+
+	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+	    ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+	
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
 		String output=response.getBody();
 		System.out.println("output="+output);
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
