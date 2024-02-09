@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -138,6 +139,24 @@ public class SavePersonFormTest {
 	
 		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
 	}
+	
+	@Test
+	@Disabled
+	//saveSimplerForm has a problem
+	void anotherControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm("abc/abc", "examples/1.form.properties", this::f1);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	@Disabled
+	//saveSimplerForm has a problem
+	void anotherControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm("abc/abc", "examples/2.form.properties", this::f2);
+		assertEquals(3, list.size());
+	}
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
 		Properties  props = getFormJsonAsProperties("examples/2.form.properties");
@@ -238,6 +257,64 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
+		
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(props,  outputAsNode);
+		
+		
+		Field[] declaredFields = Person.class.getDeclaredFields();
+		
+		Set<String> fieldNames=new LinkedHashSet<>();
+		for (Field field : declaredFields) {
+			fieldNames.add(field.getName());
+		}
+
+		fieldNames.remove("anotherPerson");
+		fieldNames.remove("children");
+		//even someTimeData can be removed but no need to do that
+		iterateOneLevel("", props, outputAsNode, fieldNames);
+		iterateOneLevel("anotherPerson.", props, (ObjectNode) outputAsNode.get("anotherPerson"), fieldNames);
+		//(ObjectNode) ((ArrayNode) outputAsNode.get("children"))
+		ArrayNode children= (ArrayNode) outputAsNode.get("children");
+		ObjectNode target=children!=null?(ObjectNode) children.get(0):null;
+		iterateOneLevel("children[0].", props, target, fieldNames);
+		//assertEquals(inputAsNode, outputAsNode);//instead we are using the iterate methods above
+		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
+			assertEquals(tuple.getX(),tuple.getY());
+		}
+		return list;
+		
+	}
+	
+	
+	
+	//problem in this code the header is going with "Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' 
+	//how to remove that UTF-8 or s
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerForm(String urlSubPath, String inputPathInCp, 
+			BiFunction<Properties,  ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f) throws IOException, JsonMappingException, JsonProcessingException {
+		Properties  props = getFormJsonAsProperties(inputPathInCp);
+		props.setProperty("firstName", "abc");//from path avoid hardcoding later if needed.
+		Set<Object> keySet = props.keySet();
+		
+		HttpHeaders headers=new HttpHeaders();
+	    //headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		headers.set("Content-Type", "application/x-www-form-urlencoded");
+	   
+	    MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+	    for (Object keyObject : keySet) {
+			String key=(String) keyObject;
+			String val=props.getProperty(key);
+			map.add(key, val);
+		}
+	    
+
+	    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+	    ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+	
+		HttpStatusCode statusCode = response.getStatusCode();
+		//assertEquals(HttpStatus.OK.value(), statusCode.value());
 		String output=response.getBody();
 		System.out.println("output="+output);
 		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);

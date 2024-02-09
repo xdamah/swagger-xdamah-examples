@@ -1,5 +1,6 @@
 package com.example.test;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -26,20 +27,28 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -137,13 +146,13 @@ public class SavePersonJsonTest {
 	@Test
 	void getPersonUsingQueryById() throws Exception {
 	
-		getPersonUsingQueryInternal("person/byid?id=1", "ok/onquerybyid.json");
+		getPersonInternal("person/byid?id=1", "ok/onquerybyid.json");
 	}
 
 	
 	@Test
 	void getPersonUsingQueryByIds() throws Exception {
-		getPersonUsingQueryInternal("person/byids?ids=1&ids=2&ids=3", "ok/onquerybyids.json");
+		getPersonInternal("person/byids?ids=1&ids=2&ids=3", "ok/onquerybyids.json");
 	}
 	@Test
 	void savePersonStringBodyJsonTest() throws Exception {
@@ -156,6 +165,82 @@ public class SavePersonJsonTest {
 	void saveNestedPersonStringBodyJsonTest() throws Exception {
 	
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
+		assertEquals(3, list.size());
+	}
+	
+	@Test
+	void binaryTest() throws Exception {
+	
+		ObjectNode jsonNode = (ObjectNode) getJsonNode("examples/2.json");
+		TextNode picNode = (TextNode) jsonNode.get("pic");
+		String picInBase64 = picNode.asText();
+		byte[] picBytes = Base64.getDecoder().decode(picInBase64);
+		URL url = new URL("http://localhost:"+port+"/binary");
+		URLConnection con = url.openConnection();
+		HttpURLConnection http = (HttpURLConnection)con;
+		http.setRequestMethod("POST"); // PUT is another valid option
+		http.setDoOutput(true);
+
+		http.setFixedLengthStreamingMode(picBytes.length);
+		http.setRequestProperty("Content-Type", MediaType.APPLICATION_OCTET_STREAM_VALUE);
+		http.setRequestProperty("Accept", MediaType.IMAGE_JPEG_VALUE);
+		
+		
+		http.connect();
+				try(OutputStream os = http.getOutputStream()) {
+		    os.write(picBytes);
+		}
+		int httpStatusCode = http.getResponseCode();
+				
+		assertEquals(200, httpStatusCode);	
+		
+
+		try(InputStream is = httpStatusCode==400?http.getErrorStream():http.getInputStream();)
+		{
+			byte[] imageReturned = IOUtils.toByteArray(is);
+			if(httpStatusCode==400)
+			{
+				System.out.println(new String(imageReturned));
+			}
+			
+			assertEquals(picBytes.length, imageReturned.length);
+			assertTrue(Arrays.equals(imageReturned, imageReturned));
+		}
+		
+		
+	}
+	
+	@Test
+	void anotherControllerGetUsingPathTest() throws Exception {
+	
+		getPersonInternal("abc/abc", "ok/ongetbypath.json");
+	}
+	
+	@Test
+	void anotherControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("abc/abc", "examples/1.json", this::f1, "firstName", "abc");
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void anotherControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("abc/abc", "examples/2.json", this::f2, "firstName", "abc");
+		assertEquals(3, list.size());
+	}
+	
+	@Test
+	void defControllerPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/1.json", this::f1, "id", 19);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void defControllerNestedPostUsingPathTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/2.json", this::f2, "id", 19);
 		assertEquals(3, list.size());
 	}
 	/*
@@ -246,7 +331,7 @@ public class SavePersonJsonTest {
 	}
 	*/
 
-	private void getPersonUsingQueryInternal(String subPath, String expectedResponsePath) throws JsonMappingException, JsonProcessingException, IOException {
+	private void getPersonInternal(String subPath, String expectedResponsePath) throws JsonMappingException, JsonProcessingException, IOException {
 		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+subPath, String.class);
 		HttpStatusCode statusCode = response.getStatusCode();
 		System.out.println("statusCode="+statusCode);
@@ -432,6 +517,65 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		return list;
 		
 	}
+	
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerJson(String urlSubPath, String inputPathInCp, BiFunction<ObjectNode, ObjectNode, List<Tuple<OffsetDateTime, OffsetDateTime>>> f, String fieldName, Object fieldValue) throws IOException, JsonMappingException, JsonProcessingException {
+		String input = getJsonAsString(inputPathInCp);
+		ObjectNode inputAsNode = (ObjectNode) jsonStringToJsonNode(input);
+		HttpHeaders headers=new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	   
+	    
+		HttpEntity<String> request = 
+			      new HttpEntity<String>(input, headers);
+		ResponseEntity<String> response = this.restTemplate.postForEntity("http://localhost:" + port + "/"+urlSubPath, request, String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		assertEquals(HttpStatus.OK.value(), statusCode.value());
+		String output=response.getBody();
+		System.out.println(output);
+		ObjectNode outputAsNode = (ObjectNode) jsonStringToJsonNode(output);
+		System.out.println("outputAsNode="+outputAsNode);
+		
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list=f.apply(inputAsNode, outputAsNode);
+		if(fieldValue!=null)
+		{
+			if(fieldValue instanceof String)
+			{
+				
+				String act=(String) fieldValue;
+			
+				inputAsNode.put(fieldName, act);//from path can avoid hardcode later if neeeded
+			}
+			else if(fieldValue instanceof Long)
+			{
+				
+				Long act=(Long) fieldValue;
+				
+				inputAsNode.put(fieldName, act);//from path can avoid hardcode later if neeeded
+			}
+			else if(fieldValue instanceof Integer)
+			{
+				
+				Integer act=(Integer) fieldValue;
+				
+				inputAsNode.put(fieldName, act);//from path can avoid hardcode later if neeeded
+			}
+			else
+			{
+				throw new RuntimeException("yet to handle "+fieldValue.getClass().getName());
+			}	
+		}
+		
+		
+		assertEquals(inputAsNode, outputAsNode);
+		
+		for (Tuple<OffsetDateTime, OffsetDateTime> tuple : list) {
+			assertEquals(tuple.getX(),tuple.getY());
+		}
+		return list;
+		
+	}
+	
+	
 	ObjectMapper om = new ObjectMapper();
 	private JsonNode jsonStringToJsonNode(String json) throws JsonMappingException, JsonProcessingException
 	{
