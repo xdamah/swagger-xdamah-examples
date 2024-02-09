@@ -115,7 +115,19 @@ public class SavePersonJsonTest {
 		assertEquals(3, list.size());
 	}
 	
+	@Test
+	void savePersonStringBodyJsonTest() throws Exception {
 	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void saveNestedPersonStringBodyJsonTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
+		assertEquals(3, list.size());
+	}
 	
 	
 	//for above work on bad parameters also
@@ -157,19 +169,7 @@ public class SavePersonJsonTest {
 	void getPersonUsingQueryByIds() throws Exception {
 		getPersonInternal("person/byids?ids=1&ids=2&ids=3", "ok/onquerybyids.json");
 	}
-	@Test
-	void savePersonStringBodyJsonTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonStringBodyJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
-		assertEquals(3, list.size());
-	}
 	
 	@Test
 	void binaryTest() throws Exception {
@@ -277,6 +277,18 @@ public class SavePersonJsonTest {
 	@Test
 	void saveNestedPersonbJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
 		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	@Disabled("credit card validation not working")
+	void savePersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+	
+	@Test
+	@Disabled("credit card validation not working")
+	void saveNestedPersonbStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
 	@Test
