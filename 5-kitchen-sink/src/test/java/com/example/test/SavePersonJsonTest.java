@@ -57,6 +57,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SavePersonJsonTest {
@@ -247,22 +248,77 @@ public class SavePersonJsonTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/2.json", this::f2, "id", 19);
 		assertEquals(3, list.size());
 	}
+	
+	@Test
+	void savePersonJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	void savePersonaJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonaJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	void savePersonbJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonbJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	void getPersonUsingMissingQueryById() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingQuery.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+	
+	@Test
+	void getPersonUsingMissingQueryByIds() throws Exception {
+	
+		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byids", String.class);
+		HttpStatusCode statusCode = response.getStatusCode();
+		System.out.println("statusCode="+statusCode);
+		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
+		
+		String output=response.getBody();
+		System.out.println("output="+output);
+		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingQueryIds.json");
+		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+	}
+
 	/*
 	 * WIP
 	
 	
 	
 	
-	@Test
-	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNested.json");
-	}
 	
 	
-	@Test
-	void savePersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidCard, "errors/badcc.json");
-	}
+	
+	
 	
 	
 	@Test
@@ -466,6 +522,21 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 	
 
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<ObjectNode> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
+		int index=urlSubPath.indexOf('?');
+		String use=null;
+		String use1=null;
+		if(index!=-1)
+		{
+			String before=urlSubPath.substring(0, index);
+			int slashIndex = before.indexOf('/');
+			if(slashIndex!=-1)
+			{
+				use1=before.substring(0, slashIndex);
+				use1='/'+use1+"/{id}";
+			}
+			use='/'+before;
+		}
+		
 		ObjectNode inputAsNode = (ObjectNode) getJsonNode(inputPathInCp);
 		inputAsNode=s.apply(inputAsNode);
 		String input=inputAsNode.toString();
@@ -481,7 +552,12 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		String output=response.getBody();
 		System.out.println("output="+output);
 		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
+		String expectedResponseBodyJson = getJsonAsString(pathOfExpectationInCp);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
+		System.out.println("modified="+expectedResponseBodyJson);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
+		
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
 	}
 
