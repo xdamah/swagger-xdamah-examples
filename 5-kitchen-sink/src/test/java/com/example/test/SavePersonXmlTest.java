@@ -61,6 +61,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -260,14 +261,35 @@ public class SavePersonXmlTest {
 	}
 	
 	@Test
-	void savePersonJsonWithInvalidAgeAndOtherInvalidTest() throws Exception {
-		badRequest("person/i", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
+	void savePersonXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
 	}
 	
 	@Test
-	void saveNestedPersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("person/i", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
+	void saveNestedPersonXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
 	}
+	
+	@Test
+	void savePersonaXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
+	}
+	
+	@Test
+	void saveNestedPersonaXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
+	}
+	
+	@Test
+	void savePersonbXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
+	}
+	
+	@Test
+	void saveNestedPersonbXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
+	}
+
 
 	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
@@ -554,6 +576,22 @@ public class SavePersonXmlTest {
 	
 	private void badRequest(String urlSubPath, String inputPathInCp, UnaryOperator<Element> s,
 			String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+		int index=urlSubPath.indexOf('?');
+		String use=null;
+		String use1=null;
+		if(index!=-1)
+		{
+			String before=urlSubPath.substring(0, index);
+			int slashIndex = before.indexOf('/');
+			if(slashIndex!=-1)
+			{
+				use1=before.substring(0, slashIndex);
+				use1='/'+use1+"/{id}";
+			}
+			use='/'+before;
+		}
+		System.out.println("use="+use);
+		System.out.println("use1="+use1);
 		Document doc = docFromInputPathInCp(inputPathInCp);
 		Element root = doc.getDocumentElement();
 		root = s.apply(root);
@@ -571,7 +609,13 @@ public class SavePersonXmlTest {
 		String output = response.getBody();
 		System.out.println("output=" + output);
 		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
+		
+		String expectedResponseBodyJson = getContentAsString(pathOfExpectationInCp);
+		System.out.println("expectedResponseBodyJson="+expectedResponseBodyJson);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
+		//System.out.println("modified="+expectedResponseBodyJson);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
 		assertEquals(expectedResponseBodyNode, outputAsJsonNode);
 	}
 

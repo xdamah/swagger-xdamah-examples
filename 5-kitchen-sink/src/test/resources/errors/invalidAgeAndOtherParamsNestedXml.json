@@ -118,9 +118,9 @@
       "requestMethod" : "POST"
     }
   }, {
-    "key" : "validation.request.parameter.query.missing",
+    "key" : "validation.request.parameter.schema.minimum",
     "level" : "ERROR",
-    "message" : "Query parameter 'def' is required on path '/person/{id}' but not found in request.",
+    "message" : "Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
     "context" : {
       "requestPath" : "/person/i",
       "parameter" : {
@@ -140,34 +140,9 @@
         }
       },
       "location" : "REQUEST",
-      "requestMethod" : "POST"
-    }
-  }, {
-    "key" : "validation.request.parameter.query.missing",
-    "level" : "ERROR",
-    "message" : "Query parameter 'defArr' is required on path '/person/{id}' but not found in request.",
-    "context" : {
-      "requestPath" : "/person/i",
-      "parameter" : {
-        "name" : "defArr",
-        "in" : "query",
-        "required" : true,
-        "style" : "FORM",
-        "explode" : true,
-        "schema" : {
-          "type" : "array",
-          "example" : [ 1, 2, 3 ],
-          "exampleSetFlag" : true,
-          "items" : {
-            "type" : "integer",
-            "format" : "int32",
-            "exampleSetFlag" : false,
-            "types" : [ "integer" ]
-          },
-          "types" : [ "array" ]
-        }
+      "pointers" : {
+        "instance" : "/"
       },
-      "location" : "REQUEST",
       "requestMethod" : "POST"
     }
   } ]
