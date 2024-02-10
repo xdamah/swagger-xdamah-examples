@@ -605,7 +605,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		String expectedResponseBodyJson = getJsonAsString(pathOfExpectationInCp);
 		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
 		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
-		System.out.println("modified="+expectedResponseBodyJson);
+		//System.out.println("modified="+expectedResponseBodyJson);
 		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
 		
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);

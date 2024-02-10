@@ -259,6 +259,17 @@ public class SavePersonXmlTest {
 		assertEquals(3, list.size());
 	}
 	
+	@Test
+	void savePersonJsonWithInvalidAgeAndOtherInvalidTest() throws Exception {
+		badRequest("person/i", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
+	}
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
+	}
+
+	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
 	
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> saveSimplerXml(String urlSubPath, String inputPathInCp,
@@ -331,15 +342,9 @@ public class SavePersonXmlTest {
 	 * WIP
 	 
 
-	@Test
-	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeNestedXml.json");
-	}
+	
 
-	@Test
-	void savePersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidAge, "errors/invalidAgeXml.json");
-	}
+	
 
 	@Test
 	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
