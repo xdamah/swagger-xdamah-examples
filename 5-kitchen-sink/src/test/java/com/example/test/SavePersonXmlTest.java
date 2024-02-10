@@ -290,7 +290,17 @@ public class SavePersonXmlTest {
 		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
 	}
 
-
+	@Test
+	//Age validation not working because schema is not in use
+	void savePersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/stringbodyInvalidAgeAndOtherParamsXml.json");
+	}
+	
+	@Test
+	//Age validation not working because schema is not in use
+	void saveNestedPersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/stringbodyInvalidAgeAndOtherParamsNestedXml.json");
+	}
 	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
 	
