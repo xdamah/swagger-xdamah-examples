@@ -153,6 +153,8 @@ Screen should look like above.
 
 So that works for json requests mapped to Strings.
 
+Note: While this works. Validations based on the schema wont work because schema was not referred to. The parameter validations would still work.   
+
 If we try for xml lets see what happens.   
 
 <img src="imgs/screen04.png" alt="string request body" width="400"/>  

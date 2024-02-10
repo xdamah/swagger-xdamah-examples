@@ -280,17 +280,58 @@ public class SavePersonJsonTest {
 	}
 	
 	@Test
-	@Disabled("credit card validation not working")
+	//credit card validation not working because schema is not in use
 	void savePersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/stringBodyBadccAndOtherParams.json");
 	}
 	
 	@Test
-	@Disabled("credit card validation not working")
-	void saveNestedPersonbStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	//credit card validation not working because schema is not in use
+	void saveNestedPersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/stringBodyBadCCsInNestedAndOtherParams.json");
 	}
 	
+	@Test
+	void savePersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidAgeAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
+	}
+	@Test
+	void savePersonaJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidAgeAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonaJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
+	}
+	
+	
+	@Test
+	void savePersonbJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidAgeAndOtherParams.json");
+	}
+	
+	@Test
+	void saveNestedPersonbJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
+	}
+	
+	@Test
+	//Age validation not working because schema is not in use
+	void savePersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/stringbodyInvalidAgeAndOtherParams.json");
+	}
+	
+	@Test
+	//Age validation not working because schema is not in use
+	void saveNestedPersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/stringbodyInvalidAgeNestedAndOtherParams.json");
+	}
 	@Test
 	void getPersonUsingMissingQueryById() throws Exception {
 	
@@ -333,10 +374,7 @@ public class SavePersonJsonTest {
 	
 	
 	
-	@Test
-	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNested.json");
-	}
+	
 	
 	@Test
 	void savePersonJsonWithInvalidAgeTest() throws Exception {
@@ -571,6 +609,7 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
 		
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
+		
 	}
 
 	private JsonNode getJsonNode(String pathInClassPath) throws IOException, JsonMappingException, JsonProcessingException {
