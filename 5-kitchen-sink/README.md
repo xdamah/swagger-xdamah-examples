@@ -187,6 +187,7 @@ Press the blue button.
 
 <img src="imgs/screen06.png" alt="string xml request body response" width="400"/> 
 
+Note: While this works. Validations based on the schema wont work because schema was not referred to. The parameter validations would still work.   
 
 ### application/octet-stream request ###
 

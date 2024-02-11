@@ -178,6 +178,16 @@ public class SavePersonFormTest {
 		assertEquals(3, list.size());
 	}
 	
+	@Test
+	void savePersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeAndOtherParamsForm.json");
+	}
+	
+	@Test
+	void saveNestedPersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
+	}
+	
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
 		Properties  props = getFormJsonAsProperties("examples/2.form.properties");
