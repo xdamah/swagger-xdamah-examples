@@ -293,13 +293,57 @@ public class SavePersonXmlTest {
 	@Test
 	//Age validation not working because schema is not in use
 	void savePersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/stringbodyInvalidAgeAndOtherParamsXml.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidParamsWithNoSchema.json");
 	}
 	
 	@Test
 	//Age validation not working because schema is not in use
 	void saveNestedPersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
 		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/stringbodyInvalidAgeAndOtherParamsNestedXml.json");
+	}
+	
+	@Test
+	void savePersonJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+
+
+	@Test
+	void saveNestedPersonXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	void savePersonaXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+
+
+	@Test
+	void saveNestedPersonaXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
+	}
+	
+	@Test
+	void savePersonbXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
+
+
+	@Test
+	void saveNestedPersonbXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherInvalidParams.json");
+	}
+	
+	@Test
+	void savePersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/invalidParamsWithNoSchema.json");
+	}
+
+
+	@Test
+	void saveNestedPersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/stringbodyInvalidAgeAndOtherParamsNestedXml.json");
 	}
 	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
@@ -411,16 +455,7 @@ public class SavePersonXmlTest {
 	
 	
 
-	@Test
-	void savePersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidCard, "errors/badcc.json");
-	}
-
-
-	@Test
-	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNested.json");
-	}
+	
 
 	*/
 	private Element invalidCard(Element x) {
@@ -621,7 +656,7 @@ public class SavePersonXmlTest {
 		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
 		
 		String expectedResponseBodyJson = getContentAsString(pathOfExpectationInCp);
-		System.out.println("expectedResponseBodyJson="+expectedResponseBodyJson);
+		//System.out.println("expectedResponseBodyJson="+expectedResponseBodyJson);
 		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
 		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
 		//System.out.println("modified="+expectedResponseBodyJson);

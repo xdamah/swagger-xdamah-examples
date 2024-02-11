@@ -282,13 +282,13 @@ public class SavePersonJsonTest {
 	@Test
 	//credit card validation not working because schema is not in use
 	void savePersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/stringBodyBadccAndOtherParams.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/invalidParamsWithNoSchema.json");
 	}
 	
 	@Test
 	//credit card validation not working because schema is not in use
 	void saveNestedPersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/stringBodyBadCCsInNestedAndOtherParams.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
 	}
 	
 	@Test
@@ -324,13 +324,13 @@ public class SavePersonJsonTest {
 	@Test
 	//Age validation not working because schema is not in use
 	void savePersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/stringbodyInvalidAgeAndOtherParams.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidParamsWithNoSchema.json");
 	}
 	
 	@Test
 	//Age validation not working because schema is not in use
 	void saveNestedPersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/stringbodyInvalidAgeNestedAndOtherParams.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
 	}
 	@Test
 	void getPersonUsingMissingQueryById() throws Exception {
