@@ -58,6 +58,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SavePersonFormTest {
@@ -184,9 +185,23 @@ public class SavePersonFormTest {
 	}
 	
 	@Test
+	//TODO nested age does not validate
 	void saveNestedPersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
 	}
+	
+	@Test
+	void savePersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeAndOtherParamsForm.json");
+	}
+	
+	@Test
+	//TODO nested age does not validate
+	void saveNestedPersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
+	}
+	
+	
 	
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
@@ -504,6 +519,20 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	};
 	
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<Properties> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
+		int index=urlSubPath.indexOf('?');
+		String use=null;
+		String use1=null;
+		if(index!=-1)
+		{
+			String before=urlSubPath.substring(0, index);
+			int slashIndex = before.indexOf('/');
+			if(slashIndex!=-1)
+			{
+				use1=before.substring(0, slashIndex);
+				use1='/'+use1+"/{id}";
+			}
+			use='/'+before;
+		}
 		Properties  props = getFormJsonAsProperties(inputPathInCp);
 		props=s.apply(props);
 		HttpHeaders headers=new HttpHeaders();
@@ -527,7 +556,10 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		String output=response.getBody();
 		System.out.println("output="+output);
 		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
+		String expectedResponseBodyJson = getJsonAsString(pathOfExpectationInCp);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
 	}
 	
