@@ -202,6 +202,15 @@ public class SavePersonFormTest {
 	}
 	
 	
+	@Test
+	//custom validations like cc dont work till we provide them
+	void savePersonFomWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidCard, "errors/invalidParamsWithNoSchemaForm.json");
+	}
+
+
+	
+	
 	
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
@@ -579,7 +588,7 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	}
 	
 
-
+	
 
 
 	
@@ -630,17 +639,7 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	
 	
 	
-	private ObjectNode invalidCardsInNested(ObjectNode x){
-		 invalidNested(x, this::invalidCard);
-		return x;
-		
-	}
-
-	private void invalidNested(ObjectNode x, UnaryOperator<ObjectNode> s) {
-		s.apply(x);
-		s.apply((ObjectNode) x.get("anotherPerson"));
-		s.apply((ObjectNode) ((ArrayNode) x.get("children")).get(0));
-	};
+	
 	
 	@Test
 	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
