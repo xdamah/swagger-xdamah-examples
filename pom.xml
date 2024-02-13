@@ -221,7 +221,7 @@
 
 		<module>6-first-fqn-example</module>
 	</modules>
-	<!--
+	
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -252,5 +252,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	-->
+
 </project>
