@@ -299,7 +299,7 @@ public class SavePersonXmlTest {
 	@Test
 	//Age validation not working because schema is not in use
 	void saveNestedPersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/stringbodyInvalidAgeAndOtherParamsNestedXml.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
 	}
 	
 	@Test
@@ -332,7 +332,7 @@ public class SavePersonXmlTest {
 
 	@Test
 	void saveNestedPersonbXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherInvalidParams.json");
+		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
 	@Test
@@ -343,7 +343,7 @@ public class SavePersonXmlTest {
 
 	@Test
 	void saveNestedPersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/stringbodyInvalidAgeAndOtherParamsNestedXml.json");
+		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
 	}
 	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
