@@ -1,0 +1,18 @@
+{
+	"messages": [
+		{
+			"key": "x-CreditCardNumber",
+			"level": "ERROR",
+			"message": "Property creditCardNumber is not  valid",
+			"context": {
+				"requestPath": "/saveperson/",
+				"location": "REQUEST",
+				"pointers": {
+					"instance": "/creditCardNumber",
+					"schema": "/components/schemas/com.example.model.Person/creditCardNumber"
+				},
+				"requestMethod": "POST"
+			}
+		}
+	]
+}
