@@ -193,7 +193,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.   
 2. Add a better first example that shows how to start without code generation.  
 3. ~~Upgrade the spring version.~~ Upgraded for now.   
-4. Add Unit Tests for the examples projects.  
+4. ~~Add Tests for the examples projects.~~  
 5. If possible work with the request validator for better integration.  
 6. Generate the json when writing code first
 7. Upgrade the generator versions.   
