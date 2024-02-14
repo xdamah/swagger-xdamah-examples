@@ -16,7 +16,6 @@
 		<revision>1.0.2-SNAPSHOT</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
 		<xdamah-version>1.0.2-SNAPSHOT</xdamah-version>
-
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -213,14 +212,13 @@
 	</dependencies>
 	<modules>
 		<module>1-first-example</module>
-
 		<module>2-with-security</module>
 		<module>3-mixed</module>
 		<module>4-polymorphism-example</module>
 		<module>5-kitchen-sink</module>
-
 		<module>6-first-fqn-example</module>
 	</modules>
+
 
 	<profiles>
 		<profile>
@@ -250,6 +248,8 @@
 			</build>
 		</profile>
 	</profiles>
+
+
 
 	<repositories>
 		<repository>
