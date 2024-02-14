@@ -171,7 +171,7 @@ public abstract class BaseValidatorExtension
 							// and drill in to the properties
 							// does any have "x-credit-card"
 							// return name of the property
-							typeName = modelPackageUtil.simpleClassNameFromComponentSchemaRef(get$ref);
+							typeName = modelPackageUtil.classnameIfUnderFqnElseSimpleClassNameFromComponentSchemaRef(get$ref);
 							Schema theSchema = this.openApi.getComponents().getSchemas().get(typeName);
 							processJsonSchema(request, messages, actualJsonNodeBody, typeName, theSchema, "");
 						}
@@ -213,7 +213,7 @@ public abstract class BaseValidatorExtension
 
 						String get$ref2 = propertySchema.get$ref();
 						if (get$ref2 != null) {
-							String childTypeName = modelPackageUtil.simpleClassNameFromComponentSchemaRef(get$ref2);
+							String childTypeName = modelPackageUtil.classnameIfUnderFqnElseSimpleClassNameFromComponentSchemaRef(get$ref2);
 							Schema childSchema = this.openApi.getComponents().getSchemas().get(childTypeName);
 							JsonNode actualChildjsonBody = actualJsonNodeBody.get(propertyName);
 							logger.debug("childTypeName=" + childTypeName + ",childSchema=" + childSchema
@@ -231,7 +231,7 @@ public abstract class BaseValidatorExtension
 									String get$ref = items.get$ref();
 									if (get$ref != null) {
 										String childArrayTypeName = modelPackageUtil
-												.simpleClassNameFromComponentSchemaRef(get$ref);
+												.classnameIfUnderFqnElseSimpleClassNameFromComponentSchemaRef(get$ref);
 										Schema childArraySchema = this.openApi.getComponents().getSchemas()
 												.get(childArrayTypeName);
 										JsonNode jsonNode = actualJsonNodeBody.get(propertyName);

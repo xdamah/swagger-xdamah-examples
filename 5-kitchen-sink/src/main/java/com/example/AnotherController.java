@@ -50,16 +50,6 @@ public class AnotherController {
 
 	}
 
-	@RequestMapping(value = "/temp", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	ResponseEntity<Person> post(HttpServletRequest request) throws IOException, ServletException {
-		Collection<Part> parts = request.getParts();
-		for (Part part : parts) {
-			String partName = part.getName();
-			logger.debug("partName=" + partName);
-		}
-
-		return new ResponseEntity<Person>(new Person(), HttpStatus.OK);
-
-	}
+	
 
 }

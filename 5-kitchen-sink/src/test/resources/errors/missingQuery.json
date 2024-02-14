@@ -1,0 +1,26 @@
+{
+  "messages" : [ {
+    "key" : "validation.request.parameter.query.missing",
+    "level" : "ERROR",
+    "message" : "Query parameter 'id' is required on path '/person/byid' but not found in request.",
+    "context" : {
+      "requestPath" : "/person/byid",
+      "parameter" : {
+        "name" : "id",
+        "in" : "query",
+        "required" : true,
+        "style" : "FORM",
+        "explode" : true,
+        "schema" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 1,
+          "exampleSetFlag" : true,
+          "types" : [ "integer" ]
+        }
+      },
+      "location" : "REQUEST",
+      "requestMethod" : "GET"
+    }
+  } ]
+}

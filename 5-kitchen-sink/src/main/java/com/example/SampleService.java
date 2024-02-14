@@ -2,6 +2,7 @@ package com.example;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class SampleService {
 		}
 		else
 		{
-			person.setRegistrationDate(LocalDate.now());
+			person.setRegistrationDate(LocalDate.of(2024, 1, 1));
 		}
 
 		return person;
@@ -88,8 +89,8 @@ public class SampleService {
 		person.setId(id);
 		person.setFirstName("F");
 		person.setLastName("L");
-		person.setRegistrationDate(LocalDate.now());
-		person.setSomeTimeData(OffsetDateTime.now());
+		person.setRegistrationDate(LocalDate.of(2024, 1, 1));
+		person.setSomeTimeData(OffsetDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneOffset.ofHours(0)));
 		person.setSampleCustomTypeData(new SampleCustomType("hello"));
 
 		return person;

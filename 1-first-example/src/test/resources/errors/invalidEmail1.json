@@ -1,0 +1,16 @@
+{
+  "messages" : [ {
+    "key" : "x-Email",
+    "level" : "ERROR",
+    "message" : "Property email1 is not  valid",
+    "context" : {
+      "requestPath" : "/saveperson/",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/email1",
+        "schema" : "/components/schemas/Person/email1"
+      },
+      "requestMethod" : "POST"
+    }
+  } ]
+}

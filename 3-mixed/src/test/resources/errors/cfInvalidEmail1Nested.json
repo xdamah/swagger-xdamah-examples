@@ -1,0 +1,42 @@
+{
+  "messages" : [ {
+    "key" : "x-Email",
+    "level" : "ERROR",
+    "message" : "Property email1 is not  valid",
+    "context" : {
+      "requestPath" : "/codefirst/abc",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/email1",
+        "schema" : "/components/schemas/Person/email1"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "x-Email",
+    "level" : "ERROR",
+    "message" : "Property email1 is not  valid",
+    "context" : {
+      "requestPath" : "/codefirst/abc",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/anotherPerson/email1",
+        "schema" : "/components/schemas/Person/email1"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "x-Email",
+    "level" : "ERROR",
+    "message" : "Property email1 is not  valid",
+    "context" : {
+      "requestPath" : "/codefirst/abc",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/children/0/email1",
+        "schema" : "/components/schemas/Person/email1"
+      },
+      "requestMethod" : "POST"
+    }
+  } ]
+}

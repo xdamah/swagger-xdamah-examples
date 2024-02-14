@@ -80,6 +80,9 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 3-mixed                 | Mixed use of xdamah, code first, vanilla design first  | [link](3-mixed)                   |
 | 4-polymorphism-example  | A demo of Polymorphism in request and response POJO    | [link](4-polymorphism-example)    |
 | 5-kitchen-sink          | A bit cluttered but more detailed test of the concept  | [link](5-kitchen-sink)            |
+| 6-first-fqn-example     | Same as the introductory demo but uses FQNs            | [link](6-first-fqn-example)  
+
+
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
@@ -187,7 +190,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Allow the request validator to be turned off on some paths.   
+1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.   
 2. Add a better first example that shows how to start without code generation.  
 3. Upgrade the spring version.   
 4. Add Unit Tests for the examples projects.  
