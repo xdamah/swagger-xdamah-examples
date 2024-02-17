@@ -215,8 +215,9 @@
 		<module>2-with-security</module>
 		<module>3-mixed</module>
 		<module>4-polymorphism-example</module>
-		<module>5-kitchen-sink</module>
+		<module>5-parameter-examples</module>
 		<module>6-first-fqn-example</module>
+		<module>7-kitchen-sink</module>
 	</modules>
 
 

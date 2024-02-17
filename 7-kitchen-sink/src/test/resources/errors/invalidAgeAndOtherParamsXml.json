@@ -1,0 +1,121 @@
+{
+  "messages" : [ {
+    "key" : "validation.request.parameter.header.missing",
+    "level" : "ERROR",
+    "message" : "Header parameter 'header1' is required on path '/person/{id}' but not found in request.",
+    "context" : {
+      "requestPath" : "/person/i",
+      "parameter" : {
+        "name" : "header1",
+        "in" : "header",
+        "required" : true,
+        "style" : "SIMPLE",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "example" : "header1val1",
+          "exampleSetFlag" : true,
+          "types" : [ "string" ]
+        }
+      },
+      "location" : "REQUEST",
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "validation.request.parameter.header.missing",
+    "level" : "ERROR",
+    "message" : "Header parameter 'header2' is required on path '/person/{id}' but not found in request.",
+    "context" : {
+      "requestPath" : "/person/i",
+      "parameter" : {
+        "name" : "header2",
+        "in" : "header",
+        "required" : true,
+        "style" : "SIMPLE",
+        "explode" : false,
+        "schema" : {
+          "type" : "array",
+          "example" : [ "h1", "h2", "h3" ],
+          "exampleSetFlag" : true,
+          "items" : {
+            "type" : "string",
+            "exampleSetFlag" : false,
+            "types" : [ "string" ]
+          },
+          "types" : [ "array" ]
+        }
+      },
+      "location" : "REQUEST",
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "validation.request.parameter.schema.minLength",
+    "level" : "ERROR",
+    "message" : "String \"i\" is too short (length: 1, required minimum: 2)",
+    "context" : {
+      "requestPath" : "/person/i",
+      "parameter" : {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "style" : "SIMPLE",
+        "explode" : false,
+        "schema" : {
+          "maxLength" : 2147483647,
+          "minLength" : 2,
+          "type" : "string",
+          "example" : "id1",
+          "exampleSetFlag" : true,
+          "types" : [ "string" ]
+        }
+      },
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "validation.request.body.schema.minimum",
+    "level" : "ERROR",
+    "message" : "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+    "context" : {
+      "requestPath" : "/person/i",
+      "apiRequestContentType" : "application/xml",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/age",
+        "schema" : "/components/schemas/Person/properties/age"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "validation.request.parameter.schema.minimum",
+    "level" : "ERROR",
+    "message" : "Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+    "context" : {
+      "requestPath" : "/person/i",
+      "parameter" : {
+        "name" : "def",
+        "in" : "query",
+        "required" : true,
+        "style" : "FORM",
+        "explode" : true,
+        "schema" : {
+          "maximum" : 30,
+          "minimum" : 18,
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 18,
+          "exampleSetFlag" : true,
+          "types" : [ "integer" ]
+        }
+      },
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/"
+      },
+      "requestMethod" : "POST"
+    }
+  } ]
+}
