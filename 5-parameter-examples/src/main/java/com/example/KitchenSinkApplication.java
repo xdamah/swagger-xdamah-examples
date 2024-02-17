@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.api.DefApiDelegate;
+
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
 public class KitchenSinkApplication {
@@ -13,9 +13,6 @@ public class KitchenSinkApplication {
 		SpringApplication.run(KitchenSinkApplication.class, args);
 	}
 
-	@Bean
-	DefApiDelegate defApiDelegate() {
-		return new DefApiDelegateImpl();
-	}
+	
 
 }
