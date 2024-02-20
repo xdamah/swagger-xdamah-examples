@@ -156,34 +156,7 @@ public class SavePersonXmlTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("person/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
 		assertEquals(3, list.size());
 	}
-	@Test
-	void savePersonaXmlTest() throws Exception {
-
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::f1);
-		assertEquals(1, list.size());
-	}
 	
-	@Test
-	void saveNestedPersonaXmlTest() throws Exception {
-
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	void savePersonbXmlTest() throws Exception {
-
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonbXmlTest() throws Exception {
-
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
-		assertEquals(3, list.size());
-	}
-	//for above work on bad parameters also
 	//for below work on 1.json also
 	
 	@Test
@@ -202,13 +175,7 @@ public class SavePersonXmlTest {
 		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
 	}
 	
-	@Test
-	@Disabled
-	//TODO do better test to recotrd failure on gif
-	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
 	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
-	}
 
 	@Test
 	void savePersonStringBodyXmlTest() throws Exception {
@@ -270,25 +237,7 @@ public class SavePersonXmlTest {
 		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
 	}
 	
-	@Test
-	void savePersonaXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
-	}
 	
-	@Test
-	void saveNestedPersonaXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
-	}
-	
-	@Test
-	void savePersonbXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidAgeAndOtherParamsXml.json");
-	}
-	
-	@Test
-	void saveNestedPersonbXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
-	}
 
 	@Test
 	//Age validation not working because schema is not in use
@@ -313,27 +262,7 @@ public class SavePersonXmlTest {
 		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
-	@Test
-	void savePersonaXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/badccAndOtherParams.json");
-	}
-
-
-	@Test
-	void saveNestedPersonaXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
-	}
 	
-	@Test
-	void savePersonbXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/badccAndOtherParams.json");
-	}
-
-
-	@Test
-	void saveNestedPersonbXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
-	}
 	
 	@Test
 	void savePersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {

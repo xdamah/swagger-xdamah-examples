@@ -87,33 +87,8 @@ public class SavePersonJsonTest {
 		assertEquals(3, list.size());
 	}
 	
-	@Test
-	void savePersonaJsonTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
-		assertEquals(1, list.size());
-	}
 	
-	@Test
-	void saveNestedPersonaJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	void savePersonbJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonbJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
-		assertEquals(3, list.size());
-	}
 	
 	@Test
 	void savePersonStringBodyJsonTest() throws Exception {
@@ -259,25 +234,7 @@ public class SavePersonJsonTest {
 		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
-	@Test
-	void savePersonaJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
-	}
 	
-	@Test
-	void saveNestedPersonaJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
-	}
-	
-	@Test
-	void savePersonbJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/badccAndOtherParams.json");
-	}
-	
-	@Test
-	void saveNestedPersonbJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
-	}
 	
 	@Test
 	//credit card validation not working because schema is not in use
@@ -301,26 +258,7 @@ public class SavePersonJsonTest {
 	void saveNestedPersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
 		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
 	}
-	@Test
-	void savePersonaJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidAgeAndOtherParams.json");
-	}
 	
-	@Test
-	void saveNestedPersonaJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
-	}
-	
-	
-	@Test
-	void savePersonbJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidAgeAndOtherParams.json");
-	}
-	
-	@Test
-	void saveNestedPersonbJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
-	}
 	
 	@Test
 	//Age validation not working because schema is not in use

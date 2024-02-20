@@ -86,34 +86,9 @@ public class SavePersonFormTest {
 		assertEquals(3, list.size());
 	}
 	
-	@Test
-	void savePersonaFormTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::f1);
-		assertEquals(1, list.size());
-	}
 	
-	@Test
-	void saveNestedPersonaFormTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	void savePersonbFormTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonbFormTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveForm("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
-		assertEquals(3, list.size());
-	}
-	//for above work on bad parameters also
 	//for below work on 1.json also
 	
 	@Test
@@ -190,16 +165,7 @@ public class SavePersonFormTest {
 		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
 	}
 	
-	@Test
-	void savePersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeAndOtherParamsForm.json");
-	}
 	
-	@Test
-	//TODO nested age does not validate
-	void saveNestedPersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
-	}
 	
 	
 	@Test

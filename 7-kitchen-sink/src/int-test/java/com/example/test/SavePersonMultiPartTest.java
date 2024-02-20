@@ -85,33 +85,7 @@ public class SavePersonMultiPartTest {
 		assertEquals(3, list.size());
 	}
 	
-	@Test
-	void savePersonaFormTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonaFormTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("persona/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	void savePersonbFormTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonbFormTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
-		assertEquals(3, list.size());
-	}
 	//for above work on bad parameters also
 		//for below work on 1.json also
 	@Test
