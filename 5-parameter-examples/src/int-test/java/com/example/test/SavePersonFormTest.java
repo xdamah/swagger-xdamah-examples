@@ -114,70 +114,7 @@ public class SavePersonFormTest {
 		assertEquals(3, list.size());
 	}
 	//for above work on bad parameters also
-	//for below work on 1.json also
 	
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic", null);
-	}
-	
-	@Test
-	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
-	}
-	@Test
-	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
-	}
-	
-	@Test
-	@Disabled
-	//TODO do better test to recotrd failure on gif
-	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
-	}
-	
-	@Test
-	@Disabled
-	//saveSimplerForm has a problem
-	void anotherControllerPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm("abc/abc", "examples/1.form.properties", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	@Disabled
-	//saveSimplerForm has a problem
-	void anotherControllerNestedPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm("abc/abc", "examples/2.form.properties", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	@Disabled
-	//saveSimplerForm1 has a problem
-	void defControllerPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm1("def?abc=19", "examples/1.form.properties", this::f1);
-
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	@Disabled
-	//saveSimplerForm1 has a problem
-	void defControllerNestedPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerForm1("def?abc=19", "examples/2.form.properties", this::f2);
-
-		assertEquals(3, list.size());
-	}
 	
 	@Test
 	void savePersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {

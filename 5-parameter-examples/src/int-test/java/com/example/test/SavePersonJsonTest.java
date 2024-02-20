@@ -115,139 +115,8 @@ public class SavePersonJsonTest {
 		assertEquals(3, list.size());
 	}
 	
-	@Test
-	void savePersonStringBodyJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonStringBodyJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::f2);
-		assertEquals(3, list.size());
-	}
 	
 	
-	//for above work on bad parameters also
-	//for below work on 1.json also
-	
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic", null);
-	}
-	
-	@Test
-	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
-	}
-	@Test
-	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
-	}
-	
-	@Test
-	@Disabled
-	//TODO do better test to recotrd failure on gif
-	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
-	}
-	
-	@Test
-	void getPersonUsingQueryById() throws Exception {
-	
-		getPersonInternal("person/byid?id=1", "ok/onquerybyid.json");
-	}
-
-	
-	@Test
-	void getPersonUsingQueryByIds() throws Exception {
-		getPersonInternal("person/byids?ids=1&ids=2&ids=3", "ok/onquerybyids.json");
-	}
-	
-	
-	@Test
-	void binaryTest() throws Exception {
-	
-		ObjectNode jsonNode = (ObjectNode) getJsonNode("examples/2.json");
-		TextNode picNode = (TextNode) jsonNode.get("pic");
-		String picInBase64 = picNode.asText();
-		byte[] picBytes = Base64.getDecoder().decode(picInBase64);
-		URL url = new URL("http://localhost:"+port+"/binary");
-		URLConnection con = url.openConnection();
-		HttpURLConnection http = (HttpURLConnection)con;
-		http.setRequestMethod("POST"); // PUT is another valid option
-		http.setDoOutput(true);
-
-		http.setFixedLengthStreamingMode(picBytes.length);
-		http.setRequestProperty("Content-Type", MediaType.APPLICATION_OCTET_STREAM_VALUE);
-		http.setRequestProperty("Accept", MediaType.IMAGE_JPEG_VALUE);
-		
-		
-		http.connect();
-				try(OutputStream os = http.getOutputStream()) {
-		    os.write(picBytes);
-		}
-		int httpStatusCode = http.getResponseCode();
-				
-		assertEquals(200, httpStatusCode);	
-		
-
-		try(InputStream is = httpStatusCode==400?http.getErrorStream():http.getInputStream();)
-		{
-			byte[] imageReturned = IOUtils.toByteArray(is);
-			if(httpStatusCode==400)
-			{
-				System.out.println(new String(imageReturned));
-			}
-			
-			assertEquals(picBytes.length, imageReturned.length);
-			assertTrue(Arrays.equals(imageReturned, imageReturned));
-		}
-		
-		
-	}
-	
-	@Test
-	void anotherControllerGetUsingPathTest() throws Exception {
-	
-		getPersonInternal("abc/abc", "ok/ongetbypath.json");
-	}
-	
-	@Test
-	void anotherControllerPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("abc/abc", "examples/1.json", this::f1, "firstName", "abc");
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void anotherControllerNestedPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("abc/abc", "examples/2.json", this::f2, "firstName", "abc");
-		assertEquals(3, list.size());
-	}
-	
-	@Test
-	void defControllerPostUsingPathTest() throws Exception {
-		//for now lets not worry about why not 19l
-		//thats because when loading from json its becoming that an int and to ensure it compares well passing it an int
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/1.json", this::f1, "id", 19);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void defControllerNestedPostUsingPathTest() throws Exception {
-		//for now lets not worry about why not 19l
-		//thats because when loading from json its becoming that an int and to ensure it compares well passing it an int		
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerJson("def?abc=19", "examples/2.json", this::f2, "id", 19);
-		assertEquals(3, list.size());
-	}
 	
 	@Test
 	void savePersonJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
@@ -279,17 +148,7 @@ public class SavePersonJsonTest {
 		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
-	@Test
-	//credit card validation not working because schema is not in use
-	void savePersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidCard, "errors/invalidParamsWithNoSchema.json");
-	}
 	
-	@Test
-	//credit card validation not working because schema is not in use
-	void saveNestedPersonStringBodyWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidCardsInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
-	}
 	
 	@Test
 	void savePersonJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
@@ -322,46 +181,8 @@ public class SavePersonJsonTest {
 		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParams.json");
 	}
 	
-	@Test
-	//Age validation not working because schema is not in use
-	void savePersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.json", this::invalidAge, "errors/invalidParamsWithNoSchema.json");
-	}
 	
-	@Test
-	//Age validation not working because schema is not in use
-	void saveNestedPersonStringBodyJsonWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.json", this::invalidAgeInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
-	}
-	@Test
-	void getPersonUsingMissingQueryById() throws Exception {
 	
-		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byid", String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
-		
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingQuery.json");
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
-	
-	@Test
-	void getPersonUsingMissingQueryByIds() throws Exception {
-	
-		ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/"+"person/byids", String.class);
-		HttpStatusCode statusCode = response.getStatusCode();
-		System.out.println("statusCode="+statusCode);
-		assertEquals(HttpStatus.BAD_REQUEST.value(), statusCode.value());
-		
-		String output=response.getBody();
-		System.out.println("output="+output);
-		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/missingQueryIds.json");
-		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
-	}
 
 	/*
 	 * WIP

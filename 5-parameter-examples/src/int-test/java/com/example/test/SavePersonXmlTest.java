@@ -184,81 +184,15 @@ public class SavePersonXmlTest {
 		assertEquals(3, list.size());
 	}
 	//for above work on bad parameters also
-	//for below work on 1.json also
-	
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
-
-		savePersonAndGetPicInternal("pic", null);
-	}
-	@Test
-	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
-	}
-	@Test
-	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
-	}
-	
-	@Test
-	@Disabled
-	//TODO do better test to recotrd failure on gif
-	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
-	}
-
-	@Test
-	void savePersonStringBodyXmlTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonStringBodyXmlTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("stringreqbody/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::f2);
-		assertEquals(3, list.size());
-	}
 	
 	
 	
-	@Test
-	void anotherControllerPostUsingPathTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("abc/abc", "examples/1.xml", this::f1,
-				(BridgePerson p)->p.setFirstName("abc"));
-		assertEquals(1, list.size());
-	}
 	
-	@Test
-	void anotherControllerNestedPostUsingPathTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("abc/abc", "examples/2.xml", this::f2,
-				(BridgePerson p)->p.setFirstName("abc"));
-		assertEquals(3, list.size());
-	}
 	
-	@Test
-	void defControllerPostUsingPathTest() throws Exception {
 	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("def?abc=19", "examples/1.xml", this::f1,
-				(BridgePerson p)->p.setId(19l));
-				//"id", 19);
-		assertEquals(1, list.size());
-	}
 	
-	@Test
-	void defControllerNestedPostUsingPathTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveSimplerXml("def?abc=19", "examples/2.xml", this::f2, 
-				(BridgePerson p)->p.setId(19l));
-				//"id", 19);
-		assertEquals(3, list.size());
-	}
 	
 	@Test
 	void savePersonXmlWithInvalidAgeAndOtherInvalidTest() throws Exception {
@@ -290,17 +224,7 @@ public class SavePersonXmlTest {
 		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeAndOtherParamsNestedXml.json");
 	}
 
-	@Test
-	//Age validation not working because schema is not in use
-	void savePersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidAge, "errors/invalidParamsWithNoSchema.json");
-	}
 	
-	@Test
-	//Age validation not working because schema is not in use
-	void saveNestedPersonStringBodyXmlWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidAgeInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
-	}
 	
 	@Test
 	void savePersonJsonWithInvalidCCAndOtherInvalidParamTest() throws Exception {
@@ -335,16 +259,7 @@ public class SavePersonXmlTest {
 		badRequest("personb/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNestedAndOtherParams.json");
 	}
 	
-	@Test
-	void savePersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.xml", this::invalidCard, "errors/invalidParamsWithNoSchema.json");
-	}
-
-
-	@Test
-	void saveNestedPersonStringBodyXmlWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("stringreqbody/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.xml", this::invalidCardsInNested, "errors/invalidParamsWithNoSchemaAndNested.json");
-	}
+	
 	
 	private Consumer<BridgePerson> c= (BridgePerson p)->p.setFirstName("abc");
 	

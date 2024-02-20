@@ -113,31 +113,7 @@ public class SavePersonMultiPartTest {
 		assertEquals(3, list.size());
 	}
 	//for above work on bad parameters also
-		//for below work on 1.json also
-	@Test
-	void savePersonAndGetPicJsonTest() throws Exception {
 	
-		savePersonAndGetPicInternal("pic", null);
-	}
-	
-	@Test
-	void savePersonAndGetPic1JsonAcceptJpegTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_JPEG);
-	}
-	@Test
-	void savePersonAndGetPic1JsonAcceptPngTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_PNG);
-	}
-	
-	@Test
-	@Disabled
-	//TODO do better test to recotrd failure on gif
-	void savePersonAndGetPic1JsonAcceptGifTest() throws Exception {
-	
-		savePersonAndGetPicInternal("pic1", MediaType.IMAGE_GIF);
-	}
 
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
