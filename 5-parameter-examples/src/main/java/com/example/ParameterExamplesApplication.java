@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
-public class KitchenSinkApplication {
+public class ParameterExamplesApplication {
 	public static void main(String[] args) {
 
-		SpringApplication.run(KitchenSinkApplication.class, args);
+		SpringApplication.run(ParameterExamplesApplication.class, args);
 	}
 
 	
