@@ -59,7 +59,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 * Latest Maven
 
 *Steps*  
-* clone https://github.com/xdamah/swagger-xdamah-examples
+* Run "git clone -b main https://github.com/xdamah/swagger-xdamah-examples.git"
 * In the project folder run "mvn clean package".
 * That should build all the example projects.
 * Each project builds into a jar file - target/demo.jar   
