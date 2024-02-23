@@ -1,6 +1,6 @@
-# 2-with-security Demo #
+# 3-with-security Demo #
 
-Quite similar to 1-first-example  .   
+Quite similar to 1-first-example  and 2-first-codegen-example.   
 Just a little added security.   
 
 In api-docs.json search for the word security and securitySchemes.   

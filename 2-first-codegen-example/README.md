@@ -1,7 +1,9 @@
-# 1-first-example Demo #
+# 2-first-codegen-example Demo #
 
 Will capture very quick brief some of the steps.
-Hope that helps convey the idea.
+Hope that helps convey the idea. 
+Project testing steps are similar to previous example.  
+This project relies on model code generation unlike previous example.   
 
 ### Steps ###
 ## Steps1 ##  
