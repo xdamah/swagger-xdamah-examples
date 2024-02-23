@@ -41,7 +41,7 @@ What we are trying to avoid here is generating the controller and related code. 
 
 Instead of generating the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
 
-The only code that is generated is that of the model POJO classes.  
+The only code that is generated is that of the model POJO classes and thats optional.  
 
 So that's the objective.   
 
