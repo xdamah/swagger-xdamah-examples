@@ -82,7 +82,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 5-parameter-examples    | A demo of parameters							        | [link](5-parameter-examples)      |
 | 6-first-fqn-example     | Same as the introductory codegen demo but uses FQNs     | [link](6-first-fqn-example)       |
 | 7-mixed                 | Mixed use of xdamah, code first, vanilla design first   | [link](7-mixed)                   |
-| 8-kitchen-sink          | A bit cluttered but more detailed test of the concept   | [link](8-kitchen-sink)            |
+| 8-kitchen-sink          | A bit cluttered -includes other request types           | [link](8-kitchen-sink)            |
 
 
 In 1-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In future a third variation will also be attempted on this approach.  
@@ -115,7 +115,7 @@ Before discussing that lets be on same page with https://swagger.io/docs/specifi
 
 "Unlike OpenAPI 2.0, where the request body was defined using body and formData parameters, OpenAPI 3.0 uses the requestBody keyword to distinguish the payload from parameters (such as query string). The requestBody is more flexible in that it lets you consume different media types, such as JSON, XML, form data, plain text, and others."
 
-Naturaly it makes sense to map the request body irerspective of media types to POJOS or java beans generally speaking.
+Naturally it makes sense to map the request body irrespective of media types to POJOS or java beans generally speaking.
 
 https://swagger.io/docs/specification/describing-parameters/
 
