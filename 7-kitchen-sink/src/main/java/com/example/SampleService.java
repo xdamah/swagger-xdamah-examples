@@ -50,6 +50,12 @@ public class SampleService {
 
 	public Person stringreqbody(String body, PersonParam personParam)
 			throws JsonMappingException, JsonProcessingException {
+		//request made it through till here. So it works.
+		//example should be enhanced later so that rather than using 
+		//object mappers as shown below
+		//if we show building and returning a map
+		//after extracting data using xpath and jsonpath
+		//that would be even a better example
 		String contentType = request.getHeader("Content-Type");
 		Person p = null;
 		if (contentType != null) {
