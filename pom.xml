@@ -212,12 +212,13 @@
 	</dependencies>
 	<modules>
 		<module>1-first-example</module>
-		<module>2-with-security</module>
-		<module>3-mixed</module>
+		<module>2-first-codegen-example</module>
+		<module>3-with-security</module>
 		<module>4-polymorphism-example</module>
 		<module>5-parameter-examples</module>
 		<module>6-first-fqn-example</module>
-		<module>7-kitchen-sink</module>
+		<module>7-mixed</module>
+		<module>8-kitchen-sink</module>
 	</modules>
 
 
