@@ -211,6 +211,7 @@
 
 	</dependencies>
 	<modules>
+		<module>0-zero-example</module>
 		<module>1-first-example</module>
 		<module>2-with-security</module>
 		<module>3-mixed</module>
