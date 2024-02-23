@@ -95,3 +95,7 @@ Navigate to a suitable compatible image file in jpeg. Even png may work.
 And below is the response.  
 
 <img src="imgs/screen09.png" alt="binary request response" width="400"/> 
+
+
+These are the main examples in kitchen sink.
+Providing also postman requests for the same in the collection.
