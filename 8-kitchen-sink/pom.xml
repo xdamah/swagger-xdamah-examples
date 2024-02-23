@@ -7,7 +7,9 @@
 		<artifactId>swagger-xdamah-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>3-mixed</artifactId>
+	<artifactId>8-kitchen-sink</artifactId>
+
+
 	<build>
 		<plugins>
 			<plugin>

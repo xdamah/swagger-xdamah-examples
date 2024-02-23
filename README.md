@@ -73,16 +73,19 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 
 ### Whats in the examples? ###
 
-| The Examples            | Description                                            | Link                              |        
-| :---------------------- | :----------------------------------------------------- |:--------------------------------- |   
-| 1-first-example         | A quick introductory demo                              | [link](1-first-example/README.md) |   
-| 2-with-security         | A demo with spring security                            | [link](2-with-security)           |
-| 3-mixed                 | Mixed use of xdamah, code first, vanilla design first  | [link](3-mixed)                   |
-| 4-polymorphism-example  | A demo of Polymorphism in request and response POJO    | [link](4-polymorphism-example)    |
-| 5-kitchen-sink          | A bit cluttered but more detailed test of the concept  | [link](5-kitchen-sink)            |
-| 6-first-fqn-example     | Same as the introductory demo but uses FQNs            | [link](6-first-fqn-example)  
+| The Examples            | Description                                             | Link                              |        
+| :---------------------- | :-----------------------------------------------------  |:--------------------------------- |   
+| 1-first-example         | A quick introductory demo with no controller nor codgen | [link](1-first-example)           |
+| 2-first-codegen-example | A quick introductory demo  with  codegen of only models | [link](2-first-codegen-example)   | 
+| 3-with-security         | A demo with spring security                             | [link](3-with-security)           |
+| 4-polymorphism-example  | A demo of Polymorphism in request and response POJO     | [link](4-polymorphism-example)    |
+| 5-parameter-examples    | A demo of parameters							        | [link](5-parameter-examples)      |
+| 6-first-fqn-example     | Same as the introductory codegen demo but uses FQNs     | [link](6-first-fqn-example)       |
+| 7-mixed                 | Mixed use of xdamah, code first, vanilla design first   | [link](7-mixed)                   |
+| 8-kitchen-sink          | A bit cluttered but more detailed test of the concept   | [link](8-kitchen-sink)            |
 
 
+In 1-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In future a third variation will also be attempted on this approach.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
@@ -173,7 +176,7 @@ Am sure there are more limitations/WIPs. Hope to improve as they are seen.
 
 There are a few different concepts here.
 1. Not generating the controller code.  
-2. Generating only the model code.  
+2. Generating only the model code if so desired.  Can work without any codegen.
 3. If Parameters are more than one in number wrapping them into a java bean.  
 4. Mixing code-first, design first and xdamah.  
 5. Reuse of parameter definitions. (Pretty minor but can be handy) 
@@ -191,7 +194,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 ### TODOs ###
 
 1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.   
-2. Add a better first example that shows how to start without code generation.  
+2. ~~Add a better first example that shows how to start without code generation.~~  
 3. ~~Upgrade the spring version.~~ Upgraded for now.   
 4. ~~Add Tests for the examples projects.~~  
 5. If possible work with the request validator for better integration.  
