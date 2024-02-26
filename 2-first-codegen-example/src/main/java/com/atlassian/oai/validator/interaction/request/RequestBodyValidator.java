@@ -54,7 +54,7 @@ class RequestBodyValidator {
 
 	@Nonnull
 	ValidationReport validateRequestBody(final Request request, @Nullable final RequestBody apiRequestBodyDefinition) {
-
+		
 		final Optional<Body> requestBody = request.getRequestBody();
 		final boolean hasBody = requestBody.map(Body::hasBody).orElse(false);
 
@@ -137,10 +137,19 @@ class RequestBodyValidator {
 
 					}
 				}
+				else if(contentType.startsWith(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE))
+				{
+					return schemaValidator
+							.validate(
+									() -> parseUrlEncodedFormDataBodyAsJsonNode(
+											requestBody.get().toString(StandardCharsets.UTF_8)),
+									maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+							.withAdditionalContext(context);
+				}
 			}
 		}
 
-		// TODO: Validate multi-part form data
+	
 
 		log.info("Validation of '{}' not supported. Request body not validated.",
 				maybeApiMediaTypeForRequest.get().getLeft());
