@@ -103,12 +103,17 @@ class RequestBodyValidator {
 		}
 
 		if (isFormDataContentType(request)) {
-			return schemaValidator
-					.validate(
-							() -> parseUrlEncodedFormDataBodyAsJsonNode(
-									requestBody.get().toString(StandardCharsets.UTF_8)),
-							maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-					.withAdditionalContext(context);
+			JsonNode x;
+			try {
+				x = requestBody.get().toJsonNode();
+				return schemaValidator
+						.validate(
+								() -> x,
+								maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+						.withAdditionalContext(context);
+			} catch (IOException e) {
+				log.error("Unable to extract json", e);
+			}
 		}
 
 		if (request.getContentType().isPresent()) {
@@ -139,12 +144,19 @@ class RequestBodyValidator {
 				}
 				else if(contentType.startsWith(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE))
 				{
-					return schemaValidator
-							.validate(
-									() -> parseUrlEncodedFormDataBodyAsJsonNode(
-											requestBody.get().toString(StandardCharsets.UTF_8)),
-									maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-							.withAdditionalContext(context);
+					
+					JsonNode x;
+					try {
+						x = requestBody.get().toJsonNode();
+						return schemaValidator
+								.validate(
+										() -> x,
+										maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
+								.withAdditionalContext(context);
+					} catch (IOException e) {
+						log.error("Unable to extract json", e);
+					}
+					
 				}
 			}
 		}
