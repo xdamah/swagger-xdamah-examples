@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,11 +25,15 @@ import com.atlassian.oai.validator.model.Body;
 import com.atlassian.oai.validator.model.Request;
 import com.atlassian.oai.validator.report.MessageResolver;
 import com.atlassian.oai.validator.report.ValidationReport;
+import com.atlassian.oai.validator.report.ValidationReport.MessageContext;
 import com.atlassian.oai.validator.schema.SchemaValidator;
+import com.atlassian.oai.validator.springmvc.XdamahBody;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import io.github.xdamah.config.NonSpringHolder;
+import io.github.xdamah.util.ValidationReportInput;
 import io.swagger.v3.oas.models.media.MediaType;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 
 /**
@@ -94,68 +99,55 @@ class RequestBodyValidator {
 
 		context = ValidationReport.MessageContext.from(context)
 				.withMatchedApiContentType(maybeApiMediaTypeForRequest.get().getLeft()).build();
+		String contentType = request.getContentType().get();
 
+		ValidationReportInput validationReportInput = new ValidationReportInput(apiRequestBodyDefinition, context,
+				maybeApiMediaTypeForRequest,  contentType, 
+				requestBody);
 		if (isJsonContentType(request)) {
-			return schemaValidator
-					.validate(() -> requestBody.get().toJsonNode(),
-							maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-					.withAdditionalContext(context);
+			//later when we reread uncomment
+			//ValidationReport report = process(validationReportInput, this::originalJson);
+			ValidationReport report =originalJson(validationReportInput);
+			if(report!=null)
+			{
+				return report;
+			}
 		}
 
 		if (isFormDataContentType(request)) {
-			JsonNode x;
-			try {
-				x = requestBody.get().toJsonNode();
-				return schemaValidator
-						.validate(
-								() -> x,
-								maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-						.withAdditionalContext(context);
-			} catch (IOException e) {
-				log.error("Unable to extract json", e);
+			ValidationReport report = process(validationReportInput, this::originalForm);
+			if(report!=null)
+			{
+				return report;
 			}
 		}
 
 		if (request.getContentType().isPresent()) {
-			NonSpringHolder nonSpringHolder = NonSpringHolder.INSTANCE;
-			String contentType = request.getContentType().get();
+			
+			
 			// unnecessary nul check but
 			if (contentType != null) {
 				contentType = contentType.toLowerCase();
 				if (contentType.equals(org.springframework.http.MediaType.APPLICATION_XML_VALUE)) {
-					if (requestBody.isPresent()) {
-						Body body = requestBody.get();
-						if (body.hasBody()) {
-							String xml = null;
-							try {
-								xml = body.toString(Charset.defaultCharset());
-							} catch (IOException e) {
-								log.error("Unable to extract xml", e);
-							}
-
-							JsonNode readValue = NonSpringHolder.INSTANCE.xmlToJsonNode(apiRequestBodyDefinition,
-									contentType, xml);
-							return schemaValidator.validate(() -> readValue,
-									maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-									.withAdditionalContext(context);
-						}
-
+					//later when we reread uncomment
+					//ValidationReport report = process(validationReportInput, this::originalXml);
+					ValidationReport report =originalXml(validationReportInput);
+					if(report!=null)
+					{
+						return report;
 					}
+
+					
 				}
 				else if(contentType.startsWith(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE))
 				{
-					
-					JsonNode x;
-					try {
-						x = requestBody.get().toJsonNode();
-						return schemaValidator
-								.validate(
-										() -> x,
-										maybeApiMediaTypeForRequest.get().getRight().getSchema(), "request.body")
-								.withAdditionalContext(context);
-					} catch (IOException e) {
-						log.error("Unable to extract json", e);
+					ValidationReport report = process(validationReportInput, null);
+					if(report!=null)
+					{
+						return report;
 					}
+					
+					
 					
 				}
 			}
@@ -166,6 +158,94 @@ class RequestBodyValidator {
 		log.info("Validation of '{}' not supported. Request body not validated.",
 				maybeApiMediaTypeForRequest.get().getLeft());
 		return empty();
+	}
+
+	private ValidationReport originalForm(ValidationReportInput validationReportInput) {
+		return schemaValidator
+		            .validate(() -> parseUrlEncodedFormDataBodyAsJsonNode(validationReportInput.getRequestBody().get().toString(StandardCharsets.UTF_8)),
+		            		validationReportInput.getMaybeApiMediaTypeForRequest().get().getRight().getSchema(),
+		                    "request.body")
+		            .withAdditionalContext(validationReportInput.getContext());
+	}
+
+	private ValidationReport originalJson(ValidationReportInput validationReportInput) {
+		return schemaValidator
+		        .validate(() -> validationReportInput.getRequestBody().get().toJsonNode(),
+		        		validationReportInput.getMaybeApiMediaTypeForRequest().get().getRight().getSchema(),
+		                "request.body")
+		        .withAdditionalContext(validationReportInput.getContext());
+	}
+	
+	
+	
+	private ValidationReport process(ValidationReportInput validationReportInput,
+			Function<ValidationReportInput, ValidationReport> fn) {
+		ValidationReport report = null;
+		if(validationReportInput.getRequestBody().isPresent())
+		{
+			Body body = validationReportInput.getRequestBody().get();
+			if(body.hasBody())
+			{
+				MessageContext context = validationReportInput.getContext();
+				Optional<Pair<String, MediaType>> maybeApiMediaTypeForRequest = validationReportInput.getMaybeApiMediaTypeForRequest();
+				if(body instanceof XdamahBody )
+				{
+					
+					XdamahBody xdamahBody=(com.atlassian.oai.validator.springmvc.XdamahBody) body;
+					report = extracted(xdamahBody, context, maybeApiMediaTypeForRequest);
+					
+				}
+				else
+				{
+					if(fn!=null)
+					{
+						report = fn.apply(validationReportInput);
+					}
+				}
+			}
+		}
+	
+		return report;
+	}
+
+	private ValidationReport originalXml(ValidationReportInput validationReportInput) {
+		String xml = null;
+		try {
+			xml = validationReportInput.getRequestBody().get().toString(Charset.defaultCharset());
+		} catch (IOException e) {
+			log.error("Unable to extract xml", e);
+		}
+
+		JsonNode readValue = NonSpringHolder.INSTANCE.xmlToJsonNode(validationReportInput.getApiRequestBodyDefinition(),
+				validationReportInput.getContentType(), xml);
+		Schema schema = validationReportInput.getMaybeApiMediaTypeForRequest().get().getRight().getSchema();
+		System.out.println("schema="+schema.getName()+",ref="+schema.get$ref());
+		return schemaValidator.validate(() -> readValue,
+				schema, "request.body")
+				.withAdditionalContext(validationReportInput.getContext());
+	}
+
+	
+	
+	
+
+	private ValidationReport extracted(XdamahBody xdamahBody, ValidationReport.MessageContext context,
+			final Optional<Pair<String, MediaType>> maybeApiMediaTypeForRequest) {
+		ValidationReport report=null;
+		JsonNode x;
+		try {
+			x = xdamahBody.toJsonNode();
+			Schema schema = maybeApiMediaTypeForRequest.get().getRight().getSchema();
+		
+			report= schemaValidator
+					.validate(
+							() -> x,
+							schema, "request.body")
+					.withAdditionalContext(context);
+		} catch (IOException e) {
+			log.error("Unable to extract json", e);
+		}
+		return report;
 	}
 
 	private Optional<Pair<String, MediaType>> findApiMediaTypeForRequest(final Request request,

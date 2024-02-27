@@ -159,7 +159,7 @@ a) Initially was coding the validations using custom code entirely. Later though
 For example- For json meadiatype there is good validation support.  
 Have added support for xml media type requests to be validated using just swagger specifications by extending its behaviour.  This can be done in multiple ways. Used a valid quick approach for now.  
 Have more thoughts on how it can be taken further.  
-For the other mediatypes this is WIP on my part. If this goes well overall can put effort in that direction.    
+~~For the other mediatypes this is WIP on my part. If this goes well overall can put effort in that direction.~~    
 
 
 b) Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
