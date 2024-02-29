@@ -116,27 +116,51 @@ public class SavePersonMultiPartTest {
 	
 	
 		@Test
-		@Disabled("support for custom like cc must be added")
 		void savePersonJsonWithInvalidCCTest() throws Exception {
 			badRequest("saveperson/", "examples/1.form.properties", this::invalidCard, "errors/badcc.json");
 		}
 		
 		@Test
-		@Disabled("support for even simple validation needs to be added")
+		void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidCardsInNested, "errors/badCCsInNested.json");
+		}
+		
+		@Test
+		void savePersonFormWithInvalidEmail1Test() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidEmail1, "errors/invalidEmail1.json");
+		}
+		
+		@Test
+		void saveNestedPersonFormWithInvalidEmail1Test() throws Exception {
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
+		}
+		
+		
+		
+		@Test
+		
 		void savePersonJsonWithInvalidAgeTest() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeForm.json");
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeMulti.json");
 		}
 		
 
 		
 		@Test
-		@Disabled("TODO support for nested must be added")
+
 		void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNested.json");
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedMulti.json");
 		}
 
 	
-
+		@Test
+		void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+			badRequest("saveperson/", "examples/1.form.properties", this::invalidCardAgeEmail1, "errors/inalidCCAgeEmail1Multi.json");
+		}
+		
+		@Test
+		void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+			badRequest("saveperson/", "examples/2.form.properties", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1NestedMulti.json");
+		}
 	
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(Properties props,   ObjectNode outputAsNode) 
 	{
@@ -313,6 +337,37 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		return x;
 	};
 	
+	private Properties invalidCardsInNested(Properties x){
+		x.setProperty("creditCardNumber", "44444444444444");
+		x.setProperty("anotherPerson.creditCardNumber", "44444444444444");
+		x.setProperty("children[0].creditCardNumber", "44444444444444");
+		return x;
+		
+	}
+	
+	private Properties invalidEmail1(Properties x){
+		x.setProperty("email1", "abcxabc.com");
+		return x;
+	};
+	
+	private Properties invalidEmail1InNested(Properties x){
+		x.setProperty("email1", "abcxabc.com");
+		x.setProperty("anotherPerson.email1", "abcxabc.com");
+		x.setProperty("children[0].email1", "abcxabc.com");
+		return x;
+		
+	}
+	
+private Properties  invalidCardAgeEmail1(Properties x){
+		
+		return invalidAge(invalidEmail1(invalidCard(x)));
+	};
+	
+	private Properties invalidCardAgeEmail1InNested(Properties x){
+		return invalidAgeInNested(invalidEmail1InNested(invalidCardsInNested(x)));
+		
+	}
+	
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<Properties> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
 		Properties  props = getFormJsonAsProperties(inputPathInCp);
 		props=s.apply(props);
@@ -402,22 +457,6 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	
 	
 	
-	private ObjectNode invalidCardsInNested(ObjectNode x){
-		 invalidNested(x, this::invalidCard);
-		return x;
-		
-	}
-
-	private void invalidNested(ObjectNode x, UnaryOperator<ObjectNode> s) {
-		s.apply(x);
-		s.apply((ObjectNode) x.get("anotherPerson"));
-		s.apply((ObjectNode) ((ArrayNode) x.get("children")).get(0));
-	};
-	
-	@Test
-	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNested.json");
-	}
 	
 	
 	
@@ -425,53 +464,9 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	
 	
 	
-	private ObjectNode invalidEmail1(ObjectNode x){
-		x=x.put("email1", "abcxabc.com");
-		return x;
-	};
-	
-	private ObjectNode invalidEmail1InNested(ObjectNode x){
-		 invalidNested(x, this::invalidEmail1);
-		return x;
-		
-	}
-	
-	@Test
-	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
-	}
 	
 	
 	
-	@Test
-	void savePersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
-	}
-	
-	
-	
-	
-	
-	@Test
-	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidCardAgeEmail1, "errors/inalidCCAgeEmail1.json");
-	}
-	
-	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
-		 invalidNested(x, this::invalidCardAgeEmail1);
-		return x;
-		
-	}
-	
-	private ObjectNode invalidCardAgeEmail1(ObjectNode x){
-		
-		return invalidAge(invalidEmail1(invalidCard(x)));
-	};
-	
-	@Test
-	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
-	}
 	
 		
 	
