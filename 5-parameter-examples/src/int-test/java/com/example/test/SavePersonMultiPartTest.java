@@ -58,6 +58,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SavePersonMultiPartTest {
@@ -112,9 +113,36 @@ public class SavePersonMultiPartTest {
 		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveMultipart("personb/id1?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::f2);
 		assertEquals(3, list.size());
 	}
-	//for above work on bad parameters also
-	
 
+	
+	@Test
+	void savePersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeAndOtherParamsMulti.json");
+	}
+	
+	@Test
+	
+	void saveNestedPersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsMulti.json");
+	}
+	
+	@Test
+	void savePersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAge, "errors/invalidAgeAndOtherParamsMulti.json");
+	}
+	
+	@Test
+
+	void saveNestedPersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsMulti.json");
+	}
+	
+	
+	@Test
+	
+	void savePersonFomWithInvalidCCAndOtherInvalidParamTest() throws Exception {
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidCard, "errors/badccAndOtherParams.json");
+	}
 
 	private void savePersonAndGetPicInternal(String urlSubPath, MediaType acceptedType) throws IOException {
 		Properties  props = getFormJsonAsProperties("examples/2.form.properties");
@@ -335,6 +363,20 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 	};
 	
 	private void badRequest( String urlSubPath, String inputPathInCp, UnaryOperator<Properties> s, String pathOfExpectationInCp) throws IOException, JsonMappingException, JsonProcessingException {
+		int index=urlSubPath.indexOf('?');
+		String use=null;
+		String use1=null;
+		if(index!=-1)
+		{
+			String before=urlSubPath.substring(0, index);
+			int slashIndex = before.indexOf('/');
+			if(slashIndex!=-1)
+			{
+				use1=before.substring(0, slashIndex);
+				use1='/'+use1+"/{id}";
+			}
+			use='/'+before;
+		}
 		Properties  props = getFormJsonAsProperties(inputPathInCp);
 		props=s.apply(props);
 		Set<Object> keySet = props.keySet();
@@ -376,7 +418,10 @@ addToListTuple(props, outputAsNode, list, "someTimeData");
 		String output=response.getBody();
 		System.out.println("output="+output);
 		ObjectNode outputAsJsonNode = (ObjectNode) jsonStringToJsonNode(output);
-		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode(pathOfExpectationInCp);
+		String expectedResponseBodyJson = getJsonAsString(pathOfExpectationInCp);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/i"), use);
+		expectedResponseBodyJson=expectedResponseBodyJson.replaceAll(Pattern.quote("/person/{id}"), use1);
+		ObjectNode expectedResponseBodyNode = (ObjectNode) jsonStringToJsonNode(expectedResponseBodyJson);
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
 	}
 	

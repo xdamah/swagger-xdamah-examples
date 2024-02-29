@@ -122,9 +122,9 @@ public class SavePersonFormTest {
 	}
 	
 	@Test
-	//TODO nested age does not validate
+	
 	void saveNestedPersonFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
 	}
 	
 	@Test
@@ -133,16 +133,16 @@ public class SavePersonFormTest {
 	}
 	
 	@Test
-	//TODO nested age does not validate
+
 	void saveNestedPersonaFormWithInvalidAgeAndOtherInvalidParamTest() throws Exception {
-		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
+		badRequest("persona/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/2.form.properties", this::invalidAgeInNested, "errors/invalidAgeNestedAndOtherParamsFrom.json");
 	}
 	
 	
 	@Test
-	//custom validations like cc dont work till we provide them
+	
 	void savePersonFomWithInvalidCCAndOtherInvalidParamTest() throws Exception {
-		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidCard, "errors/invalidParamsWithNoSchemaForm.json");
+		badRequest("person/i?def=17&defArr=1&defArr=2&defArr=3&x=2024-01-12", "examples/1.form.properties", this::invalidCard, "errors/badccAndOtherParams.json");
 	}
 
 
