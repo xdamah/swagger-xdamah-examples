@@ -5,7 +5,7 @@
     "message" : "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
     "context" : {
       "requestPath" : "/saveperson/",
-      "apiRequestContentType" : "application/xml",
+      "apiRequestContentType" : "multipart/form-data",
       "location" : "REQUEST",
       "pointers" : {
         "instance" : "/age",

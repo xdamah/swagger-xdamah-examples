@@ -59,21 +59,6 @@ public class SavePersonJsonTest {
 	ResourceLoader resourceLoader;
 	
 	@Test
-	void savePersonJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("saveperson/", "examples/1.json", this::f1);
-		assertEquals(1, list.size());
-	}
-	
-	@Test
-	void saveNestedPersonJsonTest() throws Exception {
-	
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("saveperson/", "examples/2.json", this::f2);
-		assertEquals(3, list.size());
-	}
-	
-	
-	@Test
 	void savePersonAndGetPicJsonTest() throws Exception {
 	
 		String input = getJsonAsString("examples/2.json");
@@ -91,20 +76,87 @@ public class SavePersonJsonTest {
 		System.out.println(inputPic.equals(encodedPic));
 		assertEquals(inputPic,encodedPic);
 	}
+
+	@Test
+	void savePersonJsonTest() throws Exception {
 	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("saveperson/", "examples/1.json", this::f1);
+		assertEquals(1, list.size());
+	}
+	
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(ObjectNode inputAsNode,  ObjectNode outputAsNode) 
+	{
+List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
+		
+		String inputSomeTimeData = inputAsNode.get("someTimeData").asText();
+		inputAsNode.remove("someTimeData");
+		
+		String outputSomeTimeData = outputAsNode.get("someTimeData").asText();
+		outputAsNode.remove("someTimeData");
+		System.out.println("inputt="+inputAsNode);
+		System.out.println("output="+outputAsNode);
+		OffsetDateTime d1 = OffsetDateTime.parse(inputSomeTimeData);
+		OffsetDateTime d2 = OffsetDateTime.parse(outputSomeTimeData);
+		d1=d1.withOffsetSameInstant(ZoneOffset.ofHours(0));
+		d2=d2.withOffsetSameInstant(ZoneOffset.ofHours(0));
+		list.add(new Tuple<OffsetDateTime, OffsetDateTime>(d1, d2));
+		return list;
+	}
+	
+	private List<Tuple<OffsetDateTime, OffsetDateTime>> f2(ObjectNode inputAsNode, ObjectNode outputAsNode) 
+	{
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list= f1(inputAsNode, outputAsNode);
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list1= f1((ObjectNode) inputAsNode.get("anotherPerson"), (ObjectNode) outputAsNode.get("anotherPerson"));
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list2= f1(((ObjectNode) ((ArrayNode) inputAsNode.get("children")).get(0)), (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0));
+		ArrayNode array=(ArrayNode) inputAsNode.get("children");
+		list.addAll(list1);
+		list.addAll(list2);
+		return list;
+	}
+	
+	@Test
+	void saveNestedPersonJsonTest() throws Exception {
+	
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveJson("saveperson/", "examples/2.json", this::f2);
+		assertEquals(3, list.size());
+	}
+
 	@Test
 	void savePersonJsonWithInvalidCCTest() throws Exception {
 		badRequest("saveperson/", "examples/1.json", this::invalidCard, "errors/badcc.json");
 	}
+	
+	private ObjectNode invalidCard(ObjectNode x){
+		x=x.put("creditCardNumber", "44444444444444");
+		return x;
+	};
+	
+	private ObjectNode invalidCardsInNested(ObjectNode x){
+		 invalidNested(x, this::invalidCard);
+		return x;
+		
+	}
+
+	private void invalidNested(ObjectNode x, UnaryOperator<ObjectNode> s) {
+		s.apply(x);
+		s.apply((ObjectNode) x.get("anotherPerson"));
+		s.apply((ObjectNode) ((ArrayNode) x.get("children")).get(0));
+	};
 	
 	@Test
 	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
 		badRequest("saveperson/", "examples/2.json", this::invalidCardsInNested, "errors/badCCsInNested.json");
 	}
 	
-	@Test
-	void savePersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidAge, "errors/invalidAge.json");
+	private ObjectNode invalidAge(ObjectNode x){
+		x=x.put("age", 17);
+		return x;
+	};
+	
+	private ObjectNode invalidAgeInNested(ObjectNode x){
+		 invalidNested(x, this::invalidAge);
+		return x;
+		
 	}
 	
 	@Test
@@ -112,6 +164,21 @@ public class SavePersonJsonTest {
 		badRequest("saveperson/", "examples/2.json", this::invalidAgeInNested, "errors/invalidAgeNested.json");
 	}
 	
+	@Test
+	void savePersonJsonWithInvalidAgeTest() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidAge, "errors/invalidAge.json");
+	}
+	
+	private ObjectNode invalidEmail1(ObjectNode x){
+		x=x.put("email1", "abcxabc.com");
+		return x;
+	};
+	
+	private ObjectNode invalidEmail1InNested(ObjectNode x){
+		 invalidNested(x, this::invalidEmail1);
+		return x;
+		
+	}
 	@Test
 	void savePersonJsonWithInvalidEmail1Test() throws Exception {
 		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
@@ -132,6 +199,20 @@ public class SavePersonJsonTest {
 	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
 		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
 	}
+	
+	
+	
+	private ObjectNode invalidCardAgeEmail1(ObjectNode x){
+		
+		return invalidAge(invalidEmail1(invalidCard(x)));
+	};
+	
+	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
+		 invalidNested(x, this::invalidCardAgeEmail1);
+		return x;
+		
+	}
+	
 	
 	@Test
 	void getPersonUsingPath() throws Exception {
@@ -177,113 +258,6 @@ public class SavePersonJsonTest {
 		ObjectNode expectedResponseBodyNode = (ObjectNode) getJsonNode("errors/onNonNumericPath.json");
 		assertEquals(expectedResponseBodyNode,outputAsJsonNode);
 	}
-	
-	
-	
-	private ObjectNode invalidCard(ObjectNode x){
-		x=x.put("creditCardNumber", "44444444444444");
-		return x;
-	};
-	
-	private ObjectNode invalidCardsInNested(ObjectNode x){
-		 invalidNested(x, this::invalidCard);
-		return x;
-		
-	}
-	
-
-	
-	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(ObjectNode inputAsNode,  ObjectNode outputAsNode) 
-	{
-List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
-		
-		String inputSomeTimeData = inputAsNode.get("someTimeData").asText();
-		inputAsNode.remove("someTimeData");
-		
-		String outputSomeTimeData = outputAsNode.get("someTimeData").asText();
-		outputAsNode.remove("someTimeData");
-		System.out.println("inputt="+inputAsNode);
-		System.out.println("output="+outputAsNode);
-		OffsetDateTime d1 = OffsetDateTime.parse(inputSomeTimeData);
-		OffsetDateTime d2 = OffsetDateTime.parse(outputSomeTimeData);
-		d1=d1.withOffsetSameInstant(ZoneOffset.ofHours(0));
-		d2=d2.withOffsetSameInstant(ZoneOffset.ofHours(0));
-		list.add(new Tuple<OffsetDateTime, OffsetDateTime>(d1, d2));
-		return list;
-	}
-	
-	private List<Tuple<OffsetDateTime, OffsetDateTime>> f2(ObjectNode inputAsNode, ObjectNode outputAsNode) 
-	{
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list= f1(inputAsNode, outputAsNode);
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list1= f1((ObjectNode) inputAsNode.get("anotherPerson"), (ObjectNode) outputAsNode.get("anotherPerson"));
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list2= f1(((ObjectNode) ((ArrayNode) inputAsNode.get("children")).get(0)), (ObjectNode) ((ArrayNode) outputAsNode.get("children")).get(0));
-		ArrayNode array=(ArrayNode) inputAsNode.get("children");
-		list.addAll(list1);
-		list.addAll(list2);
-		return list;
-	}
-	
-	
-
-	
-	
-
-	private void invalidNested(ObjectNode x, UnaryOperator<ObjectNode> s) {
-		s.apply(x);
-		s.apply((ObjectNode) x.get("anotherPerson"));
-		s.apply((ObjectNode) ((ArrayNode) x.get("children")).get(0));
-	};
-	
-	
-	
-	private ObjectNode invalidAge(ObjectNode x){
-		x=x.put("age", 17);
-		return x;
-	};
-	
-	private ObjectNode invalidAgeInNested(ObjectNode x){
-		 invalidNested(x, this::invalidAge);
-		return x;
-		
-	}
-	
-	
-	
-	
-	
-	private ObjectNode invalidEmail1(ObjectNode x){
-		x=x.put("email1", "abcxabc.com");
-		return x;
-	};
-	
-	private ObjectNode invalidEmail1InNested(ObjectNode x){
-		 invalidNested(x, this::invalidEmail1);
-		return x;
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
-		 invalidNested(x, this::invalidCardAgeEmail1);
-		return x;
-		
-	}
-	
-	private ObjectNode invalidCardAgeEmail1(ObjectNode x){
-		
-		return invalidAge(invalidEmail1(invalidCard(x)));
-	};
-	
-	
-	
-	
 	
 	
 	
