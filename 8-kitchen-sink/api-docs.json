@@ -533,6 +533,11 @@
 							"schema": {
 								"$ref": "#/components/schemas/Person"
 							}
+						},
+						"multipart/form-data": {
+							"schema": {
+								"$ref": "#/components/schemas/Person"
+							}
 						}
 					},
 					"required": true
