@@ -209,18 +209,9 @@ However for the other ones listed below please try using postman
 * application/x-www-form-urlencoded
 * multipart/form-data
 
-While on the subject:   
-Regular validatons will work  for application/x-www-form-urlencoded.   
-Havent yet go around to implement the custom validations like credit card for for application/x-www-form-urlencoded.   
-
 <img src="imgs/screen13.png" alt="Response" width="400"/>   
 
 Some custom or extension validation rules are indicated by  the green rectangles. Those rules are currently enforced only for  application/json, application/xml. These custom validations can be enforced. Havent yet got around to implemting them for application/x-www-form-urlencoded.   
-
-
-The validation rules  are however applied for the regular validations eg- the blue rectangle of age and all the others.  
-
-In case of  multipart/form-data currently the validations are nor being applied.
 
 A word on validations:  
 Initially was coding the validations also. But for now decided to reuse for validations https://bitbucket.org/atlassian/swagger-request-validator.    

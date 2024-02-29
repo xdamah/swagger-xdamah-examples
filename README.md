@@ -165,11 +165,7 @@ Have added support for xml, multi-part media type requests to be validated using
 b) Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
 
 
-c) In the example projects also demonstrate form and multi-part form submission. This gets interesting especially when the forms have nested models and nested array type models. This is working. There is however room for making this a bit more flexible. Eg - should "." be used to traverse to a nested bean. What about for eg "/", Similarly more variations on how to identify indexing. Can be done. 
-
-Am sure there are more limitations/WIPs. Hope to improve as they are seen.
-
-
+c) In the example projects also demonstrate form and multi-part form submission. This gets interesting especially when the forms have nested models and nested array type models. This is working. There is however room for making this a bit more flexible. Eg - should "." be used to traverse to a nested bean. What about for eg "/", Similarly more variations on how to identify indexing. Can be done.  
 
 ### Any thing extra that is available here and not elsewhere? ###
 
@@ -197,12 +193,13 @@ A. **For the same model its much easier to support requests in multiple media ty
 2. ~~Add a better first example that shows how to start without code generation.~~  
 3. ~~Upgrade the spring version.~~ Upgraded for now.   
 4. ~~Add Tests for the examples projects.~~  
-5. Add an example that illustrates how to handwrite model and auto-generate and  the model's schema 
-6. If possible work with the request validator for better integration.  
-7. Generate the json when writing code first
-8. Upgrade the generator versions.   
-9. Upgrade from swagger 3.0 to 3.1. 
-10. Work on the WIPs mentioned earlier.  
-11. Caching for performance.  
+5. Update the tests now that validations are working all around.  
+6. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+7. If possible work with the request validator for better integration.  
+8. Generate the json when writing code first
+9. Upgrade the generator versions.   
+10. Upgrade from swagger 3.0 to 3.1. 
+11. Work on the WIPs mentioned earlier.  
+12. Caching for performance.  
 
 
