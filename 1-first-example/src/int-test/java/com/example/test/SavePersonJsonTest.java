@@ -179,6 +179,10 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 		return x;
 		
 	}
+	@Test
+	void savePersonJsonWithInvalidEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
+	}
 	
 	@Test
 	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
@@ -186,35 +190,27 @@ List<Tuple<OffsetDateTime, OffsetDateTime>> list= new ArrayList<>();
 	}
 	
 	
-	
-	@Test
-	void savePersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.json", this::invalidEmail1, "errors/invalidEmail1.json");
-	}
-	
-	
-	
-	
-	
 	@Test
 	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
 		badRequest("saveperson/", "examples/1.json", this::invalidCardAgeEmail1, "errors/inalidCCAgeEmail1.json");
 	}
 	
-	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
-		 invalidNested(x, this::invalidCardAgeEmail1);
-		return x;
-		
+	@Test
+	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
 	}
+	
+	
 	
 	private ObjectNode invalidCardAgeEmail1(ObjectNode x){
 		
 		return invalidAge(invalidEmail1(invalidCard(x)));
 	};
 	
-	@Test
-	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.json", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1Nested.json");
+	private ObjectNode invalidCardAgeEmail1InNested(ObjectNode x){
+		 invalidNested(x, this::invalidCardAgeEmail1);
+		return x;
+		
 	}
 	
 	

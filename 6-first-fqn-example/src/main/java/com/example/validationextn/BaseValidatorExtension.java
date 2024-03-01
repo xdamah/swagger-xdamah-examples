@@ -27,11 +27,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.TextNode;
-
 import io.github.xdamah.config.IOpenApiValidationConfigOnInitWorkaround;
 import io.github.xdamah.config.ModelPackageUtil;
 import io.github.xdamah.config.NonSpringHolder;
 import io.github.xdamah.constants.Constants;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Content;
@@ -119,7 +119,17 @@ public abstract class BaseValidatorExtension
 							} else if (actualContentType
 									.equals(org.springframework.http.MediaType.APPLICATION_XML_VALUE)) {
 								onXml(request, messages, body, operationReqBodyContent, actualContentType);
-							} else {
+								
+							} 
+							else if (actualContentType.startsWith(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)) {
+								actualContentType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
+								onJson(request, messages, operationReqBodyContent, actualContentType, body);
+							}
+							else if (actualContentType.startsWith(org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE)) {
+								actualContentType = org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
+								onJson(request, messages, operationReqBodyContent, actualContentType, body);
+							}
+							else {
 
 							}
 

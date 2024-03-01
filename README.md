@@ -157,19 +157,15 @@ private HttpServletRequest request;
 
 a) Initially was coding the validations using custom code entirely. Later thought it better to reuse https://bitbucket.org/atlassian/swagger-request-validator/  Have been working around some of its current limitations.  
 For example- For json meadiatype there is good validation support.  
-Have added support for xml media type requests to be validated using just swagger specifications by extending its behaviour.  This can be done in multiple ways. Used a valid quick approach for now.  
-Have more thoughts on how it can be taken further.  
-For the other mediatypes this is WIP on my part. If this goes well overall can put effort in that direction.    
+Have added support for xml, multi-part media type requests to be validated using just swagger specifications by extending its behaviour.  This can be done in multiple ways. Used a valid quick approach for now.  
+~~Have more thoughts on how it can be taken further.~~  
+~~For the other mediatypes this is WIP on my part. If this goes well overall can put effort in that direction.~~    
 
 
 b) Am currently working with Swagger 3.0. The external swagger examples - are being merged in to the final swagger specifications as part of a value add in this library. Once this is upgraded to Swagger 3.1 this extra programmatic feature  wont be needed because 3.1 is supposed to take care of that.  
 
 
-c) In the example projects also demonstrate form and multi-part form submission. This gets interesting especially when the forms have nested models and nested array type models. This is working. There is however room for making this a bit more flexible. Eg - should "." be used to traverse to a nested bean. What about for eg "/", Similarly more variations on how to identify indexing. Can be done. 
-
-Am sure there are more limitations/WIPs. Hope to improve as they are seen.
-
-
+c) In the example projects also demonstrate form and multi-part form submission. This gets interesting especially when the forms have nested models and nested array type models. This is working. There is however room for making this a bit more flexible. Eg - should "." be used to traverse to a nested bean. What about for eg "/", Similarly more variations on how to identify indexing. Can be done.  
 
 ### Any thing extra that is available here and not elsewhere? ###
 
@@ -197,11 +193,13 @@ A. **For the same model its much easier to support requests in multiple media ty
 2. ~~Add a better first example that shows how to start without code generation.~~  
 3. ~~Upgrade the spring version.~~ Upgraded for now.   
 4. ~~Add Tests for the examples projects.~~  
-5. If possible work with the request validator for better integration.  
-6. Generate the json when writing code first
-7. Upgrade the generator versions.   
-8. Upgrade from swagger 3.0 to 3.1. 
-9. Work on the WIPs mentioned earlier.  
-10. Caching for performance.  
+5. Update the tests now that validations are working all around.  
+6. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+7. If possible work with the request validator for better integration.  
+8. Generate the json when writing code first
+9. Upgrade the generator versions.   
+10. Upgrade from swagger 3.0 to 3.1. 
+11. Work on the WIPs mentioned earlier.  
+12. Caching for performance.  
 
 

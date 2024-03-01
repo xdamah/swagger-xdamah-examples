@@ -119,7 +119,17 @@ public abstract class BaseValidatorExtension
 							} else if (actualContentType
 									.equals(org.springframework.http.MediaType.APPLICATION_XML_VALUE)) {
 								onXml(request, messages, body, operationReqBodyContent, actualContentType);
-							} else {
+								
+							} 
+							else if (actualContentType.startsWith(org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)) {
+								actualContentType = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
+								onJson(request, messages, operationReqBodyContent, actualContentType, body);
+							}
+							else if (actualContentType.startsWith(org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE)) {
+								actualContentType = org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
+								onJson(request, messages, operationReqBodyContent, actualContentType, body);
+							}
+							else {
 
 							}
 

@@ -140,19 +140,39 @@ public class SavePersonXmlTest {
 	}
 	
 	@Test
-	void savePersonXmlTest() throws Exception {
-
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("saveperson/", "examples/1.xml", this::f1);
-		assertEquals(1, list.size());
+	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
+		badRequest("saveperson/", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeNestedXml.json");
 	}
-	
+
 	@Test
-	void saveNestedPersonXmlTest() throws Exception {
+	void savePersonJsonWithInvalidAgeTest() throws Exception {
+		badRequest("saveperson/", "examples/1.xml", this::invalidAge, "errors/invalidAgeXml.json");
+	}
 
-		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("saveperson/", "examples/2.xml", this::f2);
-		assertEquals(3, list.size());
+	@Test
+	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/2.xml", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
+	}
+
+	@Test
+	void savePersonJsonWithInvalidEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.xml", this::invalidEmail1, "errors/invalidEmail1.json");
+	}
+
+	@Test
+	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/1.xml", this::invalidCardAgeEmail1, "errors/invalidCCAgeEmail1Xml.json");
+	}
+
+
+	@Test
+	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
+		badRequest("saveperson/", "examples/2.xml", this::invalidCardAgeEmail1InNested,
+				"errors/invalidCCAgeEmail1NestedXml.json");
 	}
 	
+
+
 	@Test
 	void savePersonAndGetPicJsonTest() throws Exception {
 
@@ -174,7 +194,27 @@ public class SavePersonXmlTest {
 		System.out.println(picContent.equals(encodedPic));
 		assertEquals(picContent, encodedPic);
 	}
+
 	
+
+	
+	@Test
+	void savePersonXmlTest() throws Exception {
+
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("saveperson/", "examples/1.xml", this::f1);
+		assertEquals(1, list.size());
+	}
+	
+	@Test
+	void saveNestedPersonXmlTest() throws Exception {
+
+		List<Tuple<OffsetDateTime, OffsetDateTime>> list = saveXml("saveperson/", "examples/2.xml", this::f2);
+		assertEquals(3, list.size());
+	}
+
+	
+	
+
 	@Test
 	void savePersonJsonWithInvalidCCTest() throws Exception {
 		badRequest("saveperson/", "examples/1.xml", this::invalidCard, "errors/badcc.json");
@@ -185,54 +225,6 @@ public class SavePersonXmlTest {
 	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
 		badRequest("saveperson/", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNested.json");
 	}
-	
-	@Test
-	void savePersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidAge, "errors/invalidAgeXml.json");
-	}
-	
-	@Test
-	void saveNestedPersonJsonWithInvalidAgeTest() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidAgeInNested, "errors/invalidAgeNestedXml.json");
-	}
-
-	@Test
-	void savePersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidEmail1, "errors/invalidEmail1.json");
-	}
-
-	@Test
-	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
-	}
-
-	
-
-	@Test
-	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidCardAgeEmail1, "errors/invalidCCAgeEmail1Xml.json");
-	}
-
-
-	@Test
-	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidCardAgeEmail1InNested,
-				"errors/invalidCCAgeEmail1NestedXml.json");
-	}
-	
-
-
-	
-
-	
-
-	
-	
-
-	
-	
-
-	
 
 	
 	private Element invalidCard(Element x) {

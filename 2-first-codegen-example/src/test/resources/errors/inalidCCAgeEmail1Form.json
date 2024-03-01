@@ -1,0 +1,43 @@
+{
+  "messages" : [ {
+    "key" : "validation.request.body.schema.minimum",
+    "level" : "ERROR",
+    "message" : "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+    "context" : {
+      "requestPath" : "/saveperson/",
+      "apiRequestContentType" : "application/x-www-form-urlencoded",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/age",
+        "schema" : "/components/schemas/Person/properties/age"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "x-Email",
+    "level" : "ERROR",
+    "message" : "Property email1 is not  valid",
+    "context" : {
+      "requestPath" : "/saveperson/",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/email1",
+        "schema" : "/components/schemas/Person/email1"
+      },
+      "requestMethod" : "POST"
+    }
+  }, {
+    "key" : "x-CreditCardNumber",
+    "level" : "ERROR",
+    "message" : "Property creditCardNumber is not  valid",
+    "context" : {
+      "requestPath" : "/saveperson/",
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/creditCardNumber",
+        "schema" : "/components/schemas/Person/creditCardNumber"
+      },
+      "requestMethod" : "POST"
+    }
+  } ]
+}
