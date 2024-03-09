@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.3</revision>
+		<revision>1.0.4-SNAPSHOT</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
-		<xdamah-version>1.0.3</xdamah-version>
+		<xdamah-version>1.0.4-SNAPSHOT</xdamah-version>
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -123,6 +123,10 @@
 					<groupId>io.swagger.core.v3</groupId>
 					<artifactId>swagger-models</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>io.swagger.core.v3</groupId>
+					<artifactId>swagger-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -132,17 +136,6 @@
 			<version>2.2.15</version>
 		</dependency>
 
-		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-core</artifactId>
-			<version>2.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.swagger.core.v3</groupId>
-					<artifactId>swagger-models</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<dependency>
 			<groupId>com.atlassian.oai</groupId>
@@ -208,7 +201,12 @@
 			<artifactId>spring-jcl</artifactId>
 
 		</dependency>
-
+<dependency>
+	
+        <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-core-jakarta</artifactId>
+        <version>2.2.19</version>
+</dependency>
 	</dependencies>
 	<modules>
 		<module>1-first-example</module>
@@ -219,6 +217,7 @@
 		<module>6-first-fqn-example</module>
 		<module>7-mixed</module>
 		<module>8-kitchen-sink</module>
+		<module>3-first-alt-example</module>
 	</modules>
 
 
