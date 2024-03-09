@@ -1,13 +1,21 @@
 package com.example.model;
 
 import java.util.Objects;
+
+import org.hibernate.validator.constraints.CreditCardNumber;
+
 import com.example.custom.SampleCustomType;
 import com.example.model.Person;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -19,22 +27,34 @@ public class Person   {
 
   private Long id = null;
 
+  @NotNull
 
+  @NotBlank
+
+  @Size(min = 2, max = 20, message = "firstname has size limits")
   private String firstName = null;
 
+  @NotNull
 
+      @NotBlank
+
+      @Size(min = 2)
   private String lastName = null;
 
 
-  private String email = null;
+  @Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
 
-  private String email1 = null;
+      private String email;
+  
+      @Email()
+  
+      private String email1;
   @Min(18)
   
   @Max(30)
   private int age ;
 
-
+  @CreditCardNumber
   private String creditCardNumber = null;
 
  
