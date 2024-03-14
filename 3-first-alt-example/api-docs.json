@@ -215,6 +215,7 @@
 			"SampleCustomType": {
 				"type": "object"
 			}
+			
 		}
 	}
 }

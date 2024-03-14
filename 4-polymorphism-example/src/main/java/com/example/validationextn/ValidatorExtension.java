@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
+import io.github.xdamah.validatorextn.BaseValidatorExtension;
+import io.github.xdamah.validatorextn.IValidator;
+
 //this is just a democustome validator
 //its verysimple only for demo purposes
 //can be enhanced later for  non string types and container nodes- array node, object node
@@ -16,7 +19,7 @@ public class ValidatorExtension extends BaseValidatorExtension {
 	// private static final String EMAIL_EXTN="x-Email";
 
 	@Override
-	public void onInitInOpenApiValidationConfig() {
+	public void onInitRegisterCustomSchemas() {
 		// registerCustomSchema(SampleCustomType.class.getSimpleName(),
 		// SampleCustomType.class.getName());
 	}

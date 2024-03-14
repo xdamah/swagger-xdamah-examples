@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import com.example.CardCompany;
 
+import io.github.xdamah.validatorextn.IValidator;
+import io.github.xdamah.validatorextn.ValidationResult;
+
 /**
  * Validator for credit card numbers Checks validity and returns card type
  * 

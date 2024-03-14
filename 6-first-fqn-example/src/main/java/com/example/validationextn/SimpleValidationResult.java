@@ -1,5 +1,7 @@
 package com.example.validationextn;
 
+import io.github.xdamah.validatorextn.ValidationResult;
+
 public class SimpleValidationResult implements ValidationResult {
 	private boolean result;
 

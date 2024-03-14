@@ -2,6 +2,8 @@ package com.example.validationextn;
 
 import com.example.CardCompany;
 
+import io.github.xdamah.validatorextn.ValidationResult;
+
 /**
  * Container for validation result
  */
