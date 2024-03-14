@@ -211,10 +211,7 @@
 			}
 		},
 		"schemas": {
-			"x-damah-models": ["Person"],
-			"SampleCustomType": {
-				"type": "object"
-			}
+			"x-damah-models": ["Person"]
 			
 		}
 	}

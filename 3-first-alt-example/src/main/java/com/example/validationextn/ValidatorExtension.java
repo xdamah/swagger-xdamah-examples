@@ -2,6 +2,7 @@ package com.example.validationextn;
 
 import java.util.HashMap;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.example.custom.SampleCustomType;
@@ -15,6 +16,7 @@ import io.github.xdamah.validatorextn.IValidator;
 //when its base class is taking care of all  extension validation requirements can shift the base class to the core library
 
 @Component
+
 public class ValidatorExtension extends BaseValidatorExtension {
 
 	private static final String CREDIT_CARD_EXTN = "x-CreditCardNumber";
