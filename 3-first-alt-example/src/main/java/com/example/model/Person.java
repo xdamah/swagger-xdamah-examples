@@ -52,7 +52,7 @@ public class Person   {
   @Min(18)
   
   @Max(30)
-  private int age ;
+  private Integer age ;
 
   @CreditCardNumber
   private String creditCardNumber = null;
