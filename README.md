@@ -189,17 +189,19 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.   
-2. ~~Add a better first example that shows how to start without code generation.~~  
-3. ~~Upgrade the spring version.~~ Upgraded for now.   
-4. ~~Add Tests for the examples projects.~~  
-5. Update the tests now that validations are working all around.  
-6. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
-7. If possible work with the request validator for better integration.  
-8. Generate the json when writing code first
-9. Upgrade the generator versions.   
-10. Upgrade from swagger 3.0 to 3.1. 
-11. Work on the WIPs mentioned earlier.  
-12. Caching for performance.  
+1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.  
+2. ~~Add a better first example that shows how to start without code generation.~~   
+3. ~~Add a better first example that shows how to start without code generation but with autogeneeration of model schema.~~  
+4. ~~Upgrade the spring version.~~ Upgraded for now.   
+5. ~~Add Tests for the examples projects.~~  
+6. Add examples for Map, ObjectNode requestBodies 
+7. Update the tests now that validations are working all around.  
+8. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+9. If possible work with the request validator for better integration.  
+10. Generate the json when writing code first
+11. Upgrade the generator versions.   
+12. Upgrade from swagger 3.0 to 3.1. 
+13. Work on the WIPs mentioned earlier.  
+14. Caching for performance.  
 
 
