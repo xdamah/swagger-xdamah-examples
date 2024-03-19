@@ -214,6 +214,8 @@
 		<module>3-first-alt-example</module>
 		<module>3-with-security</module>
 		<module>4-polymorphism-example</module>
+		<module>4-polymorphism-alt-example</module>
+		
 		<module>5-parameter-examples</module>
 		<module>6-first-fqn-example</module>
 		<module>7-mixed</module>
