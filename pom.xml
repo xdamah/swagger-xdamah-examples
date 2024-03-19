@@ -212,6 +212,7 @@
 		<module>1-first-example</module>
 		<module>2-first-codegen-example</module>
 		<module>3-first-alt-example</module>
+		<module>3-first-alt-fqn-example</module>
 		<module>3-with-security</module>
 		<module>4-polymorphism-example</module>
 		<module>4-polymorphism-alt-example</module>
