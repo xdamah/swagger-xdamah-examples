@@ -1,0 +1,171 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "sample application API",
+		"description": "some description",
+		"termsOfService": "http://swagger.io/terms/",
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://springdoc.org"
+		},
+		"version": "0.0.2-SNAPSHOT"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/createtrip": {
+			"post": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "createtrip",
+				"x-damah": true,
+				"x-damah-service": "sampleService.createTrip(com.example.trip.Trip)",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/com.example.trip.Trip"
+							},
+							"examples": {
+								"newTrip": {
+									"summary": "new trip example",
+									"externalValue": "classpath:examples/new_trip1.json"
+								},
+								"newTripWithRequests": {
+									"summary": "new trip with requests example",
+									"externalValue": "classpath:examples/new_trip2.json"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/com.example.trip.StoredTrip"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/trips/{tripid}": {
+			"get": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "triprequests",
+				"x-damah": true,
+				"x-damah-service": "sampleService.getTrip(long)",
+				"parameters": [
+					{
+						"name": "tripid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/com.example.trip.StoredTrip"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/addrequest/{tripid}": {
+			"post": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "addrequest",
+				"x-damah": true,
+				"x-damah-service": "sampleService.addRequest(long, com.example.request.BaseRequest)",
+				"parameters": [
+					{
+						"name": "tripid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"example": "1"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"oneOf": [
+									{
+										"$ref": "#/components/schemas/com.example.request.FlightRequest"
+									},
+									{
+										"$ref": "#/components/schemas/com.example.request.CarRequest"
+									},
+									{
+										"$ref": "#/components/schemas/com.example.request.HotelRequest"
+									}
+								],
+								"discriminator": {
+									"propertyName": "type"
+								}
+							},
+							"examples": {
+								"FlightRequest": {
+									"summary": "FlightRequest Example",
+									"externalValue": "classpath:examples/flightRequest.json"
+								},
+								"CarRequest": {
+									"summary": "CarRequest Example",
+									"externalValue": "classpath:examples/carRequest.json"
+								},
+								"HotelRequest": {
+									"summary": "HotelRequest Example",
+									"externalValue": "classpath:examples/hotelRequest.json"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/com.example.trip.StoredTrip"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			
+			"x-damah-models": ["com.example.request.BaseRequest", 
+			"com.example.trip.Trip", 
+			"com.example.trip.StoredTrip"]
+		
+		}
+	}
+}

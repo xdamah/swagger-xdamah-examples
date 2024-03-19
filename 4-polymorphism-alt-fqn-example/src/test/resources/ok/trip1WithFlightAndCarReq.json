@@ -1,0 +1,22 @@
+{
+	"tripName": "firstTrip",
+	"requests": [
+		{
+			"type": "FlightRequest",
+			"startDateTime": "2023-12-26T19:05:32.521Z",
+			"endDateTime": "2023-12-26T19:05:32.521Z",
+			"fromAirport": "string",
+			"toAirport": "string",
+			"seatType": "string"
+		},
+		{
+			"type": "CarRequest",
+			"startDateTime": "2023-12-26T19:05:32.521Z",
+			"endDateTime": "2023-12-26T19:05:32.521Z",
+			"from": "string",
+			"to": "string",
+			"vehicleType": "string"
+		}
+	],
+	"tripId": 1
+}
