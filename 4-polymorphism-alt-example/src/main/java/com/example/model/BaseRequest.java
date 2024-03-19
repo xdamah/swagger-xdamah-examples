@@ -3,9 +3,22 @@ package com.example.model;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import jakarta.validation.constraints.NotNull;
+
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME,
+		  include = JsonTypeInfo.As.PROPERTY,
+		  property = "type")
+		@JsonSubTypes({
+		  @JsonSubTypes.Type(value = FlightRequest.class, name = "FlightRequest"),
+		  @JsonSubTypes.Type(value = CarRequest.class, name = "CarRequest"),
+		  @JsonSubTypes.Type(value = HotelRequest.class, name = "HotelRequest")
+		})
 public class BaseRequest   {
-
+@NotNull
   private String type = null;
 
 

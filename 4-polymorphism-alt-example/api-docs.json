@@ -95,7 +95,7 @@
 				],
 				"operationId": "addrequest",
 				"x-damah": true,
-				"x-damah-service": "sampleService.addRequest(long, OneOfTripRequestsItems)",
+				"x-damah-service": "sampleService.addRequest(long, BaseRequest)",
 				"parameters": [
 					{
 						"name": "tripid",
@@ -210,103 +210,8 @@
 					}
 				]
 			},
-			"BaseRequest": {
-				"required": [
-					"startDateTime",
-					"endDateTime",
-					"type"
-				],
-				"type": "object",
-				"properties": {
-					"type": {
-						"type": "string"
-					},
-					
-					"startDateTime": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"endDateTime": {
-						"type": "string",
-						"format": "date-time"
-					}
-				}
-			},
-			"FlightRequest": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/BaseRequest"
-					},
-					{
-						"type": "object",
-						"required": [
-							"fromAirport",
-							"toAirport"
-						],
-						"properties": {
-							"fromAirport": {
-								"type": "string"
-							},
-							"toAirport": {
-								"type": "string"
-							},
-							"seatType": {
-								"type": "string"
-							}
-						}
-					}
-				]
-			},
-			"CarRequest": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/BaseRequest"
-					},
-					{
-						"type": "object",
-						"required": [
-							"from",
-							"to"
-						],
-						"properties": {
-							"from": {
-								"type": "string"
-							},
-							"to": {
-								"type": "string"
-							},
-							"vehicleType": {
-								"type": "string"
-							}
-						}
-					}
-				]
-			},
-			"HotelRequest": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/BaseRequest"
-					},
-					{
-						"type": "object",
-						"required": [
-							"from",
-							"to"
-						],
-						"properties": {
-							"hotelName": {
-								"type": "string"
-							},
-							"roomType": {
-								"type": "string"
-							},
-							"location": {
-								"type": "string"
-							}
-						}
-					}
-				]
-			}
+			"x-damah-models": ["BaseRequest"]
+		
 		}
 	}
 }

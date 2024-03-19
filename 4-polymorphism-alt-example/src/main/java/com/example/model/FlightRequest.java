@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
  */
 
 
-public class FlightRequest extends BaseRequest implements AddrequestTripidBody, OneOfTripRequestsItems {
+public class FlightRequest extends BaseRequest {
 
   private String fromAirport = null;
 

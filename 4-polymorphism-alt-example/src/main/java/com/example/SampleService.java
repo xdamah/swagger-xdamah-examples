@@ -10,7 +10,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.example.model.OneOfTripRequestsItems;
+import com.example.model.BaseRequest;
+
 import com.example.model.StoredTrip;
 import com.example.model.Trip;
 
@@ -34,15 +35,15 @@ public class SampleService {
 
 	}
 
-	public StoredTrip addRequest(long tripid, OneOfTripRequestsItems request) {
+	public StoredTrip addRequest(long tripid, BaseRequest request) {
 
 		StoredTrip trip = trips.get(tripid);
 		if (trip == null) {
 			throw new IllegalArgumentException("invalid trip id of " + tripid);
 		} else {
-			List<OneOfTripRequestsItems> requests = trip.getRequests();
+			List<BaseRequest> requests = trip.getRequests();
 			if (requests == null) {
-				requests = new ArrayList<OneOfTripRequestsItems>();
+				requests = new ArrayList<BaseRequest>();
 				trip.setRequests(requests);
 			}
 			requests.add(request);

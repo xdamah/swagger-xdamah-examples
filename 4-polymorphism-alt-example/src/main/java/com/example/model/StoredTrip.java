@@ -11,7 +11,12 @@ import java.util.List;
 
 public class StoredTrip extends Trip  {
 
-  private Long tripId = null;
+
+  public StoredTrip() {
+		super();
+			}
+
+private Long tripId = null;
 
   public StoredTrip tripId(Long tripId) {
     this.tripId = tripId;

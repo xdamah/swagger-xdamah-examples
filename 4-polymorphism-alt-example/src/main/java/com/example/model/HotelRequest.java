@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
  */
 
 
-public class HotelRequest extends BaseRequest implements AddrequestTripidBody, OneOfTripRequestsItems {
+public class HotelRequest extends BaseRequest  {
 
   private String hotelName = null;
 

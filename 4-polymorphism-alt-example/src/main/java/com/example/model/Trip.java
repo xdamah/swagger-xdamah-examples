@@ -2,6 +2,12 @@ package com.example.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +18,15 @@ import java.util.List;
 
 public class Trip   {
 
-  private String tripName = null;
+  public Trip() {
+		super();
+
+	}
+
+private String tripName = null;
 
 
-  
-  private List<OneOfTripRequestsItems> requests = null;
+private List<BaseRequest> requests = null;
 
   public Trip tripName(String tripName) {
     this.tripName = tripName;
@@ -36,14 +46,14 @@ public class Trip   {
     this.tripName = tripName;
   }
 
-  public Trip requests(List<OneOfTripRequestsItems> requests) {
+  public Trip requests(List<BaseRequest> requests) {
     this.requests = requests;
     return this;
   }
 
-  public Trip addRequestsItem(OneOfTripRequestsItems requestsItem) {
+  public Trip addRequestsItem(BaseRequest requestsItem) {
     if (this.requests == null) {
-      this.requests = new ArrayList<OneOfTripRequestsItems>();
+      this.requests = new ArrayList<BaseRequest>();
     }
     this.requests.add(requestsItem);
     return this;
@@ -54,11 +64,11 @@ public class Trip   {
    * @return requests
    **/
 
-    public List<OneOfTripRequestsItems> getRequests() {
+    public List<BaseRequest> getRequests() {
     return requests;
   }
 
-  public void setRequests(List<OneOfTripRequestsItems> requests) {
+  public void setRequests(List<BaseRequest> requests) {
     this.requests = requests;
   }
 

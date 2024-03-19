@@ -6,7 +6,7 @@ import java.util.Objects;
  * CarRequest
  */
 
-public class CarRequest extends BaseRequest implements AddrequestTripidBody, OneOfTripRequestsItems {
+public class CarRequest extends BaseRequest {
 
   private String from = null;
 
