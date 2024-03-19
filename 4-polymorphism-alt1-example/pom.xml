@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.xdamah</groupId>
+		<artifactId>swagger-xdamah-examples</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>4-polymorphism-alt1-example</artifactId>
+<!--
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.github.xdamah</groupId>
+				<artifactId>xdamah-maven-codegen-plugin</artifactId>
+				<version>${xdamah-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/api-docs.json</inputSpec>
+							
+							<language>io.github.xdamah.codegen.XDamahCodeGen</language>
+							<generateApis>true</generateApis>
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<supportingFiles>false</supportingFiles>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<modelPackage>com.example.model</modelPackage>
+							<apiPackage>com.example.api</apiPackage>
+
+							<invokerPackage>com.example.invoker</invokerPackage>
+						
+							<additionalProperties>
+
+							</additionalProperties>
+							<configOptions>
+								<sourceFolder>gen/java</sourceFolder>
+								<useBeanValidation>false</useBeanValidation>
+								<jakarta>true</jakarta>
+								<delegatePattern>true</delegatePattern>
+								<dateLibrary>custom</dateLibrary>
+							</configOptions>
+							<typeMappings>
+								<typeMapping>DateTime=OffsetDateTime</typeMapping>
+								<typeMapping>Date=LocalDate</typeMapping>
+
+
+							</typeMappings>
+							<importMappings>
+								<importMapping>OffsetDateTime=java.time.OffsetDateTime</importMapping>
+								<importMapping>Date=java.time.LocalDate</importMapping>
+
+
+							</importMappings>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>io.github.xdamah</groupId>
+						<artifactId>xdamah-codegen</artifactId>
+						<version>${xdamah-version}</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+	-->
+</project>
