@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Trip
  */
 
-
+@Schema(subTypes = {StoredTrip.class})
 public class Trip   {
 
   public Trip() {
