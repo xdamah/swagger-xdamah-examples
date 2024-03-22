@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
-public class PolymorphismAlt1ExampleApplication {
+public class PolymorphismAltExampleApplication {
 	public static void main(String[] args) {
 
-		SpringApplication.run(PolymorphismAlt1ExampleApplication.class, args);
+		SpringApplication.run(PolymorphismAltExampleApplication.class, args);
 	}
 
 }

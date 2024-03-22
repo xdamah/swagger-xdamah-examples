@@ -15,10 +15,10 @@ import io.swagger.v3.core.jackson.ModelResolver;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
-public class PolymosrphismAltExampleApplication {
+public class PolymorphismAlt1ExampleApplication {
 	public static void main(String[] args) {
 
-		SpringApplication.run(PolymosrphismAltExampleApplication.class, args);
+		SpringApplication.run(PolymorphismAlt1ExampleApplication.class, args);
 	}
 	
 	@PostConstruct
