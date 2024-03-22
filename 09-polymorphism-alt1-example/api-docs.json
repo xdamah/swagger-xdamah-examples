@@ -161,56 +161,8 @@
 	},
 	"components": {
 		"schemas": {
-			"Trip": {
-				"required": [
-					"tripName"
-				],
-				"type": "object",
-				"properties": {
-					"tripName": {
-						"type": "string"
-					},
-					"requests": {
-						"type": "array",
-						"items": {
-							"oneOf": [
-								{
-									"$ref": "#/components/schemas/FlightRequest"
-								},
-								{
-									"$ref": "#/components/schemas/CarRequest"
-								},
-								{
-									"$ref": "#/components/schemas/HotelRequest"
-								}
-							],
-							"discriminator": {
-								"propertyName": "type"
-							}
-						}
-					}
-				}
-			},
-			"StoredTrip": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/Trip"
-					},
-					{
-						"type": "object",
-						"required": [
-							"tripId"
-						],
-						"properties": {
-							"tripId": {
-								"type": "integer",
-								"format": "int64"
-							}
-						}
-					}
-				]
-			},
-			"x-damah-models": ["BaseRequest"]
+			
+			"x-damah-models": ["BaseRequest", "Trip", "StoredTrip"]
 		
 		}
 	}
