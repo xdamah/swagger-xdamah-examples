@@ -68,24 +68,29 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.   
+* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.  (The postman collection- Might be getting a bit out of synch as f now) 
 * More details in each project folder's Readme.MD.
 
 ### Whats in the examples? ###
 
-| The Examples            | Description                                             | Link                              |        
-| :---------------------- | :-----------------------------------------------------  |:--------------------------------- |   
-| 1-first-example         | A quick introductory demo with no controller nor codgen | [link](1-first-example)           |
-| 2-first-codegen-example | A quick introductory demo  with  codegen of only models | [link](2-first-codegen-example)   | 
-| 3-with-security         | A demo with spring security                             | [link](3-with-security)           |
-| 4-polymorphism-example  | A demo of Polymorphism in request and response POJO     | [link](4-polymorphism-example)    |
-| 5-parameter-examples    | A demo of parameters							        | [link](5-parameter-examples)      |
-| 6-first-fqn-example     | Same as the introductory codegen demo but uses FQNs     | [link](6-first-fqn-example)       |
-| 7-mixed                 | Mixed use of xdamah, code first, vanilla design first   | [link](7-mixed)                   |
-| 8-kitchen-sink          | A bit cluttered -includes other request types           | [link](8-kitchen-sink)            |
+| The Examples                    | Description                                             | Link                                     |        
+| :-----------------------------  | :-----------------------------------------------------  |:---------------------------------        |   
+| 01-first-example                | A quick introductory demo with no controller nor codgen | [link](01-first-example)                 |
+| 02-first-codegen-example        | A quick introductory demo  with  codegen of only models | [link](02-first-codegen-example)         | 
+| 03-with-security                | A demo with spring security                             | [link](03-with-security)                 |
+| 04-first-fqn-example            | Same as the introductory codegen demo but uses FQNs     | [link](04-first-fqn-example)             |
+| 05-first-alt-example            | No controller, No codegen, only model schema-gen        | [link](05-first-alt-example)             |
+| 06-first-alt-fqn-example        | No controller, No codegen, only model schema-gen & fqn  | [link](06-first-alt-fqn-example)         |
+| 07-polymorphism-example         | A demo of Polymorphism in request and response POJO     | [link](07-polymorphism-example)          |
+| 08-polymorphism-alt-example     | Polymorphism +  model schema-gen                        | [link](08-polymorphism-alt-example)      |
+| 09-polymorphism-alt1-example    | Polymorphism +  model schema-gen variation              | [link](09-polymorphism-alt1-example)     | 
+| 10-polymorphism-alt-fqn-example | Same as the introductory codegen demo but uses FQNs     | [link](10-polymorphism-alt-fqn-example)  |
+| 11-parameter-examples           | A demo of parameters							        | [link](11-parameter-examples)            |
+| 12-mixed                        | Mixed use of xdamah, code first, vanilla design first   | [link](12-mixed)                         |
+| 13-kitchen-sink                 | A bit cluttered -includes other request types           | [link](13-kitchen-sink)                  |
 
 
-In 1-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In future a third variation will also be attempted on this approach.  
+In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches we demonstrate a third approach.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
