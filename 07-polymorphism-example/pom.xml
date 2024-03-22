@@ -7,7 +7,7 @@
 		<artifactId>swagger-xdamah-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>5-parameter-examples</artifactId>
+	<artifactId>07-polymorphism-example</artifactId>
 
 
 	<build>
@@ -49,13 +49,13 @@
 							<typeMappings>
 								<typeMapping>DateTime=OffsetDateTime</typeMapping>
 								<typeMapping>Date=LocalDate</typeMapping>
-								<typeMapping>SampleCustomType=SampleCustomType</typeMapping>
+
 
 							</typeMappings>
 							<importMappings>
 								<importMapping>OffsetDateTime=java.time.OffsetDateTime</importMapping>
 								<importMapping>Date=java.time.LocalDate</importMapping>
-								<importMapping>SampleCustomType=com.example.custom.SampleCustomType</importMapping>
+
 
 							</importMappings>
 						</configuration>

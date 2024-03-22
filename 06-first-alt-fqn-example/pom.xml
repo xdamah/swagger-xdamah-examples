@@ -7,7 +7,7 @@
 		<artifactId>swagger-xdamah-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>3-first-alt-example</artifactId>
+	<artifactId>06-first-alt-fqn-example</artifactId>
 	<build>
 		<plugins>
 			<plugin>

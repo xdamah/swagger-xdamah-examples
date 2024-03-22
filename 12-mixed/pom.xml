@@ -7,9 +7,7 @@
 		<artifactId>swagger-xdamah-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>4-polymorphism-alt-example</artifactId>
-<!--
-
+	<artifactId>12-mixed</artifactId>
 	<build>
 		<plugins>
 			<plugin>
@@ -23,7 +21,7 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/api-docs.json</inputSpec>
-							
+							<!--language>spring</language -->
 							<language>io.github.xdamah.codegen.XDamahCodeGen</language>
 							<generateApis>true</generateApis>
 							<generateApiTests>false</generateApiTests>
@@ -35,7 +33,7 @@
 							<apiPackage>com.example.api</apiPackage>
 
 							<invokerPackage>com.example.invoker</invokerPackage>
-						
+							<!--templateDirectory>src/main/templates/JavaSpringX</templateDirectory -->
 							<additionalProperties>
 
 							</additionalProperties>
@@ -49,13 +47,13 @@
 							<typeMappings>
 								<typeMapping>DateTime=OffsetDateTime</typeMapping>
 								<typeMapping>Date=LocalDate</typeMapping>
-
+								<typeMapping>SampleCustomType=SampleCustomType</typeMapping>
 
 							</typeMappings>
 							<importMappings>
 								<importMapping>OffsetDateTime=java.time.OffsetDateTime</importMapping>
 								<importMapping>Date=java.time.LocalDate</importMapping>
-
+								<importMapping>SampleCustomType=com.example.custom.SampleCustomType</importMapping>
 
 							</importMappings>
 						</configuration>
@@ -73,5 +71,4 @@
 
 		</plugins>
 	</build>
-	-->
 </project>

@@ -5,7 +5,7 @@
     <artifactId>swagger-xdamah-examples</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>6-first-fqn-example</artifactId><build>
+  <artifactId>04-first-fqn-example</artifactId><build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

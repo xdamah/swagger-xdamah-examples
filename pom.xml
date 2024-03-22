@@ -209,19 +209,21 @@
 </dependency>
 	</dependencies>
 	<modules>
-		<module>1-first-example</module>
-		<module>2-first-codegen-example</module>
-		<module>3-first-alt-example</module>
-		<module>3-first-alt-fqn-example</module>
-		<module>3-with-security</module>
-		<module>4-polymorphism-example</module>
-		<module>4-polymorphism-alt-example</module>
-		<module>4-polymorphism-alt1-example</module>
-		<module>4-polymorphism-alt-fqn-example</module>
-		<module>5-parameter-examples</module>
-		<module>6-first-fqn-example</module>
-		<module>7-mixed</module>
-		<module>8-kitchen-sink</module>
+		<module>01-first-example</module>
+		<module>02-first-codegen-example</module>
+		<module>03-with-security</module>
+		<module>04-first-fqn-example</module>
+		<module>05-first-alt-example</module>
+		<module>06-first-alt-fqn-example</module>
+		
+		<module>07-polymorphism-example</module>
+		<module>08-polymorphism-alt-example</module>
+		<module>09-polymorphism-alt1-example</module>
+		<module>10-polymorphism-alt-fqn-example</module>
+		<module>11-parameter-examples</module>
+		
+		<module>12-mixed</module>
+		<module>13-kitchen-sink</module>
 		
 	</modules>
 
