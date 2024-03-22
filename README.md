@@ -194,14 +194,15 @@ A. **For the same model its much easier to support requests in multiple media ty
 3. ~~Add a better first example that shows how to start without code generation but with autogeneeration of model schema.~~  
 4. ~~Upgrade the spring version.~~ Upgraded for now.   
 5. ~~Add Tests for the examples projects.~~  
-6. Add examples for Map, ObjectNode requestBodies 
-7. Update the tests now that validations are working all around.  
-8. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
-9. If possible work with the request validator for better integration.  
-10. Generate the json when writing code first
-11. Upgrade the generator versions.   
-12. Upgrade from swagger 3.0 to 3.1. 
-13. Work on the WIPs mentioned earlier.  
-14. Caching for performance.  
+6. Seperate form parameters from query parameters
+7. Add examples for Map, ObjectNode requestBodies 
+8. Update the tests now that validations are working all around.  
+9. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+10. If possible work with the request validator for better integration.  
+11. Generate the json when writing code first
+12. Upgrade the generator versions.   
+13. Upgrade from swagger 3.0 to 3.1. 
+14. Work on the WIPs mentioned earlier.  
+15. Caching for performance.  
 
 
