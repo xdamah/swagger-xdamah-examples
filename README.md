@@ -83,14 +83,14 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 06-first-alt-fqn-example        | No controller, No codegen, only model schema-gen & fqn  | [link](06-first-alt-fqn-example)         |
 | 07-polymorphism-example         | A demo of Polymorphism in request and response POJO     | [link](07-polymorphism-example)          |
 | 08-polymorphism-alt-example     | Polymorphism +  model schema-gen                        | [link](08-polymorphism-alt-example)      |
-| 09-polymorphism-alt1-example    | Polymorphism +  model schema-gen variation              | [link](09-polymorphism-alt1-example)     | 
+| 09-polymorphism-alt1-example    | Polymorphism +  model schema-gen cleaner variation      | [link](09-polymorphism-alt1-example)     | 
 | 10-polymorphism-alt-fqn-example | Same as the introductory codegen demo but uses FQNs     | [link](10-polymorphism-alt-fqn-example)  |
 | 11-parameter-examples           | A demo of parameters							        | [link](11-parameter-examples)            |
 | 12-mixed                        | Mixed use of xdamah, code first, vanilla design first   | [link](12-mixed)                         |
 | 13-kitchen-sink                 | A bit cluttered -includes other request types           | [link](13-kitchen-sink)                  |
 
 
-In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches we demonstrate a third approach.  
+In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
