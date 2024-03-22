@@ -87,7 +87,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 10-polymorphism-alt-fqn-example | Same as the introductory codegen demo but uses FQNs     | [link](10-polymorphism-alt-fqn-example)  |
 | 11-parameter-examples           | A demo of parameters							        | [link](11-parameter-examples)            |
 | 12-mixed                        | Mixed use of xdamah, code first, vanilla design first   | [link](12-mixed)                         |
-| 13-kitchen-sink                 | A bit cluttered -includes other request types           | [link](13-kitchen-sink)                  |
+| 13-misc                         | A bit cluttered -includes other request types           | [link](13-misc)                  |
 
 
 In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  

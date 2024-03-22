@@ -1,4 +1,4 @@
-# 8-kitchen-sink Demo #
+# 13-misc Demo #
 
 
 
@@ -97,5 +97,5 @@ And below is the response.
 <img src="imgs/screen09.png" alt="binary request response" width="400"/> 
 
 
-These are the main examples in kitchen sink.
+These are the main examples in this module.
 Providing also postman requests for the same in the collection.

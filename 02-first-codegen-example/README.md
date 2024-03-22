@@ -250,7 +250,7 @@ multipart/form-data with nested
 Do see how easier its in XDamah to support a request in all the media types of application/json, application/xml, application/x-www-form-urlencoded and multipart/form-data.   
 
 Other request types eg application/octet-stream are also supported.
-Please see [5-kitchen-sink](../5-kitchen-sink/README.md) for them.
+Please see [13-misc](../13-misc/README.md) for them.
 
 ### What about responses of other media types  ###
 
