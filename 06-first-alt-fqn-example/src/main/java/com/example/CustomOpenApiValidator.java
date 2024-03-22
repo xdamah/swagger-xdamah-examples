@@ -30,21 +30,18 @@ class CustomOpenApiValidator extends ModelResolver {
 
 	public CustomOpenApiValidator(ObjectMapper mapper) {
 		super(mapper);
-		System.out.println("invoked CustomOpenApiValidator");
 	}
 	
 	
 	@Override
 	protected void applyBeanValidatorAnnotations(BeanPropertyDefinition arg0, Schema property, Annotation[] annotations,
 			Schema parent, boolean applyNotNullAnnotations) {
-		System.out.println("invokedx applyBeanValidatorAnnotations1");
 		super.applyBeanValidatorAnnotations(arg0, property, annotations, parent, applyNotNullAnnotations);
 		applyCustom(property, annotations);
 	}
 
 	@Override
 	protected void applyBeanValidatorAnnotations(Schema property, Annotation[] annotations, Schema parent, boolean applyNotNullAnnotations) {
-		System.out.println("invokedx applyBeanValidatorAnnotations");
 		super.applyBeanValidatorAnnotations(property, annotations, parent, applyNotNullAnnotations);
 		applyCustom(property, annotations);
 
