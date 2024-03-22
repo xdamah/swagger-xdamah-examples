@@ -90,7 +90,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 13-misc                         | A bit cluttered -includes other request types           | [link](13-misc)                  |
 
 
-In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  
+In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedious handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
