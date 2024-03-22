@@ -23,35 +23,7 @@ public class PolymosrphismAltExampleApplication {
 	
 	@PostConstruct
 
-	  void adjustModelConverters() {
-	
-		List<ModelConverter> converters = ModelConverters.getInstance().getConverters();
-		//ModelConverters.getInstance().addConverter(new CustomOpenApiValidator(objectMapper));
-		ModelResolver modelResolver=null;
-		
-		converters = ModelConverters.getInstance().getConverters();
-		
-		
-		for (ModelConverter modelConverter : converters) {
-			
-			if(modelConverter instanceof ModelResolver)
-			{
-				modelResolver=(ModelResolver) modelConverter;
-			}
-			
-		}
-		ObjectMapper objectMapper=null;
-		if(modelResolver!=null)
-		{
-			objectMapper=modelResolver.objectMapper();
-		}
-		else
-		{
-			//
-			objectMapper= new ObjectMapper();
-		}
-		
-		
+	void adjustModelConverters() {
 		ModelConverters.getInstance().addConverter(new SubTypedPropertyConverter());
 		
 	}
