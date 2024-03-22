@@ -8,7 +8,7 @@
       "location" : "REQUEST",
       "pointers" : {
         "instance" : "/creditCardNumber",
-        "schema" : "/components/schemas/Person/creditCardNumber"
+        "schema" : "/components/schemas/com.example.model.Person/creditCardNumber"
       },
       "requestMethod" : "POST"
     }

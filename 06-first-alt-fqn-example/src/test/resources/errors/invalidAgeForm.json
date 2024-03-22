@@ -9,7 +9,7 @@
       "location" : "REQUEST",
       "pointers" : {
         "instance" : "/age",
-        "schema" : "/components/schemas/Person/properties/age"
+        "schema" : "/components/schemas/com.example.model.Person/properties/age"
       },
       "requestMethod" : "POST"
     }

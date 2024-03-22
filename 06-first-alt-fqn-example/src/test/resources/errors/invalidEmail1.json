@@ -8,7 +8,7 @@
       "location" : "REQUEST",
       "pointers" : {
         "instance" : "/email1",
-        "schema" : "/components/schemas/Person/email1"
+        "schema" : "/components/schemas/com.example.model.Person/email1"
       },
       "requestMethod" : "POST"
     }

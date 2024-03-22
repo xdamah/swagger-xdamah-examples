@@ -1,17 +1,19 @@
 {
-  "messages" : [ {
-    "key" : "validation.request.body.schema.minimum",
-    "level" : "ERROR",
-    "message" : "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
-    "context" : {
-      "requestPath" : "/saveperson/",
-      "apiRequestContentType" : "multipart/form-data",
-      "location" : "REQUEST",
-      "pointers" : {
-        "instance" : "/age",
-        "schema" : "/components/schemas/Person/properties/age"
-      },
-      "requestMethod" : "POST"
-    }
-  } ]
+	"messages": [
+		{
+			"key": "validation.request.body.schema.minimum",
+			"level": "ERROR",
+			"message": "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+			"context": {
+				"requestPath": "/saveperson/",
+				"apiRequestContentType": "multipart/form-data",
+				"location": "REQUEST",
+				"pointers": {
+					"instance": "/age",
+					"schema": "/components/schemas/com.example.model.Person/properties/age"
+				},
+				"requestMethod": "POST"
+			}
+		}
+	]
 }

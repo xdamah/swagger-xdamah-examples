@@ -10,7 +10,7 @@
 				"location": "REQUEST",
 				"pointers": {
 					"instance": "/age",
-					"schema": "/components/schemas/Person/properties/age"
+					"schema": "/components/schemas/com.example.model.Person/properties/age"
 				},
 				"requestMethod": "POST"
 			}
@@ -24,7 +24,7 @@
 				"location": "REQUEST",
 				"pointers": {
 					"instance": "/email1",
-					"schema": "/components/schemas/Person/email1"
+					"schema": "/components/schemas/com.example.model.Person/email1"
 				},
 				"requestMethod": "POST"
 			}
@@ -38,7 +38,7 @@
 				"location": "REQUEST",
 				"pointers": {
 					"instance": "/creditCardNumber",
-					"schema": "/components/schemas/Person/creditCardNumber"
+					"schema": "/components/schemas/com.example.model.Person/creditCardNumber"
 				},
 				"requestMethod": "POST"
 			}
