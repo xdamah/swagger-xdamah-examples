@@ -258,7 +258,6 @@
 	</profiles>
 
 
-<!--
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -289,5 +288,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
--->
+
 </project>
