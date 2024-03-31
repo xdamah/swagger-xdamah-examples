@@ -68,24 +68,29 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.   
+* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.  (The postman collection- Might be getting a bit out of synch as f now) 
 * More details in each project folder's Readme.MD.
 
 ### Whats in the examples? ###
 
-| The Examples            | Description                                             | Link                              |        
-| :---------------------- | :-----------------------------------------------------  |:--------------------------------- |   
-| 1-first-example         | A quick introductory demo with no controller nor codgen | [link](1-first-example)           |
-| 2-first-codegen-example | A quick introductory demo  with  codegen of only models | [link](2-first-codegen-example)   | 
-| 3-with-security         | A demo with spring security                             | [link](3-with-security)           |
-| 4-polymorphism-example  | A demo of Polymorphism in request and response POJO     | [link](4-polymorphism-example)    |
-| 5-parameter-examples    | A demo of parameters							        | [link](5-parameter-examples)      |
-| 6-first-fqn-example     | Same as the introductory codegen demo but uses FQNs     | [link](6-first-fqn-example)       |
-| 7-mixed                 | Mixed use of xdamah, code first, vanilla design first   | [link](7-mixed)                   |
-| 8-kitchen-sink          | A bit cluttered -includes other request types           | [link](8-kitchen-sink)            |
+| The Examples                    | Description                                             | Link                                     |        
+| :-----------------------------  | :-----------------------------------------------------  |:---------------------------------        |   
+| 01-first-example                | A quick introductory demo with no controller nor codgen | [link](01-first-example)                 |
+| 02-first-codegen-example        | A quick introductory demo  with  codegen of only models | [link](02-first-codegen-example)         | 
+| 03-with-security                | A demo with spring security                             | [link](03-with-security)                 |
+| 04-first-fqn-example            | Same as the introductory codegen demo but uses FQNs     | [link](04-first-fqn-example)             |
+| 05-first-alt-example            | No controller, No codegen, only model schema-gen        | [link](05-first-alt-example)             |
+| 06-first-alt-fqn-example        | No controller, No codegen, only model schema-gen & fqn  | [link](06-first-alt-fqn-example)         |
+| 07-polymorphism-example         | A demo of Polymorphism in request and response POJO     | [link](07-polymorphism-example)          |
+| 08-polymorphism-alt-example     | Polymorphism +  model schema-gen                        | [link](08-polymorphism-alt-example)      |
+| 09-polymorphism-alt1-example    | Polymorphism +  model schema-gen cleaner variation      | [link](09-polymorphism-alt1-example)     | 
+| 10-polymorphism-alt-fqn-example | Same as the introductory codegen demo but uses FQNs     | [link](10-polymorphism-alt-fqn-example)  |
+| 11-parameter-examples           | A demo of parameters							        | [link](11-parameter-examples)            |
+| 12-mixed                        | Mixed use of xdamah, code first, vanilla design first   | [link](12-mixed)                         |
+| 13-misc                         | A bit cluttered -includes other request types           | [link](13-misc)                  |
 
 
-In 1-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedius handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In future a third variation will also be attempted on this approach.  
+In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedious handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
@@ -189,17 +194,20 @@ A. **For the same model its much easier to support requests in multiple media ty
 
 ### TODOs ###
 
-1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.   
-2. ~~Add a better first example that shows how to start without code generation.~~  
-3. ~~Upgrade the spring version.~~ Upgraded for now.   
-4. ~~Add Tests for the examples projects.~~  
-5. Update the tests now that validations are working all around.  
-6. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
-7. If possible work with the request validator for better integration.  
-8. Generate the json when writing code first
-9. Upgrade the generator versions.   
-10. Upgrade from swagger 3.0 to 3.1. 
-11. Work on the WIPs mentioned earlier.  
-12. Caching for performance.  
+1. Allow the request validator to be turned off on some paths and rely on code first and  vanilla design first for validations.  
+2. ~~Add a better first example that shows how to start without code generation.~~   
+3. ~~Add a better first example that shows how to start without code generation but with autogeneeration of model schema.~~  
+4. ~~Upgrade the spring version.~~ Upgraded for now.   
+5. ~~Add Tests for the examples projects.~~  
+6. Seperate form parameters from query parameters
+7. Add examples for Map, ObjectNode requestBodies 
+8. Update the tests now that validations are working all around.  
+9. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+10. If possible work with the request validator for better integration.  
+11. Generate the json when writing code first
+12. Upgrade the generator versions.   
+13. Upgrade from swagger 3.0 to 3.1. 
+14. Work on the WIPs mentioned earlier.  
+15. Caching for performance.  
 
 

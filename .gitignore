@@ -5,6 +5,7 @@ target/
 .factorypath
 logs/
 api-docs-check.json
+api-docs-firstTree.json
 /build.bat
 run.bat
 /setenv.bat

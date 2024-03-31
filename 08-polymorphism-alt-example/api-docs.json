@@ -1,0 +1,217 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "sample application API",
+		"description": "some description",
+		"termsOfService": "http://swagger.io/terms/",
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://springdoc.org"
+		},
+		"version": "0.0.2-SNAPSHOT"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/createtrip": {
+			"post": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "createtrip",
+				"x-damah": true,
+				"x-damah-service": "sampleService.createTrip(Trip)",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Trip"
+							},
+							"examples": {
+								"newTrip": {
+									"summary": "new trip example",
+									"externalValue": "classpath:examples/new_trip1.json"
+								},
+								"newTripWithRequests": {
+									"summary": "new trip with requests example",
+									"externalValue": "classpath:examples/new_trip2.json"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/StoredTrip"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/trips/{tripid}": {
+			"get": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "triprequests",
+				"x-damah": true,
+				"x-damah-service": "sampleService.getTrip(long)",
+				"parameters": [
+					{
+						"name": "tripid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"example": "1"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/StoredTrip"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/addrequest/{tripid}": {
+			"post": {
+				"tags": [
+					"trip"
+				],
+				"operationId": "addrequest",
+				"x-damah": true,
+				"x-damah-service": "sampleService.addRequest(long, BaseRequest)",
+				"parameters": [
+					{
+						"name": "tripid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"example": "1"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"oneOf": [
+									{
+										"$ref": "#/components/schemas/FlightRequest"
+									},
+									{
+										"$ref": "#/components/schemas/CarRequest"
+									},
+									{
+										"$ref": "#/components/schemas/HotelRequest"
+									}
+								],
+								"discriminator": {
+									"propertyName": "type"
+								}
+							},
+							"examples": {
+								"FlightRequest": {
+									"summary": "FlightRequest Example",
+									"externalValue": "classpath:examples/flightRequest.json"
+								},
+								"CarRequest": {
+									"summary": "CarRequest Example",
+									"externalValue": "classpath:examples/carRequest.json"
+								},
+								"HotelRequest": {
+									"summary": "HotelRequest Example",
+									"externalValue": "classpath:examples/hotelRequest.json"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/StoredTrip"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Trip": {
+				"required": [
+					"tripName"
+				],
+				"type": "object",
+				"properties": {
+					"tripName": {
+						"type": "string"
+					},
+					"requests": {
+						"type": "array",
+						"items": {
+							"oneOf": [
+								{
+									"$ref": "#/components/schemas/FlightRequest"
+								},
+								{
+									"$ref": "#/components/schemas/CarRequest"
+								},
+								{
+									"$ref": "#/components/schemas/HotelRequest"
+								}
+							],
+							"discriminator": {
+								"propertyName": "type"
+							}
+						}
+					}
+				}
+			},
+			"StoredTrip": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/Trip"
+					},
+					{
+						"type": "object",
+						"required": [
+							"tripId"
+						],
+						"properties": {
+							"tripId": {
+								"type": "integer",
+								"format": "int64"
+							}
+						}
+					}
+				]
+			},
+			"x-damah-models": ["BaseRequest"]
+		
+		}
+	}
+}

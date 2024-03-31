@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.3</revision>
+		<revision>1.0.4-SNAPSHOT</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
-		<xdamah-version>1.0.3</xdamah-version>
+		<xdamah-version>1.0.4-SNAPSHOT</xdamah-version>
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -123,6 +123,10 @@
 					<groupId>io.swagger.core.v3</groupId>
 					<artifactId>swagger-models</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>io.swagger.core.v3</groupId>
+					<artifactId>swagger-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -132,17 +136,6 @@
 			<version>2.2.15</version>
 		</dependency>
 
-		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-core</artifactId>
-			<version>2.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.swagger.core.v3</groupId>
-					<artifactId>swagger-models</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<dependency>
 			<groupId>com.atlassian.oai</groupId>
@@ -208,17 +201,30 @@
 			<artifactId>spring-jcl</artifactId>
 
 		</dependency>
-
+<dependency>
+	
+        <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-core-jakarta</artifactId>
+        <version>2.2.19</version>
+</dependency>
 	</dependencies>
 	<modules>
-		<module>1-first-example</module>
-		<module>2-first-codegen-example</module>
-		<module>3-with-security</module>
-		<module>4-polymorphism-example</module>
-		<module>5-parameter-examples</module>
-		<module>6-first-fqn-example</module>
-		<module>7-mixed</module>
-		<module>8-kitchen-sink</module>
+		<module>01-first-example</module>
+		<module>02-first-codegen-example</module>
+		<module>03-with-security</module>
+		<module>04-first-fqn-example</module>
+		<module>05-first-alt-example</module>
+		<module>06-first-alt-fqn-example</module>
+		
+		<module>07-polymorphism-example</module>
+		<module>08-polymorphism-alt-example</module>
+		<module>09-polymorphism-alt1-example</module>
+		<module>10-polymorphism-alt-fqn-example</module>
+		<module>11-parameter-examples</module>
+		
+		<module>12-mixed</module>
+		<module>13-misc</module>
+		
 	</modules>
 
 
@@ -252,7 +258,6 @@
 	</profiles>
 
 
-<!--
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -283,5 +288,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
--->
+
 </project>
