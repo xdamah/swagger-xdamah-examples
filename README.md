@@ -26,7 +26,7 @@ Then we generate code from the specifications.
 Again not showing here details of validation constraints.
 
 Will see more details in that regard later.   
-If we look carefully and obviously we will see that the swagger specifications- hand written or generated or for that matter the controller code hand written or generated are the API contract. They both specify the same things - 
+If we look carefully - we will see that the swagger specifications- hand written or generated or for that matter the controller code hand written or generated are the API contract. They both specify the same things - 
 * the url path.
 * the validation constraints
 * the media types for the request and response
@@ -35,18 +35,23 @@ It will not be incorrect to say that they both are request/response rules for re
 
 The main goal is to express, enforce those rules and invoke the business logic.
 
-If we see the code each controller code will look very similar to another controller code. The only difference will be in the service method invoked.  
+If we see the code each controller code will look very similar to another controller code. The main difference will be in the service method invoked.  
 
-What we are trying to avoid here is generating the controller and related code. The rules for that purpose including that of validations are already there in the swagger specs in json/yaml. 
+What we are trying to avoid here is generating or handwriting the controller and related code. The rules for that purpose including that of validations are already there in the swagger specs in json/yaml. 
 
-Instead of generating the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
+Instead of generating/handwriting the controller code which mirrors the rules specified in the swagger specs is it possible to invoke apply those same rules leveraging whats specified in the swagger specs as source of truth for the rules and also achieve invoking of the service class method?  
 
-The only code that is generated is that of the model POJO classes and thats optional.  
+The only code that is generated/written is that of the model POJO classes. We possibly will create the model classes when  we write the business logic in service classes.  
+For this purpose we can choose one of the following:
+1. To either write the model classes by hand along with the business service classes  
+2. Or we can generate the model classes from the swagger specs. Use them in the servic classes.  
+
+If we choose 1. we can even go for generating the model corresponding swagger component schema specifications.  
 
 So that's the objective.   
 
 What we have here is a variation of design first approach.
-Obviously design first implies code generation. Lets call it xdamah. X stands for Swagger extensions. Damah means self control. Its a word play implying that The swagger specs itslf does the control without a need for coding or code-generating a controller.
+Design first usually implies code generation. Not so in our approach- Lets call it xdamah. X stands for Swagger extensions. Damah means self control. Its a word play implying that The swagger specs itslf does the control without a need for coding or code-generating a controller.
 
 
 ### How do I get set up? ###
@@ -90,7 +95,7 @@ Obviously design first implies code generation. Lets call it xdamah. X stands fo
 | 13-misc                         | A bit cluttered -includes other request types           | [link](13-misc)                  |
 
 
-In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedious handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach.  
+In 01-first-example we are handwriting only the model class. We are not having any controller class code  in the project. It can be tedious handwriting model classes and matching them with swagger specs.  In 2-first-codegen-example and thereafter we therefore demonstrate how we can rely on code generation just for the model classes. In the "alt" approaches demonstrating a third approach where we do the reverse as far as model classes are concerned.  
 
 ### More Details ###
 We have these swagger extensions examples of which are shown below.
