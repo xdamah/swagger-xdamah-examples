@@ -46,9 +46,9 @@ For this purpose we can choose one of the following:
 1. To either write the model classes by hand along with the business service classes  
 2. Or we can generate the model classes from the swagger specs. Use them in the servic classes.  
 
-If we choose 1. we can even go for generating the model corresponding swagger component schema specifications.  
+If we choose 1. we can even go for generating the corresponding swagger component schema specifications from the model classes
 
-So that's the objective.   
+So that's the objective- Have less code. Rather just have swagger specifications + only that code which is not already expressed in the swagger specifications.   
 
 What we have here is a variation of design first approach.
 Design first usually implies code generation. Not so in our approach- Lets call it xdamah. X stands for Swagger extensions. Damah means self control. Its a word play implying that The swagger specs itslf does the control without a need for coding or code-generating a controller.
