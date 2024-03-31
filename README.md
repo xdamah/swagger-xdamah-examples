@@ -202,7 +202,7 @@ A. **For the same model its much easier to support requests in multiple media ty
 6. Seperate form parameters from query parameters
 7. Add examples for Map, ObjectNode requestBodies 
 8. Update the tests now that validations are working all around.  
-9. Add an example that illustrates how to hand-write model and auto-generate and  the model's schema 
+9. ~~Add an example that illustrates how to hand-write model and auto-generate and  the model's schema.~~ 
 10. If possible work with the request validator for better integration.  
 11. Generate the json when writing code first
 12. Upgrade the generator versions.   
