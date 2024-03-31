@@ -13,9 +13,9 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>1.0.4-SNAPSHOT</revision>
+		<revision>1.0.4</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
-		<xdamah-version>1.0.4-SNAPSHOT</xdamah-version>
+		<xdamah-version>1.0.4</xdamah-version>
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -257,7 +257,7 @@
 		</profile>
 	</profiles>
 
-
+<!--
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -288,5 +288,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+-->
 </project>
