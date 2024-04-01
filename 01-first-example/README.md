@@ -1,6 +1,6 @@
 # 01-first-example Demo #
 
-Will capture very quick brief some of the steps.
+Will capture here some very quick and brief steps.
 Hope that helps convey the idea.
 
 ### Steps ###

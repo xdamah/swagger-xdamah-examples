@@ -1,4 +1,4 @@
-# Swagger Xadamah Examples #
+# Swagger XDamah Examples #
 
 This README documents whatever steps are necessary to get these example applications up and running.
 
@@ -51,7 +51,7 @@ If we choose 1. we can even go for generating the corresponding swagger componen
 So that's the objective- Have less code. Rather just have swagger specifications + only that code which is not already expressed in the swagger specifications.   
 
 What we have here is a variation of design first approach.
-Design first usually implies code generation. Not so in our approach- Lets call it xdamah. X stands for Swagger extensions. Damah means self control. Its a word play implying that The swagger specs itslf does the control without a need for coding or code-generating a controller.
+Design first usually implies code generation. Not so in our approach- Lets call it xdamah. X stands for Swagger extensions. Damah means self control. It's a word play implying that The swagger specs itself does the control without a need for coding or code-generating a controller.
 
 
 ### How do I get set up? ###
