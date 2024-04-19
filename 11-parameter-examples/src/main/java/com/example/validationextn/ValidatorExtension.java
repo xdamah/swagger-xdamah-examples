@@ -8,7 +8,6 @@ import com.example.custom.SampleCustomType;
 
 import io.github.xdamah.validatorextn.BaseValidatorExtension;
 import io.github.xdamah.validatorextn.IValidator;
-import io.github.xdamah.validatorextn.RegexCardValidator;
 import io.github.xdamah.validatorextn.XdamahCardValidator;
 
 //this is just a democustome validator
