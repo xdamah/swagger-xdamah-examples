@@ -1,15 +1,12 @@
 package com.example.model;
 
-import java.util.Objects;
-import com.example.custom.SampleCustomType;
-import com.example.model.Person;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.example.custom.SampleCustomType;
 
 
 public class Person   {

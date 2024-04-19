@@ -1,9 +1,6 @@
 package com.example.model;
 
 import java.util.Objects;
-import com.example.model.BaseRequest;
-
-import java.time.OffsetDateTime;
 
 /**
  * HotelRequest

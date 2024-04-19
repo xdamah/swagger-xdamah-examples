@@ -1,9 +1,6 @@
 package com.example.model;
 
 import java.util.Objects;
-import com.example.model.Trip;
-
-import java.util.List;
 
 /**
  * StoredTrip

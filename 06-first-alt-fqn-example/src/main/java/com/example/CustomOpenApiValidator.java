@@ -9,9 +9,6 @@ import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.oas.models.media.Schema;
 
-
-import org.springframework.context.annotation.Configuration;
-
 //@Configuration
 class CustomOpenApiValidator extends ModelResolver {
 

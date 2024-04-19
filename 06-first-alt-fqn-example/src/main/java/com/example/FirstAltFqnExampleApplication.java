@@ -4,14 +4,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.github.xdamah.modelconverter.ByteArrayPropertyConverter;
 //import io.github.xdamah.modelconverter.IModelConverters;
@@ -19,7 +15,6 @@ import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.core.jackson.TypeNameResolver;
-import io.swagger.v3.core.util.Json31;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })

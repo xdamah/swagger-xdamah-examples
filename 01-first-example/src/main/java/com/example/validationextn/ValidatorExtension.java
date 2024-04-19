@@ -8,7 +8,7 @@ import com.example.custom.SampleCustomType;
 
 import io.github.xdamah.validatorextn.BaseValidatorExtension;
 import io.github.xdamah.validatorextn.IValidator;
-import io.github.xdamah.validatorextn.RegexCardValidator;
+import io.github.xdamah.validatorextn.XdamahCardValidator;
 
 
 //this is just a democustome validator
@@ -35,7 +35,7 @@ public class ValidatorExtension extends BaseValidatorExtension {
 	@Override
 	protected HashMap<String, IValidator> mapValidators() {
 		HashMap<String, IValidator> hashMap = new HashMap<>();
-		hashMap.put(CREDIT_CARD_EXTN, new RegexCardValidator());
+		hashMap.put(CREDIT_CARD_EXTN, new XdamahCardValidator());
 		hashMap.put(EMAIL_EXTN, new SimpleEmailValidator());
 		return hashMap;
 	}

@@ -11,7 +11,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.example.model.BaseRequest;
-
 import com.example.model.StoredTrip;
 import com.example.model.Trip;
 
