@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.github.xdamah</groupId>
-		<artifactId>swagger-xdamah-examples</artifactId>
+		<artifactId>more-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>01-first-example</artifactId>
+	<artifactId>06-first-alt-fqn-example</artifactId>
 	<build>
 		<plugins>
 			<plugin>

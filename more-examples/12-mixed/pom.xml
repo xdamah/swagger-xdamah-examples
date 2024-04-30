@@ -4,17 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.github.xdamah</groupId>
-		<artifactId>swagger-xdamah-examples</artifactId>
+		<artifactId>more-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>02-first-codegen-example</artifactId>
+	<artifactId>12-mixed</artifactId>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot-version}</version>
-			</plugin>
 			<plugin>
 				<groupId>io.github.xdamah</groupId>
 				<artifactId>xdamah-maven-codegen-plugin</artifactId>

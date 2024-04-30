@@ -4,18 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.github.xdamah</groupId>
-		<artifactId>swagger-xdamah-examples</artifactId>
+		<artifactId>more-examples</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>06-first-alt-fqn-example</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot-version}</version>
-			</plugin>
-			
-		</plugins>
-	</build>
+	<artifactId>08-polymorphism-alt-example</artifactId>
+
 </project>
