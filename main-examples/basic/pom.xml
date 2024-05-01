@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.github.xdamah</groupId>
-    <artifactId>swagger-xdamah-examples</artifactId>
+    <artifactId>main-examples</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>main-examples</artifactId>
+  <artifactId>basic</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>basic</module>
-  	<module>with-poly</module>
+  	<module>basic-less-code</module>
+  	<module>basic-with-code-gen</module>
   </modules>
 </project>
