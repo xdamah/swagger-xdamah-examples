@@ -1,0 +1,29 @@
+{
+  "messages" : [ {
+    "key" : "validation.request.parameter.schema.type",
+    "level" : "ERROR",
+    "message" : "Instance type (string) does not match any allowed primitive type (allowed: [\"integer\"])",
+    "context" : {
+      "requestPath" : "/person/byid/ab",
+      "parameter" : {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "style" : "SIMPLE",
+        "explode" : false,
+        "schema" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 1,
+          "exampleSetFlag" : true,
+          "types" : [ "integer" ]
+        }
+      },
+      "location" : "REQUEST",
+      "pointers" : {
+        "instance" : "/"
+      },
+      "requestMethod" : "GET"
+    }
+  } ]
+}
