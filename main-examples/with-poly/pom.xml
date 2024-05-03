@@ -9,6 +9,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>polymorphic-less-code</module>
-  	<module>polymorphic-with-code-gen</module>
+  	<module>polymorphic-with-min-code-gen</module>
   </modules>
 </project>

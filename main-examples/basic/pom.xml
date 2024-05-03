@@ -9,6 +9,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>basic-less-code</module>
-  	<module>basic-with-code-gen</module>
+  	<module>basic-with-min-code-gen</module>
   </modules>
 </project>

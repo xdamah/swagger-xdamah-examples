@@ -5,5 +5,5 @@
     <artifactId>with-poly</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>polymorphic-with-code-gen</artifactId>
+  <artifactId>polymorphic-with-min-code-gen</artifactId>
 </project>
