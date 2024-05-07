@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.modelresolver.CustomOpenApiValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.xdamah.modelconverter.ByteArrayPropertyConverter;
@@ -66,9 +65,8 @@ public class FirstAltFqnExampleApplication {
 			objectMapper= new ObjectMapper();
 		}
 		
-		ModelConverters.getInstance().addConverter(new CustomOpenApiValidator(objectMapper));
 		ModelConverters.getInstance().addConverter(new ByteArrayPropertyConverter());
-		ModelConverters.getInstance().removeConverter(modelResolver);
+		
 	}
 
 }

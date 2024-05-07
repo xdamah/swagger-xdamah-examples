@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
 
-import com.example.custom.SampleCustomType;
-
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -42,16 +38,13 @@ public class Person   {
 
       private String email;
   
-      @Email()
-  
-      private String email1;
+      
   @Min(18)
   
   @Max(30)
   private Integer age ;
 
-  @CreditCardNumber
-  private String creditCardNumber = null;
+ 
 
  
   private LocalDate registrationDate = null;
@@ -63,7 +56,7 @@ public class Person   {
   private List<byte[]> pics = null;
 
   
-  private SampleCustomType sampleCustomTypeData = null;
+
 
 
   private OffsetDateTime someTimeData = null;
@@ -130,18 +123,7 @@ public class Person   {
     this.email = email;
   }
 
-  public Person email1(String email1) {
-    this.email1 = email1;
-    return this;
-  }
-
-    public String getEmail1() {
-    return email1;
-  }
-
-  public void setEmail1(String email1) {
-    this.email1 = email1;
-  }
+ 
 
   public Person age(Integer age) {
     this.age = age;
@@ -157,19 +139,7 @@ public class Person   {
     this.age = age;
   }
 
-  public Person creditCardNumber(String creditCardNumber) {
-    this.creditCardNumber = creditCardNumber;
-    return this;
-  }
-
-
-    public String getCreditCardNumber() {
-    return creditCardNumber;
-  }
-
-  public void setCreditCardNumber(String creditCardNumber) {
-    this.creditCardNumber = creditCardNumber;
-  }
+  
 
   public Person registrationDate(LocalDate registrationDate) {
     this.registrationDate = registrationDate;
@@ -221,19 +191,7 @@ public class Person   {
     this.pics = pics;
   }
 
-  public Person sampleCustomTypeData(SampleCustomType sampleCustomTypeData) {
-    this.sampleCustomTypeData = sampleCustomTypeData;
-    return this;
-  }
-
-
-    public SampleCustomType getSampleCustomTypeData() {
-    return sampleCustomTypeData;
-  }
-
-  public void setSampleCustomTypeData(SampleCustomType sampleCustomTypeData) {
-    this.sampleCustomTypeData = sampleCustomTypeData;
-  }
+  
 
   public Person someTimeData(OffsetDateTime someTimeData) {
     this.someTimeData = someTimeData;
@@ -298,13 +256,13 @@ public class Person   {
         Objects.equals(this.firstName, person.firstName) &&
         Objects.equals(this.lastName, person.lastName) &&
         Objects.equals(this.email, person.email) &&
-        Objects.equals(this.email1, person.email1) &&
+
         Objects.equals(this.age, person.age) &&
-        Objects.equals(this.creditCardNumber, person.creditCardNumber) &&
+
         Objects.equals(this.registrationDate, person.registrationDate) &&
         Objects.equals(this.pic, person.pic) &&
         Objects.equals(this.pics, person.pics) &&
-        Objects.equals(this.sampleCustomTypeData, person.sampleCustomTypeData) &&
+
         Objects.equals(this.someTimeData, person.someTimeData) &&
         Objects.equals(this.anotherPerson, person.anotherPerson) &&
         Objects.equals(this.children, person.children);
@@ -312,7 +270,7 @@ public class Person   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, email, email1, age, creditCardNumber, registrationDate, pic, pics, sampleCustomTypeData, someTimeData, anotherPerson, children);
+    return Objects.hash(id, firstName, lastName, email, age, registrationDate, pic, pics, someTimeData, anotherPerson, children);
   }
 
   @Override
@@ -324,13 +282,13 @@ public class Person   {
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    email1: ").append(toIndentedString(email1)).append("\n");
+
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
-    sb.append("    creditCardNumber: ").append(toIndentedString(creditCardNumber)).append("\n");
+
     sb.append("    registrationDate: ").append(toIndentedString(registrationDate)).append("\n");
     sb.append("    pic: ").append(toIndentedString(pic)).append("\n");
     sb.append("    pics: ").append(toIndentedString(pics)).append("\n");
-    sb.append("    sampleCustomTypeData: ").append(toIndentedString(sampleCustomTypeData)).append("\n");
+
     sb.append("    someTimeData: ").append(toIndentedString(someTimeData)).append("\n");
     sb.append("    anotherPerson: ").append(toIndentedString(anotherPerson)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");

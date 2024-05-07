@@ -24,7 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.example.custom.SampleCustomType;
+
 import com.example.model.Person;
 import com.example.test.model.BridgePerson;
 import com.example.test.model.Tuple;
@@ -101,7 +101,7 @@ public class SavePersonXmlTest {
 		assertTrue(bridgeFields.length==personFields.length);
 		
 		Class[] allowedDifferentFieldTypes= {LocalDate.class,
-				SampleCustomType.class, OffsetDateTime.class,
+				 OffsetDateTime.class,
 				Person.class};
 		
 		for (Field field : personFields) {
@@ -149,27 +149,12 @@ public class SavePersonXmlTest {
 		badRequest("saveperson/", "examples/1.xml", this::invalidAge, "errors/invalidAgeXml.json");
 	}
 
-	@Test
-	void saveNestedPersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
-	}
+	
 
-	@Test
-	void savePersonJsonWithInvalidEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidEmail1, "errors/invalidEmail1.json");
-	}
+	
 
-	@Test
-	void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidCardAgeEmail1, "errors/invalidCCAgeEmail1Xml.json");
-	}
-
-
-	@Test
-	void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidCardAgeEmail1InNested,
-				"errors/invalidCCAgeEmail1NestedXml.json");
-	}
+	
+	
 	
 
 
@@ -215,17 +200,9 @@ public class SavePersonXmlTest {
 	
 	
 
-	@Test
-	void savePersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/1.xml", this::invalidCard, "errors/badcc.json");
-	}
 
 
-	@Test
-	void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
-		badRequest("saveperson/", "examples/2.xml", this::invalidCardsInNested, "errors/badCCsInNested.json");
-	}
-
+	
 	
 	private Element invalidCard(Element x) {
 
