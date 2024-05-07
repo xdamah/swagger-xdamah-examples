@@ -12,10 +12,8 @@ public class FirstFqnExampleApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(FirstFqnExampleApplication.class, args);
-		logger.info("info message on startup");
-		logger.debug("debug message on startup");
-		logger.warn("warn message on startup");
-		logger.error("error message on startup");
+		logger.info("FirstFqnExampleApplication started");
+		
 	}
 
 }

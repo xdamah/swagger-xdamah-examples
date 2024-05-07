@@ -115,25 +115,7 @@ public class SavePersonMultiPartTest {
 	}
 	
 	
-		@Test
-		void savePersonJsonWithInvalidCCTest() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidCard, "errors/badcc.json");
-		}
 		
-		@Test
-		void saveNestedPersonJsonWithInvalidCCTest() throws Exception {
-			badRequest("saveperson/", "examples/2.form.properties", this::invalidCardsInNested, "errors/badCCsInNested.json");
-		}
-		
-		@Test
-		void savePersonFormWithInvalidEmail1Test() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidEmail1, "errors/invalidEmail1.json");
-		}
-		
-		@Test
-		void saveNestedPersonFormWithInvalidEmail1Test() throws Exception {
-			badRequest("saveperson/", "examples/2.form.properties", this::invalidEmail1InNested, "errors/invalidEmail1Nested.json");
-		}
 		
 		
 		
@@ -152,15 +134,7 @@ public class SavePersonMultiPartTest {
 		}
 
 	
-		@Test
-		void savePersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-			badRequest("saveperson/", "examples/1.form.properties", this::invalidCardAgeEmail1, "errors/inalidCCAgeEmail1Multi.json");
-		}
 		
-		@Test
-		void saveNestedPersonJsonWithInvalidCardAgeEmail1Test() throws Exception {
-			badRequest("saveperson/", "examples/2.form.properties", this::invalidCardAgeEmail1InNested, "errors/invalidCCAgeEmail1NestedMulti.json");
-		}
 	
 	private List<Tuple<OffsetDateTime, OffsetDateTime>> f1(Properties props,   ObjectNode outputAsNode) 
 	{

@@ -233,19 +233,11 @@
 						"pattern": ".+@.+\\..+",
 						"type": "string"
 					},
-					"email1": {
-						"type": "string",
-						"x-Email": true
-					},
 					"age": {
 						"maximum": 30,
 						"minimum": 18,
 						"type": "integer",
 						"format": "int32"
-					},
-					"creditCardNumber": {
-						"type": "string",
-						"x-CreditCardNumber": true
 					},
 					"registrationDate": {
 						"type": "string",
@@ -261,9 +253,6 @@
 							"type": "string",
 							"format": "byte"
 						}
-					},
-					"sampleCustomTypeData": {
-						"$ref": "#/components/schemas/com.example.custom.SampleCustomType"
 					},
 					"someTimeData": {
 						"type": "string",
@@ -282,9 +271,6 @@
 				"xml": {
 					"name": "person"
 				}
-			},
-			"com.example.custom.SampleCustomType": {
-				"type": "object"
 			}
 		}
 	}

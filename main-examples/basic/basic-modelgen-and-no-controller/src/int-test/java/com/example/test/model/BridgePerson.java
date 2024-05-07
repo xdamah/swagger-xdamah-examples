@@ -31,14 +31,12 @@ public class BridgePerson   {
   @JsonProperty("email")
   private String email = null;
 
-  @JsonProperty("email1")
-  private String email1 = null;
+
 
   @JsonProperty("age")
   private Integer age = null;
 
-  @JsonProperty("creditCardNumber")
-  private String creditCardNumber = null;
+
 
   @JsonProperty("registrationDate")
   private String registrationDate = null;
@@ -50,8 +48,7 @@ public class BridgePerson   {
   
   private List<byte[]> pics = null;
 
-  @JsonProperty("sampleCustomTypeData")
-  private String sampleCustomTypeData = null;
+
 
   @JsonProperty("someTimeData")
   private String someTimeData = null;
@@ -135,23 +132,9 @@ public class BridgePerson   {
     this.email = email;
   }
 
-  public BridgePerson email1(String email1) {
-    this.email1 = email1;
-    return this;
-  }
 
-  /**
-   * Get email1
-   * @return email1
-   **/
-  @Schema(description = "")
-    public String getEmail1() {
-    return email1;
-  }
 
-  public void setEmail1(String email1) {
-    this.email1 = email1;
-  }
+
 
   public BridgePerson age(Integer age) {
     this.age = age;
@@ -173,23 +156,7 @@ public class BridgePerson   {
     this.age = age;
   }
 
-  public BridgePerson creditCardNumber(String creditCardNumber) {
-    this.creditCardNumber = creditCardNumber;
-    return this;
-  }
-
-  /**
-   * Get creditCardNumber
-   * @return creditCardNumber
-   **/
-  @Schema(description = "")
-    public String getCreditCardNumber() {
-    return creditCardNumber;
-  }
-
-  public void setCreditCardNumber(String creditCardNumber) {
-    this.creditCardNumber = creditCardNumber;
-  }
+  
 
   public BridgePerson registrationDate(String registrationDate) {
     this.registrationDate = registrationDate;
@@ -253,23 +220,7 @@ public class BridgePerson   {
     this.pics = pics;
   }
 
-  public BridgePerson sampleCustomTypeData(String sampleCustomTypeData) {
-    this.sampleCustomTypeData = sampleCustomTypeData;
-    return this;
-  }
-
-  /**
-   * Get sampleCustomTypeData
-   * @return sampleCustomTypeData
-   **/
-  @Schema(description = "")
-    public String getSampleCustomTypeData() {
-    return sampleCustomTypeData;
-  }
-
-  public void setSampleCustomTypeData(String sampleCustomTypeData) {
-    this.sampleCustomTypeData = sampleCustomTypeData;
-  }
+  
 
   public BridgePerson someTimeData(String someTimeData) {
     this.someTimeData = someTimeData;
@@ -342,8 +293,8 @@ public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + Arrays.hashCode(pic);
-	result = prime * result + Objects.hash(age, anotherPerson, children, creditCardNumber, email, email1, firstName, id,
-			lastName, pics, registrationDate, sampleCustomTypeData, someTimeData);
+	result = prime * result + Objects.hash(age, anotherPerson, children,  email, firstName, id,
+			lastName, pics, registrationDate,  someTimeData);
 	return result;
 }
 
@@ -357,12 +308,12 @@ public boolean equals(Object obj) {
 		return false;
 	BridgePerson other = (BridgePerson) obj;
 	return Objects.equals(age, other.age) && Objects.equals(anotherPerson, other.anotherPerson)
-			&& Objects.equals(children, other.children) && Objects.equals(creditCardNumber, other.creditCardNumber)
-			&& Objects.equals(email, other.email) && Objects.equals(email1, other.email1)
+			&& Objects.equals(children, other.children) 
+			&& Objects.equals(email, other.email) 
 			&& Objects.equals(firstName, other.firstName) && Objects.equals(id, other.id)
 			&& Objects.equals(lastName, other.lastName) && Arrays.equals(pic, other.pic)
 			&& Objects.equals(pics, other.pics) && Objects.equals(registrationDate, other.registrationDate)
-			&& Objects.equals(sampleCustomTypeData, other.sampleCustomTypeData)
+
 			&& Objects.equals(someTimeData, other.someTimeData);
 }
 
@@ -375,13 +326,13 @@ public boolean equals(Object obj) {
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    email1: ").append(toIndentedString(email1)).append("\n");
+   
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
-    sb.append("    creditCardNumber: ").append(toIndentedString(creditCardNumber)).append("\n");
+    
     sb.append("    registrationDate: ").append(toIndentedString(registrationDate)).append("\n");
     sb.append("    pic: ").append(toIndentedString(pic)).append("\n");
     sb.append("    pics: ").append(toIndentedString(pics)).append("\n");
-    sb.append("    sampleCustomTypeData: ").append(toIndentedString(sampleCustomTypeData)).append("\n");
+
     sb.append("    someTimeData: ").append(toIndentedString(someTimeData)).append("\n");
     sb.append("    anotherPerson: ").append(toIndentedString(anotherPerson)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");
