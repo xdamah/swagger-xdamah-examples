@@ -5,5 +5,5 @@
     <artifactId>with-poly</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>polymorphic-less-code</artifactId>
+  <artifactId>polymorphic-no-controller</artifactId>
 </project>

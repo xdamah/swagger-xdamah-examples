@@ -8,7 +8,7 @@
   <artifactId>with-poly</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>polymorphic-less-code</module>
-  	<module>polymorphic-with-min-code-gen</module>
+  	<module>polymorphic-no-controller</module>
+  	<module>polymorphic-modelgen-and-no-controller</module>
   </modules>
 </project>
