@@ -5,7 +5,7 @@
     <artifactId>basic</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>basic-with-min-code-gen</artifactId><build>
+  <artifactId>basic-modelgen-and-no-controller</artifactId><build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -62,13 +62,13 @@ The examples are organized into two folders
 
 Will discuss the main examples here first and understand what that is about.  
 The main-examples are illustrated with 2 use cases- basic and with-poly(morphism).  
-In each we have two options less-code and with-min(imal)-code-gen(eration)  
+In each we have two options -no-controller and -modelgen-and-no-controller  
 
 So we basically have four projects of interest here.  
-* swagger-xdamah-examples\main-examples\basic\basic-less-code
-* swagger-xdamah-examples\main-examples\basic\basic-with-min-code-gen
-* swagger-xdamah-examples\main-examples\with-poly\polymorphic-less-code
-* swagger-xdamah-examples\main-examples\with-poly\polymorphic-with-min-code-gen
+* swagger-xdamah-examples\main-examples\basic\basic-no-controller
+* swagger-xdamah-examples\main-examples\basic\basic-modelgen-and-no-controller
+* swagger-xdamah-examples\main-examples\with-poly\polymorphic-no-controller
+* swagger-xdamah-examples\main-examples\with-poly\polymorphic-modelgen-and-no-controller
 
 While these projects are organized in a tree structure to avoid repeating same pom.xml maven details example - dependencies and plugins there is no reason why each cannot be implemented as a stand alone maven project.  
 

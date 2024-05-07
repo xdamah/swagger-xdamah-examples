@@ -8,7 +8,7 @@
   <artifactId>basic</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>basic-less-code</module>
-  	<module>basic-with-min-code-gen</module>
+  	<module>basic-no-controller</module>
+  	<module>basic-modelgen-and-no-controller</module>
   </modules>
 </project>
