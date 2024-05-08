@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>basic</module>
-  	<module>custom</module>
+  	<module>extend</module>
   	<module>with-poly</module>
   </modules>
   <!-- can remove this profile later -->

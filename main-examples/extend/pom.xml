@@ -8,7 +8,7 @@
   <artifactId>basic</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>custom-no-controller</module>
-  	<module>custom-modelgen-and-no-controller</module>
+  	<module>extend-no-controller</module>
+  	<module>extend-modelgen-and-no-controller</module>
   </modules>
 </project>

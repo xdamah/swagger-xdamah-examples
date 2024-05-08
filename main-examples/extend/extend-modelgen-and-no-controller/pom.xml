@@ -5,7 +5,7 @@
     <artifactId>basic</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>custom-modelgen-and-no-controller</artifactId><build>
+  <artifactId>extend-modelgen-and-no-controller</artifactId><build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

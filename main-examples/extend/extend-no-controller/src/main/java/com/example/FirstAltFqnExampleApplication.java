@@ -40,35 +40,47 @@ public class FirstAltFqnExampleApplication {
 	  void adjustModelConverters() {
 	
 		TypeNameResolver.std.setUseFqn(true);
-		List<ModelConverter> converters = ModelConverters.getInstance().getConverters();
-		//ModelConverters.getInstance().addConverter(new CustomOpenApiValidator(objectMapper));
-		ModelResolver modelResolver=null;
-		
-		converters = ModelConverters.getInstance().getConverters();
-		
-		
-		for (ModelConverter modelConverter : converters) {
-			
-			if(modelConverter instanceof ModelResolver)
-			{
-				modelResolver=(ModelResolver) modelConverter;
-			}
-			
-		}
-		ObjectMapper objectMapper=null;
-		if(modelResolver!=null)
-		{
-			objectMapper=modelResolver.objectMapper();
-		}
-		else
-		{
-			//
-			objectMapper= new ObjectMapper();
-		}
+		ModelResolver modelResolver = modelResolver();
+		ObjectMapper objectMapper = objectMapper(modelResolver);
 		
 		ModelConverters.getInstance().addConverter(new CustomOpenApiValidator(objectMapper));
 		ModelConverters.getInstance().addConverter(new ByteArrayPropertyConverter());
 		ModelConverters.getInstance().removeConverter(modelResolver);
 	}
+
+
+private ObjectMapper objectMapper(ModelResolver modelResolver) {
+	ObjectMapper objectMapper=null;
+	if(modelResolver!=null)
+	{
+		objectMapper=modelResolver.objectMapper();
+	}
+	else
+	{
+		//
+		objectMapper= new ObjectMapper();
+	}
+	return objectMapper;
+}
+
+
+private ModelResolver modelResolver() {
+	List<ModelConverter> converters = ModelConverters.getInstance().getConverters();
+
+	ModelResolver modelResolver=null;
+	
+	converters = ModelConverters.getInstance().getConverters();
+	
+	
+	for (ModelConverter modelConverter : converters) {
+		
+		if(modelConverter instanceof ModelResolver)
+		{
+			modelResolver=(ModelResolver) modelConverter;
+		}
+		
+	}
+	return modelResolver;
+}
 
 }

@@ -7,7 +7,7 @@
 		<artifactId>basic</artifactId>
 		<version>${revision}</version>
 	</parent>
-	<artifactId>custom-no-controller</artifactId>
+	<artifactId>extend-no-controller</artifactId>
 	<build>
 		<plugins>
 			<plugin>
