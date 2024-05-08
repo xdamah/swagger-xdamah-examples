@@ -72,7 +72,7 @@ So we basically have 6 projects of interest here in the main examples.
 * swagger-xdamah-examples\main-examples\polymorphic\polymorphic-no-controller
 * swagger-xdamah-examples\main-examples\polymorphic\polymorphic-modelgen-and-no-controller
 
-While these projects are organized in a tree structure to avoid repeating same pom.xml maven details example - dependencies and plugins there is no reason why each cannot be implemented as a stand alone maven project.  
+While these projects are organized in a tree structure to avoid repeating same pom.xml maven details - example - dependencies and plugins there is no reason why each cannot be implemented as a stand alone maven project.  
 
 
 

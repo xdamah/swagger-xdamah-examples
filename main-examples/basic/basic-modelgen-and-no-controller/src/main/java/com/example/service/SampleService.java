@@ -1,4 +1,4 @@
-package com.example;
+package com.example.service;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
