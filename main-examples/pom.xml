@@ -10,7 +10,7 @@
   <modules>
   	<module>basic</module>
   	<module>extend</module>
-  	<module>with-poly</module>
+  	<module>polymorphic</module>
   </modules>
   <!-- can remove this profile later -->
   <profiles>

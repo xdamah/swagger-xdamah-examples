@@ -5,7 +5,7 @@
     <artifactId>main-examples</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>basic</artifactId>
+  <artifactId>extend</artifactId>
   <packaging>pom</packaging>
   <modules>
   	<module>extend-no-controller</module>

@@ -5,7 +5,7 @@
     <artifactId>main-examples</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>with-poly</artifactId>
+  <artifactId>polymorphic</artifactId>
   <packaging>pom</packaging>
   <modules>
   	<module>polymorphic-no-controller</module>

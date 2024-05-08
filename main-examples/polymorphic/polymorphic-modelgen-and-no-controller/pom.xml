@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.github.xdamah</groupId>
-    <artifactId>with-poly</artifactId>
+    <artifactId>polymorphic</artifactId>
     <version>${revision}</version>
   </parent>
   <artifactId>polymorphic-modelgen-and-no-controller</artifactId>
