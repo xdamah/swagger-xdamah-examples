@@ -257,8 +257,8 @@ At runtime we are expecting this to be converted into the proper schema definiti
 Lets try this out and see:
 
 Visit http://localhost:8080/swagger-ui.html  
-
-![swagger-ui!](main-examples/basic/basic-no-controller/imgs/swagger-ui-home.png "swagger ui")
+<img src="main-examples/basic/basic-no-controller/imgs/swagger-ui-home.pn" alt="swagger-ui" width="400" height="400">  
+![swagger-ui!](main-examples/basic/basic-no-controller/imgs/swagger-ui-home.png "swagger ui")  
 
 For all other details of main examples please see main-examples\README.md.    
 
