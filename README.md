@@ -258,7 +258,7 @@ Lets try this out and see:
 
 Visit http://localhost:8080/swagger-ui.html  
 
-![swagger-ui!](imgs/swagger-ui-home.png "swagger ui")
+![swagger-ui!](main-examples/basic/basic-no-controller/imgs/swagger-ui-home.png "swagger ui")
 
 For all other details of main examples please see main-examples\README.md.    
 
