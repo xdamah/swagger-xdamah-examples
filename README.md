@@ -198,7 +198,7 @@ We do not have to write the Rest controller.
 We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
 
 
-Please see [swagger specs](main-examples\basic\basic-no-controller\api-docs.json).    
+Please see [swagger specs](main-examples/basic/basic-no-controller/api-docs.json).    
 
 
 For all other details of main examples please see main-examples\README.md.    
