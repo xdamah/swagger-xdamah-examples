@@ -38,21 +38,5 @@ public class SampleService {
 		return person;
 	}
 
-	public Person byids(long[] ids) {
-		Person person = new Person();
-		if (ids != null) {
-			if (ids.length > 0) {
-				person.setId(ids[0]);
-			}
-			if (ids.length > 1) {
-				person.setFirstName("F" + ids[1]);
-			}
-			if (ids.length > 2) {
-				person.setLastName("L" + ids[2]);
-			}
-		}
-		person.setLastName("L");
-		return person;
-	}
-
+	
 }

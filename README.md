@@ -198,9 +198,48 @@ We do not have to write the Rest controller.
 We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
 
 
-Please see [swagger specs](main-examples/basic/basic-no-controller/api-docs.json).    
+Please see [swagger specifications](main-examples/basic/basic-no-controller/api-docs.json).
 
+Lets discuss it a little.
 
+Under "paths" we have briefly below structure (Omitting many details here for brevity).
+    
+```json
+"paths": {
+		"/saveperson/": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "person",
+				"x-damah": true,
+				"x-damah-service": "sampleService.savePerson(com.example.model.Person)"
+			}
+		},
+		"/person/byid/{id}": {
+			"get": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "personbyid",
+				"x-damah": true,
+				"x-damah-service": "sampleService.byid(long)"
+			}
+		},
+		"/pic": {
+			"post": {
+				"tags": [
+					"person-controller"
+				],
+				"operationId": "person-pic",
+				"x-damah": true,
+				"x-damah-service": "sampleService.pic(com.example.model.Person)"
+
+			}
+		}
+
+	}
+```	
 For all other details of main examples please see main-examples\README.md.    
 
 
