@@ -105,7 +105,7 @@ Now lets discuss the code:
 @SpringBootApplication(
 scanBasePackages = { "io.github.xdamah", "com.example" })
 public class BasicNoControllerApplication {
-	private static final Logger logger =LoggerFactory.getLogger	(BasicNoControllerApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(BasicNoControllerApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(BasicNoControllerApplication.class, args);
