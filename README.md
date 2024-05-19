@@ -335,9 +335,11 @@ Expanding the person schema in swagger ui and showing the details
 
 Lets expand Post>save person. Lets click the "Try it out" button.  
 
-<img src="main-examples/basic/basic-no-controller/imgs/savepersontry.png" alt="savepersontry" width="50%" height="50%"> 
+<img src="main-examples/basic/basic-no-controller/imgs/savepersontry-resp.png" alt="savepersontry" width="50%" height="50%"> 
 For all other details of main examples please see main-examples\README.md.    
 
+Press Execute button.  
+<img src="main-examples/basic/basic-no-controller/imgs/savepersontry-resp.png" alt="savepersontry" width="50%" height="50%"> 
 
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
