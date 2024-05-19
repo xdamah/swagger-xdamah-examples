@@ -23,7 +23,6 @@
 					"person-controller"
 				],
 				"operationId": "person",
-				"x-damah": true,
 				"x-damah-service": "sampleService.savePerson(com.example.model.Person)",
 
 				"requestBody": {
@@ -91,7 +90,6 @@
 					"person-controller"
 				],
 				"operationId": "personbyid",
-				"x-damah": true,
 				"x-damah-service": "sampleService.byid(long)",
 				"parameters": [
 					{
@@ -125,7 +123,6 @@
 					"person-controller"
 				],
 				"operationId": "person-pic",
-				"x-damah": true,
 				"x-damah-service": "sampleService.pic(com.example.model.Person)",
 				"requestBody": {
 					"content": {

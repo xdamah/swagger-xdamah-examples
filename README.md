@@ -212,7 +212,6 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 					"person-controller"
 				],
 				"operationId": "person",
-				"x-damah": true,
 				"x-damah-service": "sampleService.savePerson(com.example.model.Person)"
 			}
 		},
@@ -222,7 +221,6 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 					"person-controller"
 				],
 				"operationId": "personbyid",
-				"x-damah": true,
 				"x-damah-service": "sampleService.byid(long)"
 			}
 		},
@@ -232,7 +230,6 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 					"person-controller"
 				],
 				"operationId": "person-pic",
-				"x-damah": true,
 				"x-damah-service": "sampleService.pic(com.example.model.Person)"
 
 			}
@@ -240,6 +237,22 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 
 	}
 ```	
+We see here that the swagger specs is a regular specifications file which uses a x-damah-service to indicate the service bean method that will be invoked by the endpoint.
+
+Thats one concept.  
+We saw how the model class was written along-with the service class. We can manually repeat the model class definitions in the "components/schemas" of the swagger-specifications.
+
+Alternatively we can do this:
+    
+```json
+"components": {
+	"schemas": {
+		"x-damah-models": ["com.example.model.Person"]
+		
+	}
+}
+```	
+At runtime we are expecting this to be converted into the proper schema definitions of the model class.   
 For all other details of main examples please see main-examples\README.md.    
 
 
