@@ -155,7 +155,8 @@ public class Person {
 	private Person anotherPerson = null;
 
 	private List<Person> children = null;
-	
+	//ommitting getters and setters
+}	
 ```	
 For all other details of main examples please see main-examples\README.md.    
 
