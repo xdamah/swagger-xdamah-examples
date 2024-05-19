@@ -341,6 +341,41 @@ For all other details of main examples please see main-examples\README.md.
 Press Execute button.  
 <img src="main-examples/basic/basic-no-controller/imgs/savepersontry-resp.png" alt="savepersontry" width="50%" height="50%"> 
 
+Last time we submitted this:  
+
+```json  
+{
+  "id": 1,
+  "firstName": "tx1",
+  "lastName": "no1",
+  "email": "abc@abc.com",
+  "age": 18,
+  "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
+  "registrationDate": "2024-01-12"
+}
+
+Lets submit this again after changing the input to:  
+
+```json  
+{
+  "id": 1,
+  "lastName": "n",
+  "email": "abcabc.com",
+  "age": 17,
+  "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
+  "registrationDate": "2024-01-12"
+}
+```	
+Changes are: 
+- we removed the firstName, 
+- changed value of lastName to have 1 character, 
+- removed @ from email, 
+- reduced age to 17.
+
+<img src="main-examples/basic/basic-no-controller/imgs/savepersontry-bad.png" alt="savepersontry-bad" width="50%" height="50%"> 
+
+Press Execute button.  
+<img src="main-examples/basic/basic-no-controller/imgs/savepersontry-bad-resp.png" alt="savepersontry" width="50%" height="50%"> 
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 
