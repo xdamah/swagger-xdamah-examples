@@ -158,6 +158,51 @@ public class Person {
 	//ommitting getters and setters
 }	
 ```	
+
+Now showing snippet of service class.   
+
+```java
+@Service
+public class SampleService {
+
+	public Person savePerson(Person person) {
+		return person;
+	}
+
+	public Resource pic(Person person) {
+		ByteArrayResource resource = new ByteArrayResource(person.getPic());
+
+		return resource;
+	}
+
+	public Resource binary(byte[] bytes) {
+		ByteArrayResource resource = new ByteArrayResource(bytes);
+
+		return resource;
+	}
+
+	public Person byid(long id) {
+		Person person = new Person();
+		person.setId(id);
+		person.setFirstName("F");
+		person.setLastName("L");
+		person.setRegistrationDate(LocalDate.of(2024, 1, 1));
+		person.setSomeTimeData(OffsetDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneOffset.ofHours(0)));
+		
+
+		return person;
+	}
+
+	
+
+}
+```	
+
+Thats all the code we write.  
+We do not have to write the Rest controller.
+
+
+
 For all other details of main examples please see main-examples\README.md.    
 
 
