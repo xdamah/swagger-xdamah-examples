@@ -20,13 +20,11 @@ public class SampleService {
 
 	public Resource pic(Person person) {
 		ByteArrayResource resource = new ByteArrayResource(person.getPic());
-
 		return resource;
 	}
 
 	public Resource binary(byte[] bytes) {
 		ByteArrayResource resource = new ByteArrayResource(bytes);
-
 		return resource;
 	}
 
@@ -37,8 +35,6 @@ public class SampleService {
 		person.setLastName("L");
 		person.setRegistrationDate(LocalDate.of(2024, 1, 1));
 		person.setSomeTimeData(OffsetDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneOffset.ofHours(0)));
-		
-
 		return person;
 	}
 
@@ -55,7 +51,6 @@ public class SampleService {
 				person.setLastName("L" + ids[2]);
 			}
 		}
-
 		person.setLastName("L");
 		return person;
 	}
