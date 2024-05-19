@@ -47,7 +47,7 @@ Lets quickly get started with.
 * That should build all the example projects.
 * Each project builds into a jar file - target/demo.jar   
 * In each project cd [example project name]
-* for example cd 1-first-example
+* for example cd main-examples\basic\basic-no-controller    
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
@@ -253,6 +253,12 @@ Alternatively we can do this:
 }
 ```	
 At runtime we are expecting this to be converted into the proper schema definitions of the model class.   
+
+Lets try this out and see:
+
+Visit http://localhost:8080/swagger-ui.html  
+![swagger-ui!](imgs/swagger-ui-home.png "swagger ui")
+
 For all other details of main examples please see main-examples\README.md.    
 
 
