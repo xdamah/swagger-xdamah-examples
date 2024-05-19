@@ -327,6 +327,7 @@ Lets visit http://localhost:8080/api-docs/ and scroll down.
 		}
 
 ```	
+The above shows the result of "x-damah-models": ["com.example.model.Person"] in the actual swagger specifications.  
 
 For all other details of main examples please see main-examples\README.md.    
 
