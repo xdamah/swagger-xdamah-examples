@@ -120,6 +120,43 @@ public class BasicNoControllerApplication {
 
 }
 ```	
+
+Next showing a snippet of the model class.   
+```java
+public class Person {
+
+	private Long id = null;
+
+	@NotNull
+	@NotBlank
+	@Size(min = 2, max = 20, message = "firstname has size limits")
+	private String firstName = null;
+
+	@NotNull
+	@NotBlank
+	@Size(min = 2)
+	private String lastName = null;
+
+	@Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
+	private String email;
+
+	@Min(18)
+	@Max(30)
+	private Integer age;
+
+	private LocalDate registrationDate = null;
+
+	private byte[] pic = null;
+
+	private List<byte[]> pics = null;
+
+	private OffsetDateTime someTimeData = null;
+
+	private Person anotherPerson = null;
+
+	private List<Person> children = null;
+	
+```	
 For all other details of main examples please see main-examples\README.md.    
 
 
