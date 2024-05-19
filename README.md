@@ -446,6 +446,22 @@ Listing below the errors:
   ]
 }
 ```	  
+Now 
+
+<img src="main-examples/basic/basic-no-controller/imgs/showing-reset.png" alt="showing reset" width="50%" height="50%"> 
+
+Press the above reset button.
+Pressing the reset button should undo the manual modifications to the input.  
+
+<img src="main-examples/basic/basic-no-controller/imgs/showing-nested.png" alt="showing reset" width="50%" height="50%"> 
+
+We can also try the "nested Person Example".   
+It will bring in a more complex model data.  
+
+<img src="main-examples/basic/basic-no-controller/imgs/showing-other-media-types.png" alt="showing-other-media-types" width="50%" height="50%"> 
+
+We can also try the other media types as shown.  
+
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 
 
