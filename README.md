@@ -252,7 +252,7 @@ Alternatively we can do this:
 	}
 }
 ```	
-At runtime we are expecting this to be converted into the proper schema definitions of the model class.   
+At runtime we are expecting this to be converted into the proper schema definitions of the model class.   We will show that in a very short while.  
 
 Lets try this out and see:
 
