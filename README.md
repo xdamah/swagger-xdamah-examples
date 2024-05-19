@@ -379,6 +379,73 @@ Changes are:
 Press Execute button.  
 <img src="main-examples/basic/basic-no-controller/imgs/savepersontry-bad-resp.png" alt="savepersontry" width="50%" height="50%"> 
 
+Listing below the errors:
+```json    
+{
+  "messages": [
+    {
+      "key": "validation.request.body.schema.required",
+      "level": "ERROR",
+      "message": "Object has missing required properties ([\"firstName\"])",
+      "context": {
+        "requestPath": "/saveperson/",
+        "apiRequestContentType": "application/json",
+        "location": "REQUEST",
+        "pointers": {
+          "instance": "/",
+          "schema": "/components/schemas/com.example.model.Person"
+        },
+        "requestMethod": "POST"
+      }
+    },
+    {
+      "key": "validation.request.body.schema.minimum",
+      "level": "ERROR",
+      "message": "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+      "context": {
+        "requestPath": "/saveperson/",
+        "apiRequestContentType": "application/json",
+        "location": "REQUEST",
+        "pointers": {
+          "instance": "/age",
+          "schema": "/components/schemas/com.example.model.Person/properties/age"
+        },
+        "requestMethod": "POST"
+      }
+    },
+    {
+      "key": "validation.request.body.schema.pattern",
+      "level": "ERROR",
+      "message": "[Path '/email'] ECMA 262 regex \".+@.+\\..+\" does not match input string \"abcabc.com\"",
+      "context": {
+        "requestPath": "/saveperson/",
+        "apiRequestContentType": "application/json",
+        "location": "REQUEST",
+        "pointers": {
+          "instance": "/email",
+          "schema": "/components/schemas/com.example.model.Person/properties/email"
+        },
+        "requestMethod": "POST"
+      }
+    },
+    {
+      "key": "validation.request.body.schema.minLength",
+      "level": "ERROR",
+      "message": "[Path '/lastName'] String \"n\" is too short (length: 1, required minimum: 2)",
+      "context": {
+        "requestPath": "/saveperson/",
+        "apiRequestContentType": "application/json",
+        "location": "REQUEST",
+        "pointers": {
+          "instance": "/lastName",
+          "schema": "/components/schemas/com.example.model.Person/properties/lastName"
+        },
+        "requestMethod": "POST"
+      }
+    }
+  ]
+}
+```	  
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 
 
