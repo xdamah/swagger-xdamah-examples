@@ -171,13 +171,11 @@ public class SampleService {
 
 	public Resource pic(Person person) {
 		ByteArrayResource resource = new ByteArrayResource(person.getPic());
-
 		return resource;
 	}
 
 	public Resource binary(byte[] bytes) {
 		ByteArrayResource resource = new ByteArrayResource(bytes);
-
 		return resource;
 	}
 
@@ -188,19 +186,18 @@ public class SampleService {
 		person.setLastName("L");
 		person.setRegistrationDate(LocalDate.of(2024, 1, 1));
 		person.setSomeTimeData(OffsetDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneOffset.ofHours(0)));
-		
-
 		return person;
 	}
 
-	
-
 }
+
 ```	
 
 Thats all the code we write.  
 We do not have to write the Rest controller.
+We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
 
+Please see main-examples\basic\basic-no-controller\api-docs.json.  
 
 
 For all other details of main examples please see main-examples\README.md.    
