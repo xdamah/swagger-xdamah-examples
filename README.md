@@ -257,6 +257,7 @@ At runtime we are expecting this to be converted into the proper schema definiti
 Lets try this out and see:
 
 Visit http://localhost:8080/swagger-ui.html  
+
 ![swagger-ui!](imgs/swagger-ui-home.png "swagger ui")
 
 For all other details of main examples please see main-examples\README.md.    
