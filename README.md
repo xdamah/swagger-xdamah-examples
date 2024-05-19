@@ -74,6 +74,54 @@ So we basically have 6 projects of interest here in the main examples.
 
 While these projects are organized in a tree structure to avoid repeating same pom.xml maven details - example - dependencies and plugins there is no reason why each cannot be implemented as a stand alone maven project.  
 
+Each example here will be described in main-examples\README.md   
+
+However for a very quick introduction will discuss the examples under "main-examples\basic" here.  
+
+Lets start with main-examples\basic\basic-no-controller and then will discuss main-examples\basic\basic-modelgen-and-no-controller.  
+
+main-examples\basic\basic-no-controller:
+This is a very regular spring-boot project by itself.  
+
+The only unusual dependencies which you can find in this project by means of the parent pom.xmls is
+```xml
+<dependency>
+
+			<groupId>io.github.xdamah</groupId>
+			<artifactId>xdamah-lib</artifactId>
+			<version>${xdamah-version}</version>
+		</dependency>
+```		
+and
+```xml
+<dependency>
+			<groupId>com.atlassian.oai</groupId>
+			<artifactId>swagger-request-validator-spring-webmvc</artifactId>
+			<version>2.37.0</version>
+</dependency>
+```		
+Now lets discuss the code:  
+
+```java
+@SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
+public class BasicNoControllerApplication {
+	private static final Logger logger = LoggerFactory.getLogger(BasicNoControllerApplication.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(BasicNoControllerApplication.class, args);
+	}
+
+	@PostConstruct
+	void adjustModelConverters() {
+		TypeNameResolver.std.setUseFqn(true);
+		ModelConverters.getInstance().addConverter(new ByteArrayPropertyConverter());
+
+	}
+
+}
+```	
+For all other details of main examples please see main-examples\README.md.    
+
 
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.

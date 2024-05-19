@@ -11,29 +11,18 @@ import io.swagger.v3.core.jackson.TypeNameResolver;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
-public class FirstAltFqnExampleApplication {
-	private static final Logger logger = LoggerFactory.getLogger(FirstAltFqnExampleApplication.class);
-	
-	
-	
+public class BasicNoControllerApplication {
+	private static final Logger logger = LoggerFactory.getLogger(BasicNoControllerApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(FirstAltFqnExampleApplication.class, args);
-		
-		logger.info("info message on startup");
-		logger.debug("debug message on startup");
-		logger.warn("warn message on startup");
-		logger.error("error message on startup");
+		SpringApplication.run(BasicNoControllerApplication.class, args);
 	}
-	
 
-@PostConstruct
-
-	  void adjustModelConverters() {
-	
+	@PostConstruct
+	void adjustModelConverters() {
 		TypeNameResolver.std.setUseFqn(true);
 		ModelConverters.getInstance().addConverter(new ByteArrayPropertyConverter());
-		
+
 	}
 
 }
