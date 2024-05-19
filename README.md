@@ -353,6 +353,7 @@ Last time we submitted this:
   "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
   "registrationDate": "2024-01-12"
 }
+```	  
 
 Lets submit this again after changing the input to:  
 
@@ -365,12 +366,13 @@ Lets submit this again after changing the input to:
   "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
   "registrationDate": "2024-01-12"
 }
-```	
+```	  
+
 Changes are: 
 - we removed the firstName, 
 - changed value of lastName to have 1 character, 
 - removed @ from email, 
-- reduced age to 17.
+- reduced age to 17.  
 
 <img src="main-examples/basic/basic-no-controller/imgs/savepersontry-bad.png" alt="savepersontry-bad" width="50%" height="50%"> 
 
