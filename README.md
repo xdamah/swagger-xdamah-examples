@@ -256,10 +256,77 @@ At runtime we are expecting this to be converted into the proper schema definiti
 
 Lets try this out and see:
 
-Visit http://localhost:8080/swagger-ui.html  
+Visit http://localhost:8080/swagger-ui.html 
+ 
 <img src="main-examples/basic/basic-no-controller/imgs/swagger-ui-home.png" alt="swagger-ui" width="400" height="400">  
 
-![swagger-ui!](main-examples/basic/basic-no-controller/imgs/swagger-ui-home.png "swagger ui")  
+Lets visit http://localhost:8080/api-docs/ and scroll down. 
+
+```json  
+"schemas": {
+			"com.example.model.Person": {
+				"properties": {
+					"id": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"firstName": {
+						"type": "string",
+						"maxLength": 20,
+						"minLength": 2
+					},
+					"lastName": {
+						"type": "string",
+						"maxLength": 2147483647,
+						"minLength": 2
+					},
+					"email": {
+						"type": "string",
+						"pattern": ".+@.+\\..+"
+					},
+					"age": {
+						"type": "integer",
+						"format": "int32",
+						"maximum": 30,
+						"minimum": 18
+					},
+					"registrationDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"pic": {
+						"type": "string",
+						"format": "byte"
+					},
+					"pics": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "byte"
+						}
+					},
+					"someTimeData": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"anotherPerson": {
+						"$ref": "#/components/schemas/com.example.model.Person"
+					},
+					"children": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/com.example.model.Person"
+						}
+					}
+				},
+				"required": [
+					"firstName",
+					"lastName"
+				]
+			}
+		}
+
+```	
 
 For all other details of main examples please see main-examples\README.md.    
 
