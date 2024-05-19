@@ -205,8 +205,7 @@ Lets discuss it a little.
 Under "paths" we have briefly below structure (Omitting many details here for brevity).
     
 ```json
-{
-	"paths": {
+"paths": {
 		"/saveperson/": {
 			"post": {
 				"tags": [
@@ -240,7 +239,6 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 		}
 
 	}
-}
 ```	
 For all other details of main examples please see main-examples\README.md.    
 
