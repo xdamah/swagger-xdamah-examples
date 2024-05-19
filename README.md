@@ -86,26 +86,26 @@ This is a very regular spring-boot project by itself.
 The only unusual dependencies which you can find in this project by means of the parent pom.xmls is
 ```xml
 <dependency>
-
-			<groupId>io.github.xdamah</groupId>
-			<artifactId>xdamah-lib</artifactId>
-			<version>${xdamah-version}</version>
-		</dependency>
+	<groupId>io.github.xdamah</groupId>
+	<artifactId>xdamah-lib</artifactId>
+	<version>${xdamah-version}</version>
+</dependency>
 ```		
 and
 ```xml
 <dependency>
-			<groupId>com.atlassian.oai</groupId>
-			<artifactId>swagger-request-validator-spring-webmvc</artifactId>
-			<version>2.37.0</version>
+	<groupId>com.atlassian.oai</groupId>
+	<artifactId>swagger-request-validator-spring-webmvc</artifactId>
+	<version>2.37.0</version>
 </dependency>
 ```		
 Now lets discuss the code:  
 
 ```java
-@SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
+@SpringBootApplication(
+scanBasePackages = { "io.github.xdamah", "com.example" })
 public class BasicNoControllerApplication {
-	private static final Logger logger = LoggerFactory.getLogger(BasicNoControllerApplication.class);
+	private static final Logger logger = 			LoggerFactory.getLogger	(BasicNoControllerApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(BasicNoControllerApplication.class, args);
