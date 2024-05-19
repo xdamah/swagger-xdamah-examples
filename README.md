@@ -329,6 +329,10 @@ Lets visit http://localhost:8080/api-docs/ and scroll down.
 ```	
 The above shows the result of "x-damah-models": ["com.example.model.Person"] in the actual swagger specifications.  
 
+Expanding the person schema in swagger ui and showing the details
+
+<img src="main-examples/basic/basic-no-controller/imgs/swagger-ui-expand-schema.png" alt="swagger-ui-expand-schema" width="50%" height="50%">  
+
 For all other details of main examples please see main-examples\README.md.    
 
 
