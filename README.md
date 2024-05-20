@@ -463,7 +463,25 @@ It will bring in a more complex model data.
 
 <img src="main-examples/basic/basic-no-controller/imgs/showing-other-media-types.png" alt="showing-other-media-types" width="50%" height="50%"> 
 
-We can also try the other media types as shown.  
+We can also try the other media types as shown above.  
+
+<img src="main-examples/basic/basic-no-controller/imgs/three-endpoints.png" alt="three-endpoints" width="50%" height="50%"> 
+
+With this we have had a quick look at the first of the 3 endpoints shown here.  
+
+The second endpoint should be straightforward. It uses a service method that returns an almost hardcoded data.  
+
+The third endpoint is slightly contrived but just to show some other aspects.  
+
+<img src="main-examples/basic/basic-no-controller/imgs/pic-request.png" alt="pic-request" width="50%" height="50%">  
+
+Thats the request.
+
+<img src="main-examples/basic/basic-no-controller/imgs/pic-response.png" alt="pic-response" width="50%" height="50%">
+
+Thats the response.
+
+Please try the other main-examples.   
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 
