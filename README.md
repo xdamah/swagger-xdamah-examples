@@ -196,6 +196,12 @@ public class SampleService {
 
 ```	
 
+There is one more code. 
+
+[Modified Atlassian RequestBodyValidator](main-examples/basic/basic-no-controller/src/main/java/com/atlassian/oai/validator/interaction/request/RequestBodyValidator.java)
+
+But its really just a means of extending the Atlassian validation components by overwriting that one class. In future it is hoped this can be done in a cleaner manner.  
+
 Thats all the code we write.  
 We do not have to write the Rest controller.
 We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
