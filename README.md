@@ -34,6 +34,15 @@ In this variation of Design first we have the following:
 * We do have a spring extension which can makes writing/generating of controllers redundant at least for most use cases.  
 * we also have automatic validation based on swagger specs.  
 
+Before you say "Oh no not another OSS project" will like to add this is just a way of reducing code, getting things done, following some best practices by extending existing OSS frameworks.
+
+Frameworks extended are:
+* Spring-Boot
+* Swagger
+* Atlassian Request Validator
+
+
+
 Lets quickly get started with.
 ### Quick start ###
 
