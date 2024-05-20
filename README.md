@@ -78,6 +78,8 @@ Each example here will be described in main-examples\README.md
 
 However for a very quick introduction will discuss the examples under "main-examples\basic" here.  
 
+<img src="main-examples/imgs/basic_no_controller-selected.png" alt="basic_no_controller" width="50%" height="50%"><img src="main-examples/imgs/basic_modelgen_and_no_controller.png" alt="basic_modelgen_and_no_controller" width="50%" height="50%">
+
 Lets start with main-examples\basic\basic-no-controller and then will discuss main-examples\basic\basic-modelgen-and-no-controller.  
 
 main-examples\basic\basic-no-controller:
