@@ -1,4 +1,4 @@
-[![](https://img.shields.io/badge/github-light-grey?style=for-the-badge)](README.md)
+[![](https://img.shields.io/badge/github-lightgrey?style=for-the-badge)](README.md)
 [![](https://img.shields.io/badge/github-grey?style=for-the-badge)](README2.md)
 # Swagger XDamah Examples #
 
