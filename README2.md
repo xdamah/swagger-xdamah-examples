@@ -1,3 +1,5 @@
+[![](https://img.shields.io/badge/github-white?style=for-the-badge)](README.md)
+[![](https://img.shields.io/badge/github-grey?style=for-the-badge)](README2.md)
 # Swagger XDamah Examples #
 
 This README documents whatever steps are necessary to get these example applications up and running.
