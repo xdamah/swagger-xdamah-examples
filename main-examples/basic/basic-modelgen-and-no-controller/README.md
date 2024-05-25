@@ -123,19 +123,78 @@ Under "paths" we have briefly below structure (Omitting many details here for br
 We see here that the swagger specs is a regular specifications file which uses a x-damah-service to indicate the service bean method that will be invoked by the endpoint.
 
 Thats one concept.  
-We saw how the model class was written along-with the service class. We can manually repeat the model class definitions in the "components/schemas" of the swagger-specifications.
+The model class used by the service class is generated based on "components/schemas" of the swagger-specifications.
 
-Alternatively we can do this:
+Namely:
     
 ```json
 "components": {
 	"schemas": {
-		"x-damah-models": ["com.example.model.Person"]
-		
+		"com.example.model.Person": {
+			"required": [
+				"lastName"
+			],
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"firstName": {
+					"maxLength": 2147483647,
+					"minLength": 2,
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"email": {
+					"pattern": ".+@.+\\..+",
+					"type": "string"
+				},
+				"age": {
+					"maximum": 30,
+					"minimum": 18,
+					"type": "integer",
+					"format": "int32"
+				},
+				"registrationDate": {
+					"type": "string",
+					"format": "date"
+				},
+				"pic": {
+					"type": "string",
+					"format": "byte"
+				},
+				"pics": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"format": "byte"
+					}
+				},
+				"someTimeData": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"anotherPerson": {
+					"$ref": "#/components/schemas/com.example.model.Person"
+				},
+				"children": {
+					"type": "array",
+					"items": {
+						"$ref": "#/components/schemas/com.example.model.Person"
+					}
+				}
+			},
+			"xml": {
+				"name": "person"
+			}
+		}
 	}
 }
 ```	
-At runtime we are expecting this to be converted into the proper schema definitions of the model class.   We will show that in a very short while.  
+
 
 Lets try this out and see:
 
@@ -143,78 +202,6 @@ Visit http://localhost:8080/swagger-ui.html
  
 <img src="imgs/swagger-ui-home.png" alt="swagger-ui" width="400" height="400">  
 
-Lets visit http://localhost:8080/api-docs/ and scroll down. 
-
-```json  
-"schemas": {
-			"com.example.model.Person": {
-				"properties": {
-					"id": {
-						"type": "integer",
-						"format": "int64"
-					},
-					"firstName": {
-						"type": "string",
-						"maxLength": 20,
-						"minLength": 2
-					},
-					"lastName": {
-						"type": "string",
-						"maxLength": 2147483647,
-						"minLength": 2
-					},
-					"email": {
-						"type": "string",
-						"pattern": ".+@.+\\..+"
-					},
-					"age": {
-						"type": "integer",
-						"format": "int32",
-						"maximum": 30,
-						"minimum": 18
-					},
-					"registrationDate": {
-						"type": "string",
-						"format": "date"
-					},
-					"pic": {
-						"type": "string",
-						"format": "byte"
-					},
-					"pics": {
-						"type": "array",
-						"items": {
-							"type": "string",
-							"format": "byte"
-						}
-					},
-					"someTimeData": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"anotherPerson": {
-						"$ref": "#/components/schemas/com.example.model.Person"
-					},
-					"children": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/com.example.model.Person"
-						}
-					}
-				},
-				"required": [
-					"firstName",
-					"lastName"
-				]
-			}
-		}
-
-```	
-The above shows the result of "x-damah-models": ["com.example.model.Person"] in the actual swagger specifications.  
-
-Expanding the person schema in swagger ui and showing the details
-
-<img src="imgs/swagger-ui-expand-schema.png" alt="swagger-ui-expand-schema" width="50%" height="50%">  
 
 Lets expand Post>save person. Lets click the "Try it out" button.  
 
