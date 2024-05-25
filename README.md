@@ -1,6 +1,6 @@
 [![Start here](https://img.shields.io/badge/Start_here-lightgrey?style=for-the-badge)](README.md)
 [![Basic No Controller](https://img.shields.io/badge/Basic_No_Controller-grey?style=for-the-badge)](main-examples/basic/basic-no-controller/README.md)
-[![Basic Modelgen And No Controller](https://img.shields.io/badge/Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](README3.md)
+[![Basic Modelgen And No Controller](https://img.shields.io/badge/Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](main-examples/basic/basic-modelgen-and-no-controller/README.md)
 
 # Swagger XDamah Examples #
 
