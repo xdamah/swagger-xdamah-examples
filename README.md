@@ -1,5 +1,5 @@
-[![Start here](https://img.shields.io/badge/github-lightgrey?style=for-the-badge)](README.md)
-[![Basic No Controller](https://img.shields.io/badge/github-grey?style=for-the-badge)](README2.md)
+[![Start here](https://img.shields.io/badge/Start_here-github-lightgrey?style=for-the-badge)](README.md)
+[![Basic No Controller](https://img.shields.io/badge/Basic_No_Controllergithub-grey?style=for-the-badge)](README2.md)
 # Swagger XDamah Examples #
 
 This README documents whatever steps are necessary to get these example applications up and running.
