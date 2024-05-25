@@ -40,6 +40,9 @@ public class BasicModelGenAndNoControllerApplication {
 
 }
 
+
+```	
+
 Now showing snippet of service class.   
 
 ```java
