@@ -6,14 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
-public class FirstFqnExampleApplication {
-	private static final Logger logger = LoggerFactory.getLogger(FirstFqnExampleApplication.class);
-
+public class BasicModelGenAndNoControllerApplication {
+	
 	public static void main(String[] args) {
 
-		SpringApplication.run(FirstFqnExampleApplication.class, args);
-		logger.info("FirstFqnExampleApplication started");
-		
+		SpringApplication.run(BasicModelGenAndNoControllerApplication.class, args);
+			
 	}
 
 }

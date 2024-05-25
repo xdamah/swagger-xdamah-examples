@@ -1,13 +1,16 @@
 [![Start here](https://img.shields.io/badge/Start_here-grey?style=for-the-badge)](../../../README.md)
-[![Basic No Controller](https://img.shields.io/badge/Basic_No_Controller-lightgrey?style=for-the-badge)](README2.md)
-[![Basic Modelgen And No Controller](https://img.shields.io/badge/Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](README3.md)
+[![Basic No Controller](https://img.shields.io/badge/Basic_No_Controller-grey?style=for-the-badge)](README2.md)
+[![Basic Modelgen And No Controller](https://img.shields.io/badge/Basic_Modelgen_And_No_Controller-lightgrey?style=for-the-badge)](README3.md)
 
-# basic-no-controller #
+# basic-modelgen-and-no-controller #
 
-main-examples\basic\basic-no-controller:
-This is a very regular spring-boot project by itself.  
+main-examples\basic\basic-modelgen-and-no-controller:
+This is not a very regular spring-boot swagger codegen project by itself.  
 
-The only unusual dependencies which you can find in this project by means of the parent pom.xmls is
+It uses a xdamah-maven-codegen-plugin for generating the model code.  
+This swagger code generation plugin extends the usual swagger-codegen-maven-plugin. 
+
+Otherwise the only unusual dependencies which you can find in this project by means of the parent pom.xmls is
 ```xml
 <dependency>
 	<groupId>io.github.xdamah</groupId>
@@ -26,62 +29,16 @@ and
 Now lets discuss the code:  
 
 ```java
-@SpringBootApplication(
-scanBasePackages = { "io.github.xdamah", "com.example" })
-public class BasicNoControllerApplication {
-	private static final Logger logger = LoggerFactory.getLogger(BasicNoControllerApplication.class);
-
+@SpringBootApplication(scanBasePackages = { "io.github.xdamah", "com.example" })
+public class BasicModelGenAndNoControllerApplication {
+	
 	public static void main(String[] args) {
-		SpringApplication.run(BasicNoControllerApplication.class, args);
-	}
 
-	@PostConstruct
-	void adjustModelConverters() {
-		TypeNameResolver.std.setUseFqn(true);
-		ModelConverters.getInstance().addConverter(new ByteArrayPropertyConverter());
-
+		SpringApplication.run(BasicModelGenAndNoControllerApplication.class, args);
+			
 	}
 
 }
-```	
-
-Next showing a snippet of the model class.   
-```java
-public class Person {
-
-	private Long id = null;
-
-	@NotNull
-	@NotBlank
-	@Size(min = 2, max = 20, message = "firstname has size limits")
-	private String firstName = null;
-
-	@NotNull
-	@NotBlank
-	@Size(min = 2)
-	private String lastName = null;
-
-	@Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
-	private String email;
-
-	@Min(18)
-	@Max(30)
-	private Integer age;
-
-	private LocalDate registrationDate = null;
-
-	private byte[] pic = null;
-
-	private List<byte[]> pics = null;
-
-	private OffsetDateTime someTimeData = null;
-
-	private Person anotherPerson = null;
-
-	private List<Person> children = null;
-	//ommitting getters and setters
-}	
-```	
 
 Now showing snippet of service class.   
 
@@ -95,9 +52,9 @@ public class SampleService {
 
 	public Resource pic(Person person) {
 		ByteArrayResource resource = new ByteArrayResource(person.getPic());
+
 		return resource;
 	}
-
 
 	public Person byid(long id) {
 		Person person = new Person();
@@ -120,8 +77,8 @@ There is one more code.
 But its really just a means of extending the Atlassian validation components by overwriting that one class. In future it is hoped this can be done in a cleaner manner.  
 
 Thats all the code we write.  
-We do not have to write the Rest controller.
-We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
+We do not have to generate the Rest controller.
+We do not generate it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
 
 
 Please see [swagger specifications](api-docs.json).
