@@ -20,10 +20,11 @@ Below are the prerequisites I would recommend before getting into this
 
 ### Main Concept ###
 
-
+If you are coming here for first time please see the Quick start. It also explains the main concept.
 
 Lets quickly get started with.
 ### Quick start ###
+[![Start here](https://img.shields.io/badge/Start_here-grey?style=for-the-badge)](../README.md)
 
 
 ### How do I get set up? ###
