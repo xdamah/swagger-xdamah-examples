@@ -45,7 +45,7 @@ If you are coming here for first time please see the Quick start. It also explai
 | Link         | Description    |
 | :----------- | :------------- |
 | [![Quick Start](https://img.shields.io/badge/Quick_Start-grey?style=for-the-badge)](../README.md)       | Skip if already gone through. These are the basic concepts.        | 
-| [![Beyond the basics](https://img.shields.io/badge/Beyond_the_basics-grey?style=for-the-badge)](extend/README.md)       | Custom schemas, Custom Validation not covered OOTB.        | 
+|              |                | 
 
 
 
