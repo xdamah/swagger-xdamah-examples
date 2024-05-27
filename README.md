@@ -97,15 +97,15 @@ However for a very quick introduction will discuss the examples under "main-exam
 
 After finishing with these can look at going beyond the basics.    
 
-Please see 
-[![Basic Modelgen And No Controller](https://img.shields.io/badge/Main_Examples-grey?style=for-the-badge)](main-examples/README.md)   
+Please see    
+[![Main Examples](https://img.shields.io/badge/Main_Examples-grey?style=for-the-badge)](main-examples/README.md)   
 
 We will find here the same basic examples we have seen earlier above.  
 We will also find examples explaining how to bring in custom schemas and go beyond the basic swagger validations and brig in custom validations. 
 We will also see how to work with polymorphic models.  
 
-After that has been dealth with please see 
-[![Basic Modelgen And No Controller](https://img.shields.io/badge/More_Examples-grey?style=for-the-badge)](more-examples/README.md)   
+After that has been dealth with please see    
+[![More Examples](https://img.shields.io/badge/More_Examples-grey?style=for-the-badge)](more-examples/README.md)   
 
 Again we will see the previously covered examples. We will also see some additional examples. 
 
