@@ -50,7 +50,7 @@ We will also find examples explaining how to bring in custom schemas and go beyo
 ** We will also see how to work with polymorphic models.**  
 
 When finished with the main examples please see     
-[![More Examples](https://img.shields.io/badge/More_Examples-grey?style=for-the-badge)](../../more-examples/README.md)
+[![More Examples](https://img.shields.io/badge/More_Examples-grey?style=for-the-badge)](../../more-examples/README.md)   
 If interested can also go into more-examples folder later to understand what other features are also there for a more complete picture.
 
 
