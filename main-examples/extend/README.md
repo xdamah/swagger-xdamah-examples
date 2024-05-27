@@ -1,3 +1,7 @@
+[![Introduction](https://img.shields.io/badge/Introduction-lightgrey?style=for-the-badge)](README.md)
+[![Not So Basic No Controller](https://img.shields.io/badge/Not_So_Basic_No_Controller-grey?style=for-the-badge)](extend-no-controller/README.md)
+[![Not So Basic Modelgen And No Controller](https://img.shields.io/badge/Not_So_Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](extend-modelgen-and-no-controller/README.md)
+
 # Swagger XDamah Not So Basic Examples #
 
 This README documents whatever steps are necessary to get these not so basic example applications up and running.
@@ -36,9 +40,14 @@ Below are the prerequisites I would recommend before getting into this
 In this we by extending swagger in built validations and demonstrate validations beyond OOTB validations.
 We also demonstrate custom schemas.
 
-### Whats in the main examples? ###
+### What next? ###
 
+Please see    
+[![Main Examples](https://img.shields.io/badge/Main_Examples-grey?style=for-the-badge)](main-examples/README.md)
 
+We will find here the same basic examples we have seen in the Quick Start.  
+We will also find examples explaining how to bring in custom schemas and go beyond the basic swagger validations and brig in custom validations as discussed above here. 
+** We will also see how to work with polymorphic models.**  
 
 
 
