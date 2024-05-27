@@ -43,14 +43,14 @@ We also demonstrate custom schemas.
 ### What next? ###
 
 Please see    
-[![Main Examples](https://img.shields.io/badge/Main_Examples-grey?style=for-the-badge)](main-examples/README.md)
+[![Main Examples](https://img.shields.io/badge/Main_Examples-grey?style=for-the-badge)](../README.md)
 
 We will find here the same basic examples we have seen in the Quick Start.  
 We will also find examples explaining how to bring in custom schemas and go beyond the basic swagger validations and brig in custom validations as discussed above here. 
 ** We will also see how to work with polymorphic models.**  
 
-
-
+When finished with the main examples please see     
+[![More Examples](https://img.shields.io/badge/More_Examples-grey?style=for-the-badge)](../../more-examples/README.md)
 If interested can also go into more-examples folder later to understand what other features are also there for a more complete picture.
 
 
