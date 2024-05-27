@@ -37,7 +37,7 @@ Below are the prerequisites I would recommend before getting into this
 
 ### Main Concept here ###
 
-In this we by extending swagger in built validations and demonstrate validations beyond OOTB validations.
+In this we by extending swagger in built validations and demonstrate validations beyond OOTB validations. We use swagger extensions to achieve this.  
 We also demonstrate custom schemas.
 
 ### What next? ###
