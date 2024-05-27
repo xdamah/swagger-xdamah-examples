@@ -2,9 +2,6 @@
 
 This README documents whatever steps are necessary to get these main example applications up and running.
 
-### What is this repository for? ###
-
-* This repository  demonstrates capabilities of  Swagger Xadamah - https://github.com/xdamah/swagger-xdamah
 
 ## Prerequisites ##
 Below are the prerequisites I would recommend before getting into this
