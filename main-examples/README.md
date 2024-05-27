@@ -1,4 +1,4 @@
-# Swagger XDamah Examples #
+# Swagger XDamah Main Examples #
 
 This README documents whatever steps are necessary to get these main example applications up and running.
 
@@ -41,9 +41,8 @@ If you are coming here for first time please see the Quick start. It also explai
 
 ### Whats in the main examples? ###
 
-Lets quickly get started with.
-#### Quick start ####
-[![Start here](https://img.shields.io/badge/Start_here-grey?style=for-the-badge)](../README.md)
+Lets quickly get started with.   
+[![Start here](https://img.shields.io/badge/Start_here-grey?style=for-the-badge)](../README.md). Skip if already gone through.  
 
 
 
