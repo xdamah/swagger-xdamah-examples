@@ -94,8 +94,8 @@ However for a very quick introduction will discuss the examples under "main-exam
 
 | Link         | Description    |
 | :----------- | :------------- |
-| [![Basic No Controller](https://img.shields.io/badge/Basic_No_Controller-grey?style=for-the-badge)](main-examples/basic/basic-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.        | 
-| [![Basic Modelgen And No Controller](https://img.shields.io/badge/Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](main-examples/basic/basic-modelgen-and-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.  Also leverages code geneeration oly of the model classes.        | 
+| [Basic No Controller](main-examples/basic/basic-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.        | 
+| [Basic Modelgen And No Controller](main-examples/basic/basic-modelgen-and-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.  Also leverages code geneeration oly of the model classes.        | 
 
 
 After finishing with these can look at going beyond the basics.    
