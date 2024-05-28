@@ -111,6 +111,6 @@ After that has been dealt with please see  [More Examples](more-examples/README.
 Again we will see the previously covered examples. We will also see some additional examples. 
 
 
-If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
+If interested can go into more-examples folder to understand what other features are also there for a more complete picture.
 
 
