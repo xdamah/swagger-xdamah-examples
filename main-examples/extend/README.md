@@ -12,7 +12,7 @@ Below are the prerequisites I would recommend before getting into this
 ### General Prerequisites ###
 * Knowledge of Spring Boot
 * Knowledge and experience of Swagger - Code First and Design First
-* Please go through these basics using this  [Quick Start](../README.md).
+* Please go through these basics using this  [Quick Start](../../README.md).
 
 ### Technical Prerequisites ###
 
