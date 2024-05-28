@@ -47,6 +47,6 @@ If you are coming here for first time please see the Quick start. It also explai
 
 
 
-If interested can also go into more-examples folder later to understand what other features are also there for a more complete picture.
+If interested can also go into [More Examples](../more-examples/README.md)   folder later to understand what other features are also there for a more complete picture.
 
 
