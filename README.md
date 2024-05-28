@@ -95,7 +95,7 @@ However for a very quick introduction will discuss the examples under "main-exam
 | Link         | Description    |
 | :----------- | :------------- |
 | [Basic No Controller](main-examples/basic/basic-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.        | 
-| [Basic Modelgen And No Controller](main-examples/basic/basic-modelgen-and-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.  Also leverages code geneeration oly of the model classes.        | 
+| [Basic Modelgen And No Controller](main-examples/basic/basic-modelgen-and-no-controller/README.md)      | Demonstrates a basic spring boot application that eliminates controller code.  Also leverages code generation only of the model classes.        | 
 
 
 After finishing with these can look at going beyond the basics.    
