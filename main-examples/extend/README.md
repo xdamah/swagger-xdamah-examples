@@ -43,8 +43,8 @@ These two as mentined above are our goals here.
 
 | Link         | Description    |
 | :----------- | :------------- |
-| [![Not So Basic No Controller](https://img.shields.io/badge/Not_So_Basic_No_Controller-grey?style=for-the-badge)](extend-no-controller/README.md)      | Demonstrates above mentioned goal while eliminating controller code.        | 
-| [![Not So Basic Modelgen And No Controller](https://img.shields.io/badge/Not_So_Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](extend-modelgen-and-no-controller/README.md)      | Demonstrates above mentioned goal while eliminating controller code.     | 
+| [![Not So Basic No Controller](https://img.shields.io/badge/Not_So_Basic_No_Controller-grey?style=for-the-badge)](extend-no-controller/README.md)      | Demonstrates custom schemas and custom validation while eliminating controller code.        | 
+| [![Not So Basic Modelgen And No Controller](https://img.shields.io/badge/Not_So_Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](extend-modelgen-and-no-controller/README.md)      | Same as above and additional code generation of model classes.     | 
 
 ### What next? ###
 
