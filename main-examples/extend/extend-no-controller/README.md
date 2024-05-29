@@ -160,7 +160,9 @@ Couple of things are being demonstrated here.
 
 Atlassian RequestBodyValidator is being customized to handle @Email and  @CreditCardNumber and enforce these validations. This is a demonstration of one of the ways this can be achieved when using Atlassian RequestBodyValidator. Spring validation can also take care of same validation.  
 
-But the main concept here is how when we write the Model classes by hand the swagger documentation for these validations is communicated in the swagger specifications.
+But the main concept here is how when we write the Model classes by hand the swagger documentation for these validations is communicated in the swagger specifications.   
+
+Not showing here but we could also write a custom validator and extend in the same manner.   
 
 In the Person model class we also bring in for demonstration purpose a custom type.   
 ```java
