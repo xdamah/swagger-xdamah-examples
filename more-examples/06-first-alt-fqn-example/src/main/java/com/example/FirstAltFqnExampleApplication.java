@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.xdamah.modelconverter.ByteArrayPropertyConverter;
+import io.github.xdamah.modelresolver.CustomOpenApiValidator;
 //import io.github.xdamah.modelconverter.IModelConverters;
 import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.converter.ModelConverters;

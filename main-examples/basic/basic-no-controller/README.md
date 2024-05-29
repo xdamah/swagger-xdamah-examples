@@ -20,7 +20,6 @@ and
 <dependency>
 	<groupId>com.atlassian.oai</groupId>
 	<artifactId>swagger-request-validator-spring-webmvc</artifactId>
-	<version>2.37.0</version>
 </dependency>
 ```		
 Now lets discuss the code:  
