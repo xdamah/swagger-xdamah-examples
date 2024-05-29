@@ -54,25 +54,19 @@ public class Person {
 	private Long id = null;
 
 	@NotNull
-
 	@NotBlank
-
 	@Size(min = 2, max = 20, message = "firstname has size limits")
 	private String firstName = null;
 
 	@NotNull
-
 	@NotBlank
-
 	@Size(min = 2)
 	private String lastName = null;
 
 	@Pattern(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
-
 	private String email;
 
 	@Email()
-
 	private String email1;
 	@Min(18)
 
