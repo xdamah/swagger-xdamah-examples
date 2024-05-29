@@ -39,6 +39,12 @@ Below are the prerequisites I would recommend before getting into this
 
 In this we by extending swagger in built validations and demonstrate validations beyond OOTB validations. We use swagger extensions to achieve this.  
 We also demonstrate custom schemas.
+These two as mentined above are our goals here. 
+
+| Link         | Description    |
+| :----------- | :------------- |
+| [![Not So Basic No Controller](https://img.shields.io/badge/Not_So_Basic_No_Controller-grey?style=for-the-badge)](extend-no-controller/README.md)      | Demonstrates above mentioned goal while eliminating controller code.        | 
+| [![Not So Basic Modelgen And No Controller](https://img.shields.io/badge/Not_So_Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](extend-modelgen-and-no-controller/README.md)      | Demonstrates above mentioned goal while eliminating controller code.  Also leverages code generation only of the model classes.        | 
 
 ### What next? ###
 
