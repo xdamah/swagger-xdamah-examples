@@ -141,6 +141,8 @@ Lets now discuss the differences and new code.
 In CustomSchemaAndCustomValidationExampleApplication.java the main class in method adjustModelConverters() we are doing some changes to the model conversion logic.   
 
 Mainly we have added a CustomOpenApiValidator class into mix.  
+This class is provided as a reference. Feel free to borrow the logic and customize in another custom class. 
+
 This enables us to take care of previously not possible OOTB validation related swagger documentation for these fields in the Person model class.
 
 ```java
@@ -194,7 +196,8 @@ public class ValidatorExtension extends BaseValidatorExtension {
 }
 ```	
 
-That and referred classes are all the code we write.  
+That and referred classes, CustomOpenApiValidator.java are all the code we write.  
+
 
 We do not have to write the Rest controller.
 We do not write it in this example because all the information that we code in the rest controller is present in the swagger specs and its extension.
