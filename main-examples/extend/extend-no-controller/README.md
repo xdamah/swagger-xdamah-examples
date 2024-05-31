@@ -1,3 +1,7 @@
+[![Introduction](https://img.shields.io/badge/Introduction-grey?style=for-the-badge)](../README.md)
+[![Not So Basic No Controller](https://img.shields.io/badge/Not_So_Basic_No_Controller-lightgrey?style=for-the-badge)](README.md)
+[![Not So Basic Modelgen And No Controller](https://img.shields.io/badge/Not_So_Basic_Modelgen_And_No_Controller-grey?style=for-the-badge)](../extend-modelgen-and-no-controller/README.md)
+
 # extend-no-controller #
 
 
