@@ -196,11 +196,13 @@
 						"format": "int64"
 					},
 					"firstName": {
-						"maxLength": 2147483647,
+						"maxLength": 20,
 						"minLength": 2,
 						"type": "string"
 					},
 					"lastName": {
+						"maxLength": 2147483647,
+						"minLength": 2,
 						"type": "string"
 					},
 					"email": {

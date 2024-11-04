@@ -302,80 +302,6 @@
 				}
 			}
 		},
-		"/pic1": {
-			"post": {
-				"tags": [
-					"person-controller"
-				],
-				"operationId": "person-pic1",
-				"x-damah": true,
-				"x-damah-service": "sampleService.pic(Person)",
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.json"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.json"
-								}
-							}
-						},
-						"application/xml": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							},
-							"examples": {
-								"user": {
-									"summary": "person Example",
-									"externalValue": "classpath:examples/1.xml"
-								},
-								"user1": {
-									"summary": "person1 Example",
-									"externalValue": "classpath:examples/2.xml"
-								}
-							}
-						},
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						},
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/Person"
-							}
-						}
-					},
-					"required": true
-				},
-				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"image/jpeg": {
-								"schema": {
-									"type": "string",
-									"format": "binary"
-								}
-							},
-							"image/png": {
-								"schema": {
-									"type": "string",
-									"format": "binary"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
 		"/person/byid": {
 			"get": {
 				"tags": [
@@ -446,10 +372,10 @@
 				}
 			}
 		},
-		"/abc/{abc}": {
+		"/codefirstexample/{abc}": {
 			"get": {
 				"tags": [
-					"another-controller"
+					"code-first-controller"
 				],
 				"operationId": "another_1",
 				"x-damah": false,
@@ -482,7 +408,7 @@
 			},
 			"post": {
 				"tags": [
-					"another-controller"
+					"code-first-controller"
 				],
 				"operationId": "another_2",
 				"x-damah": false,
@@ -556,10 +482,10 @@
 				}
 			}
 		},
-		"/def": {
+		"/designfirst": {
 			"post": {
 				"tags": [
-					"another-controller"
+					"design-first-controller"
 				],
 				"operationId": "another_3",
 				"parameters": [

@@ -1,0 +1,1313 @@
+{
+	"info": {
+		"_postman_id": "c1219904-7170-40c0-9c18-c51dc9aefa98",
+		"name": "parameter-examples",
+		"description": "Use with\n\n- more-examples\\\\11-parameter-examples\\\\src\\\\main\\\\java\\\\com\\\\example\\\\ParameterExamplesApplication.java\n    \n\nWe have the same tests done of 3 endpoints just to show how differently their swagger yaml can be written to get same functionality.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8889417"
+	},
+	"item": [
+		{
+			"name": "person",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "person",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContent = {\r",
+											"    \"id\": 1,\r",
+											"    \"firstName\": \"tx1\",\r",
+											"    \"lastName\": \"no1\",\r",
+											"    \"email\": \"abc@abc.com\",\r",
+											"    \"email1\": \"abc@abc.com\",\r",
+											"    \"age\": 18,\r",
+											"    \"creditCardNumber\": \"4444444444444448\",\r",
+											"    \"registrationDate\": \"2024-01-12\",\r",
+											"    \"sampleCustomTypeData\": \"hello\",\r",
+											"    \"someTimeData\": \"2023-09-08T18:18:29.7075175Z\"\r",
+											"};\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "header1val1",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) "
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/person/:id?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "18",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "3"
+										},
+										{
+											"key": "x",
+											"value": "2024-01-12"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "id1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invalidpersonparams",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"reqPath=\"person\"\r",
+											"pm.test(\"Response status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContentTemplate = {\r",
+											"    \"messages\": [\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Parameter 'header1' is required but is missing.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header1\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"header1val1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.header.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Header parameter 'header2' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header2\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            \"h1\",\r",
+											"                            \"h2\",\r",
+											"                            \"h3\"\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"string\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"string\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minLength\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"1\\\" is too short (length: 1, required minimum: 2)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"id\",\r",
+											"                    \"in\": \"path\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"maxLength\": 2147483647,\r",
+											"                        \"minLength\": 2,\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"id1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minimum\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Numeric instance is lower than the required minimum (minimum: 18, found: 16)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"def\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"maximum\": 30,\r",
+											"                        \"minimum\": 18,\r",
+											"                        \"type\": \"integer\",\r",
+											"                        \"format\": \"int32\",\r",
+											"                        \"example\": 18,\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"integer\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.query.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Query parameter 'defArr' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"defArr\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            1,\r",
+											"                            2,\r",
+											"                            3\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"integer\",\r",
+											"                            \"format\": \"int32\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"integer\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.format.date\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"2024-02-31\\\" is invalid against requested date format(s) yyyy-MM-dd\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"x\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": false,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"format\": \"date\",\r",
+											"                        \"example\": \"2024-01-12T00:00:00.000+00:00\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        }\r",
+											"    ]\r",
+											"};\r",
+											"\r",
+											"function replacePathPlaceholders(content, reqPath) {\r",
+											"         return JSON.parse(JSON.stringify(content).replace(/{{req\\.path}}/g, reqPath));\r",
+											"    }\r",
+											"\r",
+											"var savedContent = replacePathPlaceholders(savedContentTemplate, reqPath);\r",
+											"\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) ",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/person/:id?def=16&x=2024-02-31",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"person",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "16",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "x",
+											"value": "2024-02-31"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "persona",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "person",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContent = {\r",
+											"    \"id\": 1,\r",
+											"    \"firstName\": \"tx1\",\r",
+											"    \"lastName\": \"no1\",\r",
+											"    \"email\": \"abc@abc.com\",\r",
+											"    \"email1\": \"abc@abc.com\",\r",
+											"    \"age\": 18,\r",
+											"    \"creditCardNumber\": \"4444444444444448\",\r",
+											"    \"registrationDate\": \"2024-01-12\",\r",
+											"    \"sampleCustomTypeData\": \"hello\",\r",
+											"    \"someTimeData\": \"2023-09-08T18:18:29.7075175Z\"\r",
+											"};\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "header1val1",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) "
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/persona/:id?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"persona",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "18",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "3"
+										},
+										{
+											"key": "x",
+											"value": "2024-01-12"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "id1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invalidpersonparams",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"reqPath=\"persona\"\r",
+											"pm.test(\"Response status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContentTemplate = {\r",
+											"    \"messages\": [\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Parameter 'header1' is required but is missing.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header1\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"header1val1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.header.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Header parameter 'header2' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header2\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            \"h1\",\r",
+											"                            \"h2\",\r",
+											"                            \"h3\"\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"string\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"string\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minLength\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"1\\\" is too short (length: 1, required minimum: 2)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"id\",\r",
+											"                    \"in\": \"path\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"maxLength\": 2147483647,\r",
+											"                        \"minLength\": 2,\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"id1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minimum\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Numeric instance is lower than the required minimum (minimum: 18, found: 16)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"def\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"maximum\": 30,\r",
+											"                        \"minimum\": 18,\r",
+											"                        \"type\": \"integer\",\r",
+											"                        \"format\": \"int32\",\r",
+											"                        \"example\": 18,\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"integer\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.query.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Query parameter 'defArr' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"defArr\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            1,\r",
+											"                            2,\r",
+											"                            3\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"integer\",\r",
+											"                            \"format\": \"int32\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"integer\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.format.date\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"2024-02-31\\\" is invalid against requested date format(s) yyyy-MM-dd\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"x\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": false,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"format\": \"date\",\r",
+											"                        \"example\": \"2024-01-12T00:00:00.000+00:00\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        }\r",
+											"    ]\r",
+											"};\r",
+											"\r",
+											"function replacePathPlaceholders(content, reqPath) {\r",
+											"         return JSON.parse(JSON.stringify(content).replace(/{{req\\.path}}/g, reqPath));\r",
+											"    }\r",
+											"\r",
+											"var savedContent = replacePathPlaceholders(savedContentTemplate, reqPath);\r",
+											"\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) ",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/persona/:id?def=16&x=2024-02-31",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"persona",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "16",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "x",
+											"value": "2024-02-31"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "personb",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "person",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContent = {\r",
+											"    \"id\": 1,\r",
+											"    \"firstName\": \"tx1\",\r",
+											"    \"lastName\": \"no1\",\r",
+											"    \"email\": \"abc@abc.com\",\r",
+											"    \"email1\": \"abc@abc.com\",\r",
+											"    \"age\": 18,\r",
+											"    \"creditCardNumber\": \"4444444444444448\",\r",
+											"    \"registrationDate\": \"2024-01-12\",\r",
+											"    \"sampleCustomTypeData\": \"hello\",\r",
+											"    \"someTimeData\": \"2023-09-08T18:18:29.7075175Z\"\r",
+											"};\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "header1val1",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) "
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/personb/:id?def=18&defArr=1&defArr=2&defArr=3&x=2024-01-12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"personb",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "18",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "3"
+										},
+										{
+											"key": "x",
+											"value": "2024-01-12"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "id1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invalidpersonparams",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"reqPath=\"personb\"\r",
+											"pm.test(\"Response status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"// Test to validate the response content using saved content\r",
+											"pm.test(\"Validate response content\", function () {\r",
+											"    var savedContentTemplate = {\r",
+											"    \"messages\": [\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Parameter 'header1' is required but is missing.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header1\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"header1val1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.header.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Header parameter 'header2' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"header2\",\r",
+											"                    \"in\": \"header\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            \"h1\",\r",
+											"                            \"h2\",\r",
+											"                            \"h3\"\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"string\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"string\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minLength\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"1\\\" is too short (length: 1, required minimum: 2)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"id\",\r",
+											"                    \"in\": \"path\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"SIMPLE\",\r",
+											"                    \"explode\": false,\r",
+											"                    \"schema\": {\r",
+											"                        \"maxLength\": 2147483647,\r",
+											"                        \"minLength\": 2,\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"example\": \"id1\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.minimum\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Numeric instance is lower than the required minimum (minimum: 18, found: 16)\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"def\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"maximum\": 30,\r",
+											"                        \"minimum\": 18,\r",
+											"                        \"type\": \"integer\",\r",
+											"                        \"format\": \"int32\",\r",
+											"                        \"example\": 18,\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"integer\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.query.missing\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"Query parameter 'defArr' is required on path '/{{req.path}}/{id}' but not found in request.\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"defArr\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": true,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"array\",\r",
+											"                        \"example\": [\r",
+											"                            1,\r",
+											"                            2,\r",
+											"                            3\r",
+											"                        ],\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"items\": {\r",
+											"                            \"type\": \"integer\",\r",
+											"                            \"format\": \"int32\",\r",
+											"                            \"exampleSetFlag\": false,\r",
+											"                            \"types\": [\r",
+											"                                \"integer\"\r",
+											"                            ]\r",
+											"                        },\r",
+											"                        \"types\": [\r",
+											"                            \"array\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        },\r",
+											"        {\r",
+											"            \"key\": \"validation.request.parameter.schema.format.date\",\r",
+											"            \"level\": \"ERROR\",\r",
+											"            \"message\": \"String \\\"2024-02-31\\\" is invalid against requested date format(s) yyyy-MM-dd\",\r",
+											"            \"context\": {\r",
+											"                \"requestPath\": \"/{{req.path}}/1\",\r",
+											"                \"parameter\": {\r",
+											"                    \"name\": \"x\",\r",
+											"                    \"in\": \"query\",\r",
+											"                    \"required\": false,\r",
+											"                    \"style\": \"FORM\",\r",
+											"                    \"explode\": true,\r",
+											"                    \"schema\": {\r",
+											"                        \"type\": \"string\",\r",
+											"                        \"format\": \"date\",\r",
+											"                        \"example\": \"2024-01-12T00:00:00.000+00:00\",\r",
+											"                        \"exampleSetFlag\": true,\r",
+											"                        \"types\": [\r",
+											"                            \"string\"\r",
+											"                        ]\r",
+											"                    }\r",
+											"                },\r",
+											"                \"location\": \"REQUEST\",\r",
+											"                \"pointers\": {\r",
+											"                    \"instance\": \"/\"\r",
+											"                },\r",
+											"                \"requestMethod\": \"POST\"\r",
+											"            }\r",
+											"        }\r",
+											"    ]\r",
+											"};\r",
+											"\r",
+											"function replacePathPlaceholders(content, reqPath) {\r",
+											"         return JSON.parse(JSON.stringify(content).replace(/{{req\\.path}}/g, reqPath));\r",
+											"    }\r",
+											"\r",
+											"var savedContent = replacePathPlaceholders(savedContentTemplate, reqPath);\r",
+											"\r",
+											"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "header1",
+										"value": "",
+										"description": "(Required) "
+									},
+									{
+										"key": "header2",
+										"value": "h1,h2,h3",
+										"description": "(Required) ",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Cookie",
+										"value": "cookieValue1=cookieeg1;",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"firstName\": \"tx1\",\n  \"lastName\": \"no1\",\n  \"email\": \"abc@abc.com\",\n  \"email1\": \"abc@abc.com\",\n  \"age\": 18,\n  \"creditCardNumber\": \"4444444444444448\",\n  \"sampleCustomTypeData\": \"hello\",\n  \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/personb/:id?def=16&x=2024-02-31",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"personb",
+										":id"
+									],
+									"query": [
+										{
+											"key": "def",
+											"value": "16",
+											"description": "(Required) "
+										},
+										{
+											"key": "defArr",
+											"value": "1",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "2",
+											"description": "(Required) ",
+											"disabled": true
+										},
+										{
+											"key": "defArr",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "x",
+											"value": "2024-02-31"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

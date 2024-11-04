@@ -64,7 +64,7 @@ Lets quickly get started with.
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same.  Do import the postman collection and try where needed.  (The postman collection- Might be getting a bit out of synch as f now) 
+* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same. 
 * More details in each project folder's Readme.MD.
 
 ### Whats in the examples? ###

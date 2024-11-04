@@ -6,7 +6,7 @@
 
 
 main-examples\extend\extend-no-controller:
-This is a very regular spring-boot project by itself.  
+This is a very regular spring-boot project by itself. Its a bit different from  the basic example we must have seen earlier.  
 
 The only unusual dependencies which you can find in this project by means of the parent pom.xmls is
 ```xml
@@ -356,6 +356,8 @@ Expanding the person schema in swagger ui and showing the details
 
 <img src="imgs/swagger-ui-expand-schema.png" alt="swagger-ui-expand-schema" width="50%" height="50%">  
 
+Showing here how using x-email and x-CreditCardNumber we are using swagger extensions, documenting and communicating regarding these non OOTB constraints.
+ 
 Lets expand Post>save person. Lets click the "Try it out" button.  
 
 <img src="imgs/savepersontry.png" alt="savepersontry" width="50%" height="50%"> 
@@ -371,7 +373,10 @@ Last time we submitted this:
   "firstName": "tx1",
   "lastName": "no1",
   "email": "abc@abc.com",
+  "email1": "abc@abc.com",
   "age": 18,
+  "creditCardNumber": "4444444444444448",
+  "sampleCustomTypeData": "hello",
   "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
   "registrationDate": "2024-01-12"
 }
@@ -382,19 +387,22 @@ Lets submit this again after changing the input to:
 ```json  
 {
   "id": 1,
-  "lastName": "n",
-  "email": "abcabc.com",
-  "age": 17,
+  "firstName": "tx1",
+  "lastName": "no1",
+  "email": "abc@abc.com",
+  "email1": "abcabc.com",
+  "age": 18,
+  "creditCardNumber": "444444444444444",
+  "sampleCustomTypeData": "hello",
   "someTimeData": "2023-09-08T23:48:29.7075175+05:30",
   "registrationDate": "2024-01-12"
 }
 ```	  
 
 Changes are: 
-- we removed the firstName, 
-- changed value of lastName to have 1 character, 
-- removed @ from email, 
-- reduced age to 17.  
+
+- removed @ from email1, 
+- removed last 8 from creditCardNumber.  
 
 <img src="imgs/savepersontry-bad.png" alt="savepersontry-bad" width="50%" height="50%"> 
 
@@ -406,61 +414,29 @@ Listing below the errors:
 {
   "messages": [
     {
-      "key": "validation.request.body.schema.required",
+      "key": "x-Email",
       "level": "ERROR",
-      "message": "Object has missing required properties ([\"firstName\"])",
+      "message": "Property email1 is not  valid",
       "context": {
         "requestPath": "/saveperson/",
-        "apiRequestContentType": "application/json",
         "location": "REQUEST",
         "pointers": {
-          "instance": "/",
-          "schema": "/components/schemas/com.example.model.Person"
+          "instance": "/email1",
+          "schema": "/components/schemas/com.example.model.Person/email1"
         },
         "requestMethod": "POST"
       }
     },
     {
-      "key": "validation.request.body.schema.minimum",
+      "key": "x-CreditCardNumber",
       "level": "ERROR",
-      "message": "[Path '/age'] Numeric instance is lower than the required minimum (minimum: 18, found: 17)",
+      "message": "Property creditCardNumber is not  valid",
       "context": {
         "requestPath": "/saveperson/",
-        "apiRequestContentType": "application/json",
         "location": "REQUEST",
         "pointers": {
-          "instance": "/age",
-          "schema": "/components/schemas/com.example.model.Person/properties/age"
-        },
-        "requestMethod": "POST"
-      }
-    },
-    {
-      "key": "validation.request.body.schema.pattern",
-      "level": "ERROR",
-      "message": "[Path '/email'] ECMA 262 regex \".+@.+\\..+\" does not match input string \"abcabc.com\"",
-      "context": {
-        "requestPath": "/saveperson/",
-        "apiRequestContentType": "application/json",
-        "location": "REQUEST",
-        "pointers": {
-          "instance": "/email",
-          "schema": "/components/schemas/com.example.model.Person/properties/email"
-        },
-        "requestMethod": "POST"
-      }
-    },
-    {
-      "key": "validation.request.body.schema.minLength",
-      "level": "ERROR",
-      "message": "[Path '/lastName'] String \"n\" is too short (length: 1, required minimum: 2)",
-      "context": {
-        "requestPath": "/saveperson/",
-        "apiRequestContentType": "application/json",
-        "location": "REQUEST",
-        "pointers": {
-          "instance": "/lastName",
-          "schema": "/components/schemas/com.example.model.Person/properties/lastName"
+          "instance": "/creditCardNumber",
+          "schema": "/components/schemas/com.example.model.Person/creditCardNumber"
         },
         "requestMethod": "POST"
       }
@@ -483,6 +459,7 @@ It will bring in a more complex model data.
 <img src="imgs/showing-other-media-types.png" alt="showing-other-media-types" width="50%" height="50%"> 
 
 We can also try the other media types as shown above.  
+Note: Use postman when trying for application/x-www-form-urlencoded or multipart/form-data requests.
 
 <img src="imgs/three-endpoints.png" alt="three-endpoints" width="50%" height="50%"> 
 
@@ -500,7 +477,9 @@ Thats the request.
 
 Thats the response.
 
-Please try the other main-examples.   
+Please try the other [extend modelgen and no controller example](../extend-modelgen-and-no-controller/README.md).   
+
+After that please try the  [Main Examples](../../README.md).   
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 

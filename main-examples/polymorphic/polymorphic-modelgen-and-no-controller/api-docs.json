@@ -23,7 +23,6 @@
 					"trip"
 				],
 				"operationId": "createtrip",
-				"x-damah": true,
 				"x-damah-service": "sampleService.createTrip(Trip)",
 				"requestBody": {
 					"content": {
@@ -62,7 +61,6 @@
 					"trip"
 				],
 				"operationId": "triprequests",
-				"x-damah": true,
 				"x-damah-service": "sampleService.getTrip(long)",
 				"parameters": [
 					{
@@ -94,7 +92,6 @@
 					"trip"
 				],
 				"operationId": "addrequest",
-				"x-damah": true,
 				"x-damah-service": "sampleService.addRequest(long, OneOfTripRequestsItems)",
 				"parameters": [
 					{

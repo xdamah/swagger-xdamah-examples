@@ -186,7 +186,7 @@
 				}
 			}
 		},
-		"/saveperson/": {
+		"/xdamah-saveperson/": {
 			"post": {
 				"tags": [
 					"xdamah-design-first-controller"
@@ -254,7 +254,7 @@
 				}
 			}
 		},
-		"/person/byid/{id}": {
+		"/xdamah-person/byid/{id}": {
 			"get": {
 				"tags": [
 					"xdamah-design-first-controller"
@@ -288,7 +288,7 @@
 				}
 			}
 		},
-		"/pic": {
+		"/xdamah-pic": {
 			"post": {
 				"tags": [
 					"xdamah-design-first-controller"

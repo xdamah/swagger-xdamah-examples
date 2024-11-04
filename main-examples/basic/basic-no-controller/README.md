@@ -385,6 +385,7 @@ It will bring in a more complex model data.
 <img src="imgs/showing-other-media-types.png" alt="showing-other-media-types" width="50%" height="50%"> 
 
 We can also try the other media types as shown above.  
+Note: Use postman when trying for application/x-www-form-urlencoded or multipart/form-data requests.
 
 <img src="imgs/three-endpoints.png" alt="three-endpoints" width="50%" height="50%"> 
 
@@ -402,7 +403,9 @@ Thats the request.
 
 Thats the response.
 
-Please try the other main-examples.   
+Please try the other [basic modelgen and no controller example](../basic-modelgen-and-no-controller/README.md).   
+
+After that please try the [Main Examples](../../README.md).     
 
 If interested can go into more-examples folder later to understand what other features are also there for a more complete picture.
 
