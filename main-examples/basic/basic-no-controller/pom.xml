@@ -56,10 +56,10 @@
             <goal>npm</goal>
           </goals>
           <configuration>
-            <arguments>install -g newman</arguments> <!-- Install Newman globally -->
+            <arguments>install -g newman newman-reporter-html</arguments> <!-- Install Newman globally -->
           </configuration>
         </execution>
-        <!-- Run Postman collection during integration-test phase -->
+        
        
       </executions>
     </plugin>
