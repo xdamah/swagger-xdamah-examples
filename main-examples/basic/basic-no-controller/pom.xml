@@ -75,7 +75,8 @@
                 <goal>exec</goal>
             </goals>
             <configuration>
-                <executable>${project.basedir}/node/newman.cmd</executable>
+				<!-- on windows newman.executable.extn is .cmd else blank because of properties and profile in root parent pom-->
+                <executable>${project.basedir}/node/newman${newman.executable.extn}</executable>
                 <arguments>
                     <argument>run</argument>
                     <argument>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</argument>

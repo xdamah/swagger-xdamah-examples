@@ -16,6 +16,7 @@
 		<revision>1.0.5-SNAPSHOT</revision>
 		<spring-boot-version>3.2.2</spring-boot-version>
 		<xdamah-version>1.0.5-SNAPSHOT</xdamah-version>
+		<newman.executable.extn></newman.executable.extn>
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -70,7 +71,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-version}</version>
 			</plugin>
-		</plugins>
+					</plugins>
 	</build>
 	<dependencyManagement>
 		<dependencies>
@@ -250,4 +251,17 @@
 		</pluginRepository>
 	</pluginRepositories>
 -->
+<profiles>
+		<profile>
+			<id>windows-profile</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<newman.executable.extn>.cmd</newman.executable.extn>
+			</properties>
+		</profile>
+	</profiles>
 </project>
