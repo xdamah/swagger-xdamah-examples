@@ -17,6 +17,8 @@
 		<spring-boot-version>3.2.2</spring-boot-version>
 		<xdamah-version>1.0.5-SNAPSHOT</xdamah-version>
 		<newman.executable.extn></newman.executable.extn>
+		
+		<localnode.dir>${project.basedir}/node</localnode.dir>
 	</properties>
 	<build>
 		<finalName>demo</finalName>
@@ -263,5 +265,17 @@
 				<newman.executable.extn>.cmd</newman.executable.extn>
 			</properties>
 		</profile>
+		<profile>
+        <id>node-centralized</id>
+        <activation>
+            <property>
+                <name>localnodehome</name> <!-- Check for custom environment variable -->
+            </property>
+        </activation>
+        <properties>
+            <localnode.dir>${localnodehome}</localnode.dir> <!-- Use LOCAL_NODE_HOME if set -->
+           
+        </properties>
+        </profile>
 	</profiles>
 </project>
