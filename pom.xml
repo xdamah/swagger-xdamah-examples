@@ -211,16 +211,33 @@
 </dependency>
 	</dependencies>
 	<modules>
-		
+		<module>localnode</module>
 
 		<module>main-examples</module>
 		<module>more-examples</module>
+		
 	</modules>
 
 
 	
 
-<!--
+
+<profiles>
+		<profile>
+			<id>windows-profile</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<newman.executable.extn>.cmd</newman.executable.extn>
+			</properties>
+		</profile>
+	
+			</profiles>
+			
+			
 	<repositories>
 		<repository>
 			<id>ossrh</id>
@@ -251,31 +268,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
--->
-<profiles>
-		<profile>
-			<id>windows-profile</id>
-			<activation>
-				<os>
-					<family>windows</family>
-				</os>
-			</activation>
-			<properties>
-				<newman.executable.extn>.cmd</newman.executable.extn>
-			</properties>
-		</profile>
-		<profile>
-        <id>node-centralized</id>
-        <activation>
-            <property>
-                <name>localnodehome</name> <!-- Check for custom environment variable -->
-            </property>
-        </activation>
-        <properties>
-            <localnode.dir>${localnodehome}</localnode.dir> <!-- Use LOCAL_NODE_HOME if set -->
-           
-        </properties>
-        </profile>
-        
-			</profiles>
+
 </project>
