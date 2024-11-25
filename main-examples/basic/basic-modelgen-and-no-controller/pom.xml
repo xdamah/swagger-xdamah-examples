@@ -5,13 +5,97 @@
     <artifactId>basic</artifactId>
     <version>${revision}</version>
   </parent>
+  <properties>
+		<postman-test-collection>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</postman-test-collection>
+	</properties>
   <artifactId>basic-modelgen-and-no-controller</artifactId><build>
 		<plugins>
 			<plugin>
+     
+    <groupId>com.github.eirslett</groupId>
+    <artifactId>frontend-maven-plugin</artifactId>
+    <version>1.15.1</version>
+ <configuration>
+        <nodeVersion>v22.11.0</nodeVersion>
+
+        <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
+        <npmVersion>10.9.0</npmVersion>
+        
+        <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
+        <nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
+         <npmDownloadRoot>https://registry.npmjs.org/npm/-/</npmDownloadRoot>
+    </configuration>
+<!-- Use the latest version -->
+      <executions>
+        <!-- Install Node and npm and globally install Newman -->
+        <execution>
+			<id>install-node-and-npm</id>
+			<phase>pre-integration-test</phase>
+          <goals>
+            <goal>install-node-and-npm</goal>
+            <goal>npm</goal>
+          </goals>
+          <configuration>
+            <arguments>install -g newman newman-reporter-html</arguments> <!-- Install Newman globally -->
+          </configuration>
+        </execution>
+        
+       
+      </executions>
+    </plugin>
+    <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>3.5.0</version>
+    <executions>
+        <execution>
+            <id>run-newman-tests</id>
+            <phase>integration-test</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+				<!-- on windows newman.executable.extn is .cmd else blank because of properties and profile in root parent pom-->
+                <executable>${project.basedir}/node/newman${newman.executable.extn}</executable>
+                <arguments>
+                    <argument>run</argument>
+                    <argument>${postman-test-collection}</argument>
+                    <argument>--environment</argument>
+                    <argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
+                    <argument>--reporters</argument>
+                    <argument>cli,json,html</argument>
+                    <argument>--reporter-json-export</argument>
+                    <argument>${project.build.directory}/newman-report.json</argument>
+                    <argument>--reporter-html-export</argument>
+                    <argument>${project.build.directory}/newman-report.html</argument>
+                </arguments>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+
+		<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-version}</version>
+				 <executions>
+                <execution>
+                    <id>pre-integration-start</id>
+                    <goals>
+                        <goal>start</goal>
+                    </goals>
+                    <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                    <id>post-integration-stop</id>
+                    <goals>
+                        <goal>stop</goal>
+                    </goals>
+                    <phase>post-integration-test</phase>
+                </execution>
+            </executions>
 			</plugin>
+
 			<plugin>
 				<groupId>io.github.xdamah</groupId>
 				<artifactId>xdamah-maven-codegen-plugin</artifactId>

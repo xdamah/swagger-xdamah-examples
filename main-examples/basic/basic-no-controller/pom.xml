@@ -10,7 +10,6 @@
 	<artifactId>basic-no-controller</artifactId>
 	<properties>
 		<postman-test-collection>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</postman-test-collection>
-		
 	</properties>
 
 		<build>
