@@ -17,7 +17,6 @@
 		<spring-boot-version>3.2.2</spring-boot-version>
 		<xdamah-version>1.0.5-SNAPSHOT</xdamah-version>
 		<newman.executable.extn></newman.executable.extn>
-		
 		<localnode.dir>${project.basedir}/node</localnode.dir>
 	</properties>
 	<build>
@@ -277,5 +276,6 @@
            
         </properties>
         </profile>
-	</profiles>
+        
+			</profiles>
 </project>

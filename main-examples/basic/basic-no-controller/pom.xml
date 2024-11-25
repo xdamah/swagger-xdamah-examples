@@ -8,29 +8,13 @@
 		<version>${revision}</version>
 	</parent>
 	<artifactId>basic-no-controller</artifactId>
-	<build>
+	<properties>
+		<postman-test-collection>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</postman-test-collection>
+		
+	</properties>
+
+		<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot-version}</version>
-				 <executions>
-                <execution>
-                    <id>pre-integration-start</id>
-                    <goals>
-                        <goal>start</goal>
-                    </goals>
-                    <phase>pre-integration-test</phase>
-                </execution>
-                <execution>
-                    <id>post-integration-stop</id>
-                    <goals>
-                        <goal>stop</goal>
-                    </goals>
-                    <phase>post-integration-test</phase>
-                </execution>
-            </executions>
-			</plugin>
 			<plugin>
      
     <groupId>com.github.eirslett</groupId>
@@ -51,6 +35,7 @@
         <!-- Install Node and npm and globally install Newman -->
         <execution>
 			<id>install-node-and-npm</id>
+			<phase>pre-integration-test</phase>
           <goals>
             <goal>install-node-and-npm</goal>
             <goal>npm</goal>
@@ -79,7 +64,7 @@
                 <executable>${project.basedir}/node/newman${newman.executable.extn}</executable>
                 <arguments>
                     <argument>run</argument>
-                    <argument>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</argument>
+                    <argument>${postman-test-collection}</argument>
                     <argument>--environment</argument>
                     <argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
                     <argument>--reporters</argument>
@@ -93,6 +78,28 @@
         </execution>
     </executions>
 </plugin>
-		</plugins>
+
+		<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot-version}</version>
+				 <executions>
+                <execution>
+                    <id>pre-integration-start</id>
+                    <goals>
+                        <goal>start</goal>
+                    </goals>
+                    <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                    <id>post-integration-stop</id>
+                    <goals>
+                        <goal>stop</goal>
+                    </goals>
+                    <phase>post-integration-test</phase>
+                </execution>
+            </executions>
+			</plugin>
+			</plugins>
 	</build>
 </project>
