@@ -8,7 +8,9 @@
   <properties>
 		<postman-test-collection>${project.basedir}/../../../postman-colls/gs/basic/basicExample.postman_collection.json</postman-test-collection>
 	</properties>
-  <artifactId>basic-modelgen-and-no-controller</artifactId><build>
+  <artifactId>basic-modelgen-and-no-controller</artifactId>
+  
+  <build>
 		<plugins>
 			<plugin>
      
