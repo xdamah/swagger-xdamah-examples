@@ -9,8 +9,7 @@
 	</parent>
 	<artifactId>13-misc</artifactId>
 <properties>
-		
-		<rootref.directory.path>${root.directory.path}</rootref.directory.path>
+		<postman-test-collection>${project.basedir}/../../postman-colls/more/misc/misc.postman_collection.json</postman-test-collection>
 	</properties>
 
 	<build>
@@ -73,27 +72,59 @@
 
 				</dependencies>
 			</plugin>
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-antrun-plugin</artifactId>
-    <version>3.1.0</version>
+
+ <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>3.5.0</version>
     <executions>
         <execution>
-            <phase>validate</phase>
-            <configuration>
-                <target>
-                    <echo>localnode.dir: [${localnode.dir}]</echo>
-                      <echo>localnode1.dir: [${localnode1.dir}]</echo>
-
-                </target>
-            </configuration>
+            <id>run-newman-tests</id>
+            <phase>integration-test</phase>
             <goals>
-                <goal>run</goal>
+                <goal>exec</goal>
             </goals>
+            <configuration>
+				<!-- on windows newman.executable.extn is .cmd else blank because of properties and profile in root parent pom-->
+                <executable>${project.basedir}/../../localnode/node/newman${newman.executable.extn}</executable>
+                <arguments>
+                    <argument>run</argument>
+                    <argument>${postman-test-collection}</argument>
+                    <argument>--environment</argument>
+                    <argument>${project.basedir}/../../postman-colls/local.postman_environment.json</argument>
+                    <argument>--reporters</argument>
+                    <argument>cli,json,html</argument>
+                    <argument>--reporter-json-export</argument>
+                    <argument>${project.build.directory}/newman-report.json</argument>
+                    <argument>--reporter-html-export</argument>
+                    <argument>${project.build.directory}/newman-report.html</argument>
+                </arguments>
+            </configuration>
         </execution>
     </executions>
 </plugin>
 
+		<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot-version}</version>
+				 <executions>
+                <execution>
+                    <id>pre-integration-start</id>
+                    <goals>
+                        <goal>start</goal>
+                    </goals>
+                    <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                    <id>post-integration-stop</id>
+                    <goals>
+                        <goal>stop</goal>
+                    </goals>
+                    <phase>post-integration-test</phase>
+                </execution>
+            </executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>

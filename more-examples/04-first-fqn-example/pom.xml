@@ -1,16 +1,70 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>io.github.xdamah</groupId>
-    <artifactId>more-examples</artifactId>
-    <version>${revision}</version>
-  </parent>
-  <artifactId>04-first-fqn-example</artifactId><build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.xdamah</groupId>
+		<artifactId>more-examples</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>04-first-fqn-example</artifactId>
+	<properties>
+		<postman-test-collection>${project.basedir}/../../postman-colls/more/fqn-first-example/fqn-first-example.postman_collection.json</postman-test-collection>
+	</properties>
+	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>run-newman-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<!-- on windows newman.executable.extn is .cmd else blank because 
+								of properties and profile in root parent pom -->
+							<executable>${project.basedir}/../../localnode/node/newman${newman.executable.extn}</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>${postman-test-collection}</argument>
+								<argument>--environment</argument>
+								<argument>${project.basedir}/../../postman-colls/local.postman_environment.json</argument>
+								<argument>--reporters</argument>
+								<argument>cli,json,html</argument>
+								<argument>--reporter-json-export</argument>
+								<argument>${project.build.directory}/newman-report.json</argument>
+								<argument>--reporter-html-export</argument>
+								<argument>${project.build.directory}/newman-report.html</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-version}</version>
+				<executions>
+					<execution>
+						<id>pre-integration-start</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+					</execution>
+					<execution>
+						<id>post-integration-stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>io.github.xdamah</groupId>
@@ -33,7 +87,7 @@
 							<generateApiDocumentation>false</generateApiDocumentation>
 							<modelPackage>does.not.matter.when.fqn.is.set</modelPackage>
 							<apiPackage>com.example.api</apiPackage>
-							
+
 							<invokerPackage>com.example.invoker</invokerPackage>
 							<!--templateDirectory>src/main/templates/JavaSpringX</templateDirectory -->
 							<additionalProperties>
