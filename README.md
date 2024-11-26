@@ -64,14 +64,16 @@ Lets quickly get started with.
 * then run from comamnd prompt "java -jar target/demo.jar"
 * When that finishes launching we should run http://localhost:8080/swagger-ui.html  
 * Will be able to follow along using swagger ui.   
-* Where needed will also refer to [postman collection](swagger-xdamah-postman-collection.json)  for same. 
 * More details in each project folder's Readme.MD.
+* We also have some minimal tests which can be triggered by running "mvn clean verify" at the root project level.
 
 ### Whats in the examples? ###
 
 The examples are organized into two folders   
 * main-examples
 * more-examples
+
+Two online postman collections will also be shared with instructions.  
 
 Will discuss the main examples here first and understand what that is about.  
 The main-examples are illustrated with 2 use cases- basic and with-poly(morphism).  
