@@ -8,88 +8,90 @@
 		<version>${revision}</version>
 	</parent>
 	<artifactId>polymorphic-modelgen-and-no-controller</artifactId>
-<properties>
+	<properties>
 		<postman-test-collection-A>${project.basedir}/../../../postman-colls/gs/polymorphism/polymorphism-A.postman_collection.json</postman-test-collection-A>
 		<postman-test-collection-B>${project.basedir}/../../../postman-colls/gs/polymorphism/polymorphism-B.postman_collection.json</postman-test-collection-B>
 	</properties>
 	<build>
 		<plugins>
-		 <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>3.5.0</version>
-    <executions>
-        <execution>
-            <id>run-newman-tests-A</id>
-            <phase>integration-test</phase>
-            <goals>
-                <goal>exec</goal>
-            </goals>
-            <configuration>
-				<!-- on windows newman.executable.extn is .cmd else blank because of properties and profile in root parent pom-->
-                <executable>${project.basedir}/../../../localnode/node/newman${newman.executable.extn}</executable>
-                <arguments>
-                    <argument>run</argument>
-                    <argument>${postman-test-collection-A}</argument>
-                    <argument>--environment</argument>
-                    <argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
-                    <argument>--reporters</argument>
-                    <argument>cli,json,html</argument>
-                    <argument>--reporter-json-export</argument>
-                    <argument>${project.build.directory}/newman-report-A.json</argument>
-                    <argument>--reporter-html-export</argument>
-                    <argument>${project.build.directory}/newman-report-A.html</argument>
-                </arguments>
-            </configuration>
-        </execution>
-        <execution>
-            <id>run-newman-tests-B</id>
-            <phase>integration-test</phase>
-            <goals>
-                <goal>exec</goal>
-            </goals>
-            <configuration>
-				<!-- on windows newman.executable.extn is .cmd else blank because of properties and profile in root parent pom-->
-                <executable>${project.basedir}/../../../localnode/node/newman${newman.executable.extn}</executable>
-                <arguments>
-                    <argument>run</argument>
-                    <argument>${postman-test-collection-B}</argument>
-                    <argument>--environment</argument>
-                    <argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
-                    <argument>--reporters</argument>
-                    <argument>cli,json,html</argument>
-                    <argument>--reporter-json-export</argument>
-                    <argument>${project.build.directory}/newman-report-B.json</argument>
-                    <argument>--reporter-html-export</argument>
-                    <argument>${project.build.directory}/newman-report-B.html</argument>
-                </arguments>
-            </configuration>
-        </execution>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>run-newman-tests-A</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<!-- on windows newman.executable.extn is .cmd else blank because 
+								of properties and profile in root parent pom -->
+							<executable>${project.basedir}/../../../localnode/node/newman${newman.executable.extn}</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>${postman-test-collection-A}</argument>
+								<argument>--environment</argument>
+								<argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
+								<argument>--reporters</argument>
+								<argument>cli,json,html</argument>
+								<argument>--reporter-json-export</argument>
+								<argument>${project.build.directory}/newman-report-A.json</argument>
+								<argument>--reporter-html-export</argument>
+								<argument>${project.build.directory}/newman-report-A.html</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>run-newman-tests-B</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<!-- on windows newman.executable.extn is .cmd else blank because 
+								of properties and profile in root parent pom -->
+							<executable>${project.basedir}/../../../localnode/node/newman${newman.executable.extn}</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>${postman-test-collection-B}</argument>
+								<argument>--environment</argument>
+								<argument>${project.basedir}/../../../postman-colls/local.postman_environment.json</argument>
+								<argument>--reporters</argument>
+								<argument>cli,json,html</argument>
+								<argument>--reporter-json-export</argument>
+								<argument>${project.build.directory}/newman-report-B.json</argument>
+								<argument>--reporter-html-export</argument>
+								<argument>${project.build.directory}/newman-report-B.html</argument>
+							</arguments>
+						</configuration>
+					</execution>
 
-    </executions>
-</plugin>
+				</executions>
+			</plugin>
 
 
-		<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-version}</version>
-				 <executions>
-                <execution>
-                    <id>pre-integration-start</id>
-                    <goals>
-                        <goal>start</goal>
-                    </goals>
-                    <phase>pre-integration-test</phase>
-                </execution>
-                <execution>
-                    <id>post-integration-stop</id>
-                    <goals>
-                        <goal>stop</goal>
-                    </goals>
-                    <phase>post-integration-test</phase>
-                </execution>
-            </executions>
+				<executions>
+					<execution>
+						<id>pre-integration-start</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+					</execution>
+					<execution>
+						<id>post-integration-stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
