@@ -3561,7 +3561,7 @@
 												{
 													"key": "anotherPerson.pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-bd1f-4e00-88db-8d8c78206465"
+													"src": "./../../localnode/files/eg.jpg"
 												},
 												{
 													"key": "children[0].pic",
@@ -4457,7 +4457,7 @@
 												{
 													"key": "anotherPerson.pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-bd1f-4e00-88db-8d8c78206465"
+													"src": "./../../localnode/files/eg.jpg"
 												},
 												{
 													"key": "children[0].pic",
@@ -5601,7 +5601,7 @@
 								{
 									"key": "pic",
 									"type": "file",
-									"src": "postman-cloud:///1ef8518f-8f72-4330-96dc-351881b6d0d3"
+									"src": "./../../localnode/files/pic.png"
 								}
 							]
 						},
