@@ -73,7 +73,7 @@ The examples are organized into two folders
 * main-examples
 * more-examples
 
-Two online postman collections will also be shared with instructions.  
+Two online corresponding postman workspaces will also be shared with instructions.  
 
 Will discuss the main examples here first and understand what that is about.  
 The main-examples are illustrated with 2 use cases- basic and with-poly(morphism).  
