@@ -212,8 +212,9 @@
 	</dependencies>
 	<modules>
 		<module>localnode</module>
-
+<!--
 		<module>main-examples</module>
+		-->
 		<module>more-examples</module>
 		
 	</modules>

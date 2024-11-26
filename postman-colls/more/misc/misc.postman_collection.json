@@ -5,7 +5,7 @@
 		"description": "Use with\n\n- more-examples\\\\13-misc\\\\src\\\\main\\\\java\\\\com\\\\example\\\\MiscApplication.java\n    \n\nSome miscellaneous examples. Some of this may have been already covered. Some extra concepts may also be tried here.\n\nHave a look at the following:\n\n- stringreqbody\n    \n- binary\n    \n\nAlso have a look at how the same controller is handling different contentTypes\n\nTry these:\n\n- pic\n    \n- person/{id}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8889417",
-		"_collection_link": "https://raghu121.postman.co/workspace/05562476-6499-4d88-999a-9a6605125f15/collection/8889417-dc98849e-6336-49af-a794-a9c043e87711?action=share&source=collection_link&creator=8889417"
+		"_collection_link": "https://raghu121.postman.co/workspace/Xdamah-more~05562476-6499-4d88-999a-9a6605125f15/collection/8889417-dc98849e-6336-49af-a794-a9c043e87711?action=share&source=collection_link&creator=8889417"
 	},
 	"item": [
 		{
@@ -3182,6 +3182,7 @@
 												"exec": [
 													"pm.test(\"Response status code is 200\", function () {\r",
 													"    pm.response.to.have.status(200);\r",
+													"    console.log(\"File path being used:\", \"../../files/person.jpg\");\r",
 													"});\r",
 													"\r",
 													"// Test to validate the response content using saved content\r",
@@ -3199,6 +3200,8 @@
 													"    \"sampleCustomTypeData\": \"hello\",\r",
 													"    \"someTimeData\": \"2023-09-08T23:48:29.7075175+05:30\"\r",
 													"};\r",
+													"console.log('Actual-:', JSON.stringify(pm.response.json(), null, 2));\r",
+													"console.log('Expected-:', JSON.stringify(savedContent, null, 2));\r",
 													"    pm.expect(pm.response.json()).to.eql(savedContent);\r",
 													"});"
 												],
@@ -3281,7 +3284,7 @@
 												{
 													"key": "pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												}
 											]
 										},
@@ -3553,7 +3556,7 @@
 												{
 													"key": "pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												},
 												{
 													"key": "anotherPerson.pic",
@@ -3563,7 +3566,7 @@
 												{
 													"key": "children[0].pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												}
 											]
 										},
@@ -3929,7 +3932,7 @@
 												{
 													"key": "pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												}
 											]
 										},
@@ -4449,7 +4452,7 @@
 												{
 													"key": "pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												},
 												{
 													"key": "anotherPerson.pic",
@@ -4459,7 +4462,7 @@
 												{
 													"key": "children[0].pic",
 													"type": "file",
-													"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+													"src": "./../../localnode/files/person.jpg"
 												}
 											]
 										},
@@ -4984,7 +4987,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+								"src": "./../../localnode/files/person.jpg"
 							}
 						},
 						"url": {
@@ -5485,7 +5488,7 @@
 								{
 									"key": "pic",
 									"type": "file",
-									"src": "postman-cloud:///1eeaba7e-e00c-44e0-9259-991c9edaa0ec"
+									"src": "./../../localnode/files/person.jpg"
 								}
 							]
 						},
