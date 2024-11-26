@@ -58,7 +58,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -72,7 +72,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-version}</version>
 			</plugin>
-					</plugins>
+		</plugins>
 	</build>
 	<dependencyManagement>
 		<dependencies>
@@ -203,27 +203,19 @@
 			<artifactId>spring-jcl</artifactId>
 
 		</dependency>
-<dependency>
-	
-        <groupId>io.swagger.core.v3</groupId>
-          <artifactId>swagger-core-jakarta</artifactId>
-        <version>2.2.19</version>
-</dependency>
+		<dependency>
+
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-core-jakarta</artifactId>
+			<version>2.2.19</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>localnode</module>
-<!--
 		<module>main-examples</module>
-		-->
 		<module>more-examples</module>
-		
 	</modules>
-
-
-	
-
-
-<profiles>
+	<profiles>
 		<profile>
 			<id>windows-profile</id>
 			<activation>
@@ -235,10 +227,10 @@
 				<newman.executable.extn>.cmd</newman.executable.extn>
 			</properties>
 		</profile>
-	
-			</profiles>
-			
-			
+
+	</profiles>
+
+
 	<repositories>
 		<repository>
 			<id>ossrh</id>
